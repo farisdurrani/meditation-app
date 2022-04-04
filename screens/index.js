@@ -1,3 +1,3 @@
-export { default as HomeScreen } from "./HomeScreen";
-export { default as LoginScreen } from "./LoginScreen";
-export { default as WelcomePage } from "./WelcomePage";
+export { default as HomeScreen } from "./beginning_screens/HomeScreen";
+export { default as LoginScreen } from "./beginning_screens/LoginScreen";
+export { default as WelcomePage } from "./beginning_screens/WelcomePage";

@@ -13,7 +13,7 @@ const Navigation = () => {
           name="WelcomePage"
           component={WelcomePage}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           options={{ headerShown: false }}
           name="LoginScreen"
           component={LoginScreen}
@@ -22,7 +22,7 @@ const Navigation = () => {
           options={{ headerShown: false }}
           name="HomeScreen"
           component={HomeScreen}
-        /> */}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

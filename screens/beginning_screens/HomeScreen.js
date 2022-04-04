@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import axios from "axios";
 import React from "react";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { useNavigation } from "@react-navigation/core";
 import * as Location from "expo-location";
 
