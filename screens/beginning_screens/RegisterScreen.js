@@ -7,27 +7,42 @@ import {
   TouchableOpacity,
   View,
   Image,
+  Alert,
 } from "react-native";
 import { COLORS } from "../../constants";
 import { auth } from "../../firebase";
 import { MText, MButton } from "../../components";
 
-const LoginScreen = ({ navigation }) => {
+const RegisterScreen = ({ navigation }) => {
   const [email, onChangeEmail] = useState("");
   const [password, onChangePassword] = useState("");
+  const [DOB, onChangeDOB] = useState("");
 
   // from https://youtu.be/ql4J6SpLXZA
-  const handleLogin = () => {
+  const handleSignup = () => {
     auth
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password)
       .then((userCredentials) => {
         const user = userCredentials.user;
-        console.log("Logged in with", user.email);
-        navigation.replace("HomeScreen");
+        console.log("Registered with", user.email);
+        navigation.navigate("LoginScreen");
       })
-      .catch((error) => {
-        alert(error.message);
-      });
+      .catch((error) => alert(error.message));
+  };
+
+  const _verifyDate = (date) => {
+    // from https://www.geeksforgeeks.org/how-to-check-a-date-is-valid-or-not-using-javascript/
+    let d = new Date(date);
+
+    if (Object.prototype.toString.call(d) === "[object Date]") {
+      return !isNaN(d.getTime());
+    } else {
+      return False;
+    }
+  };
+
+  const _neutralError = (title, subtitle) => {
+    Alert.alert(title, subtitle, [{ text: "OK", onPress: () => {} }]);
   };
 
   return (
@@ -47,6 +62,13 @@ const LoginScreen = ({ navigation }) => {
           ></TextInput>
 
           <TextInput
+            placeholder="Date of Birth (mm/dd/yyyy)"
+            value={DOB}
+            onChangeText={onChangeDOB}
+            style={styles.inputText}
+          ></TextInput>
+
+          <TextInput
             placeholder="Password"
             value={password}
             onChangeText={onChangePassword}
@@ -55,26 +77,29 @@ const LoginScreen = ({ navigation }) => {
           ></TextInput>
         </KeyboardAvoidingView>
         <MButton
-          text="Log In"
-          onPress={
-            email
-              ? handleLogin
-              : () => {
-                  navigation.navigate("WelcomePage");
-                }
-          }
+          text="Register"
+          onPress={() => {
+            if (_verifyDate(DOB)) {
+              handleSignup();
+            } else {
+              _neutralError(
+                "Incorrect format",
+                "Please enter date of birth in the format mm/dd/yyyy"
+              );
+            }
+          }}
         />
       </View>
 
       <Text
         style={{ fontSize: 19, color: COLORS.primary_blue, marginBottom: 20 }}
       >
-        New user?
+        Current user?
       </Text>
       <MButton
-        text="Register"
+        text="Log In"
         onPress={() => {
-          navigation.navigate("RegisterScreen");
+          navigation.navigate("LoginScreen");
         }}
         containerStyle={{ width: 200 }}
       />
@@ -82,7 +107,7 @@ const LoginScreen = ({ navigation }) => {
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;
 
 const styles = StyleSheet.create({
   mainContainer: {
