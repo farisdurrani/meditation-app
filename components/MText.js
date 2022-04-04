@@ -15,7 +15,8 @@ export default MText;
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 30,
+    fontSize: 70,
+    fontWeight: "500",
     color: COLORS.primary_blue,
     textAlign: "center",
   },
