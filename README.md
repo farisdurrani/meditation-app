@@ -1,1 +1,1 @@
-meditation-app
+meditation-apptest
