@@ -8,7 +8,9 @@ import {
   View,
   Image,
 } from "react-native";
+import { COLORS } from "../../constants";
 import { auth } from "../../firebase";
+import { MText, MButton } from "../../components";
 
 const LoginScreen = ({ navigation }) => {
   const [email, onChangeEmail] = useState("");
@@ -39,45 +41,51 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.mainContainer} >
+    <View style={styles.mainContainer}>
       <Image
         source={require("../../assets/head.png")}
-        style={{ height: 100, width: 100 }}
+        style={{ height: 150, width: 150, marginBottom: 20 }}
       />
-      <KeyboardAvoidingView behavior="padding">
-        <View style={styles.inputContainer}>
+      <Text style={styles.welcomeText}>Welcome to NeuroSky</Text>
+      <View style={styles.inputBox}>
+        <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 20 }}>
           <TextInput
             placeholder="Email"
             value={email}
             onChangeText={onChangeEmail}
-            style={styles.input}
+            style={styles.inputText}
           ></TextInput>
 
           <TextInput
             placeholder="Password"
             value={password}
             onChangeText={onChangePassword}
-            style={styles.input}
+            style={styles.inputText}
             secureTextEntry={true}
           ></TextInput>
-        </View>
+        </KeyboardAvoidingView>
+        <MButton
+          text="Log In"
+          onPress={
+            email
+              ? handleLogin
+              : () => {
+                  navigation.navigate("WelcomePage");
+                }
+          }
+        />
+      </View>
 
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={handleLogin}
-            style={[styles.button, styles.buttonOutline]}
-          >
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[styles.button, styles.buttonOutline]}
-            onPress={handleSignup}
-          >
-            <Text style={styles.buttonText}>Register</Text>
-          </TouchableOpacity>
-        </View>
-      </KeyboardAvoidingView>
+      <Text
+        style={{ fontSize: 19, color: COLORS.primary_blue, marginBottom: 20 }}
+      >
+        New user?
+      </Text>
+      <MButton
+        text="Register"
+        onPress={handleSignup}
+        containerStyle={{ width: 200 }}
+      />
     </View>
   );
 };
@@ -87,16 +95,25 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
   },
-  button: {
+  welcomeText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: COLORS.primary_blue,
+    marginBottom: 20,
+  },
+  inputBox: {
+    borderWidth: 3,
+    width: 300,
+    padding: 20,
+    borderRadius: 20,
+    marginBottom: 40,
+  },
+  inputText: {
+    textAlign: "center",
     padding: 15,
-  },
-  buttonText: {
-    color: "blue",
-  },
-  input: {
-    padding: 15,
+    fontSize: 20,
   },
 });
