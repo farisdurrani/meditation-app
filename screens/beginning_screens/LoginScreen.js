@@ -60,7 +60,7 @@ const LoginScreen = ({ navigation }) => {
             email
               ? handleLogin
               : () => {
-                  navigation.navigate("WelcomePage");
+                  navigation.navigate("CurrentScore");
                 }
           }
         />
