@@ -15,3 +15,5 @@ export { default as SettingPage } from "./focused_screens/SettingPage";
 // library_screens
 export { default as FavoriteList } from "./library_screens/FavoriteList";
 
+// guided_screens
+export { default as Guided } from "./guided_screens/Guided";

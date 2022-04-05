@@ -12,6 +12,7 @@ import {
   FocusedMeditation,
   SettingPage,
   FavoriteList,
+  Guided,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -20,6 +21,11 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Guided"
+          component={Guided}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="FavoriteList"
