@@ -2,10 +2,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Dimensions,
   TextInput,
   KeyboardAvoidingView,
-  ScrollView,
 } from "react-native";
 import React from "react";
 import { HeaderButtons, MButton } from "../../components";

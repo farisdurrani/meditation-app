@@ -8,3 +8,4 @@ export { default as Timer } from "./beginning_screens/Timer";
 
 // focused_screens
 export { default as ChooseWordPage } from "./focused_screens/ChooseWordPage";
+export { default as Begin } from "./focused_screens/Begin";

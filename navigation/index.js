@@ -8,6 +8,7 @@ import {
   CurrentScore,
   Timer,
   ChooseWordPage,
+  Begin,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -16,6 +17,11 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Begin"
+          component={Begin}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="ChooseWordPage"
