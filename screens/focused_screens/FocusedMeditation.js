@@ -6,32 +6,75 @@ import {
   Dimensions,
 } from "react-native";
 import React from "react";
-import { HeaderButtons } from "../../components";
+import { HeaderButtons, MButton } from "../../components";
 import { COLORS } from "../../constants";
 import { Bar } from "react-native-progress";
+import { Button, Overlay } from "react-native-elements";
 
 const FocusedMeditation = ({ navigation, route }) => {
   const { chosenWord } = route;
+  const [overlay, setOverlay] = React.useState(true);
+
+  const _toggleOverlay = () => {
+    setOverlay(!overlay);
+  };
+
   return (
     <ImageBackground
       source={require("../../assets/background.png")}
       resizeMode="cover"
-      style={styles.image}
+      style={{ flex: 1 }}
     >
       <View style={styles.mainContainer}>
-        <HeaderButtons pause={true} navigation={navigation} timer />
+        <HeaderButtons
+          pause={true}
+          onPause={_toggleOverlay}
+          navigation={navigation}
+          timer
+        />
         <Text style={styles.chosenWord}>
           {chosenWord ? chosenWord : "Chosen Word"}
         </Text>
-        <View style={{ marginTop: Dimensions.get("window").height * 0.3 }}>
+        <View style={{ marginTop: screenHeight * 0.3 }}>
           <Bar
             progress={0.3}
             color={COLORS.primary_blue}
             height={20}
-            width={Dimensions.get("window").width * 0.9}
+            width={screenWidth * 0.9}
             borderRadius={10}
           />
         </View>
+
+        <Overlay isVisible={overlay} onBackdropPress={_toggleOverlay}>
+          <View
+            style={{
+              width: screenWidth * 0.7,
+              height: screenHeight * 0.4,
+              borderRadius: 20,
+              alignItems: "center",
+              padding: 20,
+              justifyContent: "space-around",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 40,
+                fontWeight: "bold",
+                color: COLORS.primary_blue,
+                marginBottom: 20,
+              }}
+            >
+              PAUSE
+            </Text>
+            <MButton
+              containerStyle={{ width: "90%" }}
+              text="Continue"
+              onPress={_toggleOverlay}
+            />
+            <MButton containerStyle={{ width: "90%" }} text="Home" />
+            <MButton containerStyle={{ width: "90%" }} text="Settings" />
+          </View>
+        </Overlay>
       </View>
     </ImageBackground>
   );
@@ -39,17 +82,19 @@ const FocusedMeditation = ({ navigation, route }) => {
 
 export default FocusedMeditation;
 
+const [screenWidth, screenHeight] = [
+  Dimensions.get("window").width,
+  Dimensions.get("window").height,
+];
+
 const styles = StyleSheet.create({
   mainContainer: {
     alignItems: "center",
-  },
-  image: {
-    flex: 1,
   },
   chosenWord: {
     color: COLORS.white,
     fontWeight: "bold",
     fontSize: 45,
-    marginTop: Dimensions.get("window").height * 0.3,
+    marginTop: screenHeight * 0.3,
   },
 });

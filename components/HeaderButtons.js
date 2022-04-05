@@ -5,7 +5,7 @@ import { HelpButton } from "./index";
 import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
 
 const BackCancelButtons = (props) => {
-  const { navigation, pause, onSetPause, settings, timer, setTimer } = props;
+  const { navigation, pause, onPause, settings, timer, setTimer } = props;
   const defaultSize = 40;
   const defaultColor = COLORS.primary_blue;
   return (
@@ -16,9 +16,7 @@ const BackCancelButtons = (props) => {
             name="pause"
             size={defaultSize}
             color={defaultColor}
-            onPress={() => {
-              onSetPause(true);
-            }}
+            onPress={onPause}
           />
         </TouchableOpacity>
       ) : (
