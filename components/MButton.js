@@ -8,14 +8,14 @@ import {
 import { COLORS } from "../constants";
 
 const MButton = (props) => {
-  const { text, onPress, containerStyle, buttonStyle } = props;
+  const { text, onPress, containerStyle, buttonStyle, textStyle } = props;
   return (
     <View style={containerStyle}>
       <TouchableOpacity
         onPress={onPress ? onPress : () => {}}
         style={buttonStyle ? buttonStyle : styles.button}
       >
-        <Text style={styles.buttonText}>{text}</Text>
+        <Text style={textStyle ? textStyle : styles.buttonText}>{text}</Text>
       </TouchableOpacity>
     </View>
   );

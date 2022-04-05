@@ -7,6 +7,7 @@ import {
   RegisterScreen,
   CurrentScore,
   Timer,
+  ChooseWordPage,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -17,8 +18,8 @@ const Navigation = () => {
       <Stack.Navigator>
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Timer"
-          component={Timer}
+          name="ChooseWordPage"
+          component={ChooseWordPage}
         />
         <Stack.Screen
           options={{ headerShown: false }}
@@ -44,6 +45,11 @@ const Navigation = () => {
           options={{ headerShown: false }}
           name="HomeScreen"
           component={HomeScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Timer"
+          component={Timer}
         />
       </Stack.Navigator>
     </NavigationContainer>
