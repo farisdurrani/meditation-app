@@ -14,7 +14,7 @@ const screenHeight = Dimensions.get("window").height;
 const Breathing = ({ navigation }) => {
   return (
     <View style={{ alignItems: "center" }}>
-      <HeaderButtons navigation={navigation} />
+      <HeaderButtons navigation={navigation} noRightButton />
       <View style={{ marginTop: 50 }} />
       <MText text="Breathing" />
       <Text style={{ fontSize: 40, textAlign: "center", marginTop: 80 }}>

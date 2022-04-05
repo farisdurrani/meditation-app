@@ -7,7 +7,7 @@ const BeginScreen = ({ navigation, route }) => {
   const screenHeight = Dimensions.get("window").height;
   return (
     <View style={{ alignItems: "center" }}>
-      <HeaderButtons navigation={navigation} />
+      <HeaderButtons navigation={navigation} noRightButton />
       <Text
         style={{
           fontSize: 50,
