@@ -1,9 +1,8 @@
 import { StyleSheet, Text, View, Switch } from "react-native";
 import React from "react";
 import { COLORS } from "../../constants";
-import { HeaderButtons } from "../../components";
+import { HeaderButtons, DropDown } from "../../components";
 import { Slider } from "@miblanchard/react-native-slider";
-import DropDownPicker from "react-native-dropdown-picker";
 
 const SettingPage = ({ navigation }) => {
   const [isEnabledSound, setIsEnabledSound] = React.useState(false);
@@ -11,13 +10,6 @@ const SettingPage = ({ navigation }) => {
     React.useState(false);
   const [soundLevel, setSoundLevel] = React.useState(0.3);
   const [textSize, setTextSize] = React.useState(0.3);
-
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState(null);
-  const [items, setItems] = React.useState([
-    { label: "Apple", value: "apple" },
-    { label: "Banana", value: "banana" },
-  ]);
 
   return (
     <View style={styles.mainContainer}>
@@ -54,16 +46,7 @@ const SettingPage = ({ navigation }) => {
         onValueChange={setSoundLevel}
         containerStyle={{ width: "90%" }}
       />
-      <DropDownPicker
-        open={open}
-        value={value}
-        items={items}
-        setOpen={setOpen}
-        setValue={setValue}
-        setItems={setItems}
-        containerStyle={{ width: "90%" }}
-        textStyle={{ fontSize: 20, color: COLORS.primary_blue }}
-      />
+      <DropDown listOfItems={["Apple", "Banana"]} />
       <View style={styles.oneRow}>
         <Text style={{ fontSize: 30, color: COLORS.primary_blue }}>
           Text to Speech
