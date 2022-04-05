@@ -10,6 +10,7 @@ import {
   ChooseWordPage,
   Begin,
   FocusedMeditation,
+  SettingPage,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -18,6 +19,11 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SettingPage"
+          component={SettingPage}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="FocusedMeditation"

@@ -10,4 +10,5 @@ export { default as Timer } from "./beginning_screens/Timer";
 export { default as ChooseWordPage } from "./focused_screens/ChooseWordPage";
 export { default as Begin } from "./focused_screens/Begin";
 export { default as FocusedMeditation } from "./focused_screens/FocusedMeditation";
+export { default as SettingPage } from "./focused_screens/SettingPage";
 
