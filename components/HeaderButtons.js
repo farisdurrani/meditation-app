@@ -1,7 +1,7 @@
 import React from "react";
 import { COLORS } from "../constants";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { HelpButton } from "./index";
+import HelpButton from "./HelpButton";
 import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
 
 const BackCancelButtons = (props) => {

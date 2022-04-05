@@ -6285,6 +6285,11 @@
     "jscodeshift" "^0.11.0"
     "nullthrows" "^1.1.1"
 
+"react-native-dropdown-picker@^5.3.0":
+  "integrity" "sha512-LUctVMAWiDir1X0WrFX1784psvqzBXRxRujYbvlvKz1Owa6cujrVN98rP356hIXFzX19E7SkbA942fGfMvoEWQ=="
+  "resolved" "https://registry.npmjs.org/react-native-dropdown-picker/-/react-native-dropdown-picker-5.3.0.tgz"
+  "version" "5.3.0"
+
 "react-native-dynamic-search-bar@github:WrathChaos/react-native-dynamic-search-bar#expo":
   "integrity" "sha512-hCaVwL6PVM5NU/OLnEa94rrA7gXXZooW+vl7NaDYielN1k4uPmV4AcXa6pRAHb3z1W5xeT6G21mg/tZyNDrqWg=="
   "resolved" "git+ssh://git@github.com/WrathChaos/react-native-dynamic-search-bar.git#29a823c29856ea3852ebea3ff757433a4605e695"

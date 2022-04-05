@@ -3,10 +3,22 @@ import React from "react";
 import { COLORS } from "../../constants";
 import { HeaderButtons } from "../../components";
 import { Slider } from "@miblanchard/react-native-slider";
+import DropDownPicker from "react-native-dropdown-picker";
 
 const SettingPage = ({ navigation }) => {
-  const [isEnabled, setIsEnabled] = React.useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [isEnabledSound, setIsEnabledSound] = React.useState(false);
+  const [isEnabledTextToSpeech, setIsEnabledTextToSpeech] =
+    React.useState(false);
+  const [soundLevel, setSoundLevel] = React.useState(0.3);
+  const [textSize, setTextSize] = React.useState(0.3);
+
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState(null);
+  const [items, setItems] = React.useState([
+    { label: "Apple", value: "apple" },
+    { label: "Banana", value: "banana" },
+  ]);
+
   return (
     <View style={styles.mainContainer}>
       <HeaderButtons navigation={navigation} />
@@ -19,20 +31,66 @@ const SettingPage = ({ navigation }) => {
         <Text style={{ fontSize: 30, color: COLORS.primary_blue }}>Sound</Text>
         <Switch
           trackColor={{ true: COLORS.primary_blue }}
-          onValueChange={toggleSwitch}
-          value={isEnabled}
+          onValueChange={() => {
+            setIsEnabledSound(!isEnabledSound);
+          }}
+          value={isEnabledSound}
         />
       </View>
-      <View style={{ width: "90%" }}>
-        {/* from https://snack.expo.dev/@miblanchard/@miblanchard-react-native-slider */}
-        <Slider
-          animateTransitions
-          minimumTrackTintColor={COLORS.dark_gray}
-          thumbStyle={customStyles3.thumb}
-          trackStyle={customStyles3.track}
-          value={0.3}
+      {/* from https://snack.expo.dev/@miblanchard/@miblanchard-react-native-slider */}
+      <Slider
+        animateTransitions
+        minimumTrackTintColor={
+          isEnabledSound ? COLORS.primary_blue : COLORS.dark_gray
+        }
+        thumbStyle={
+          isEnabledSound ? customStyles3.thumb : customStyles3.disabledThumb
+        }
+        trackStyle={
+          isEnabledSound ? customStyles3.track : customStyles3.disabledTrack
+        }
+        value={soundLevel}
+        disabled={!isEnabledSound}
+        onValueChange={setSoundLevel}
+        containerStyle={{ width: "90%" }}
+      />
+      <DropDownPicker
+        open={open}
+        value={value}
+        items={items}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setItems}
+        containerStyle={{ width: "90%" }}
+        textStyle={{ fontSize: 20, color: COLORS.primary_blue }}
+      />
+      <View style={styles.oneRow}>
+        <Text style={{ fontSize: 30, color: COLORS.primary_blue }}>
+          Text to Speech
+        </Text>
+        <Switch
+          trackColor={{ true: COLORS.primary_blue }}
+          onValueChange={() => {
+            setIsEnabledTextToSpeech(!isEnabledTextToSpeech);
+          }}
+          value={isEnabledTextToSpeech}
         />
       </View>
+      <View style={styles.oneRow}>
+        <Text style={{ fontSize: 30, color: COLORS.primary_blue }}>
+          Text Size
+        </Text>
+      </View>
+      {/* from https://snack.expo.dev/@miblanchard/@miblanchard-react-native-slider */}
+      <Slider
+        animateTransitions
+        minimumTrackTintColor={COLORS.primary_blue}
+        thumbStyle={customStyles3.thumb}
+        trackStyle={customStyles3.track}
+        value={textSize}
+        onValueChange={setTextSize}
+        containerStyle={{ width: "90%" }}
+      />
     </View>
   );
 };
@@ -46,7 +104,7 @@ const styles = StyleSheet.create({
   oneRow: {
     display: "flex",
     width: "90%",
-    marginBottom: 20,
+    marginVertical: 25,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -61,6 +119,17 @@ const customStyles3 = StyleSheet.create({
     width: 30,
   },
   track: {
+    backgroundColor: COLORS.light_blue,
+    borderRadius: 5,
+    height: 10,
+  },
+  disabledThumb: {
+    backgroundColor: COLORS.dark_gray,
+    borderRadius: 20,
+    height: 30,
+    width: 30,
+  },
+  disabledTrack: {
     backgroundColor: "#d0d0d0",
     borderRadius: 5,
     height: 10,
