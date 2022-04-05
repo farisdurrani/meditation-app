@@ -7,7 +7,7 @@ const DropDown = (props) => {
   const labelAndValue = listOfItems.map((e) => ({ label: e, value: e }));
   const [items, setItems] = React.useState(labelAndValue);
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = React.useState(listOfItems[0]);
 
   return (
     <DropDownPicker

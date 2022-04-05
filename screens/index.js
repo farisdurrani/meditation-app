@@ -12,3 +12,6 @@ export { default as Begin } from "./focused_screens/Begin";
 export { default as FocusedMeditation } from "./focused_screens/FocusedMeditation";
 export { default as SettingPage } from "./focused_screens/SettingPage";
 
+// library_screens
+export { default as FavoriteList } from "./library_screens/FavoriteList";
+

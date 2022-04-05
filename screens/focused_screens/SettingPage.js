@@ -46,7 +46,7 @@ const SettingPage = ({ navigation }) => {
         onValueChange={setSoundLevel}
         containerStyle={{ width: "90%" }}
       />
-      <DropDown listOfItems={["Apple", "Banana"]} />
+      <DropDown listOfItems={["Rainfall", "Banana"]} />
       <View style={styles.oneRow}>
         <Text style={{ fontSize: 30, color: COLORS.primary_blue }}>
           Text to Speech
