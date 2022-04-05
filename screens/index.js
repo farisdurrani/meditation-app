@@ -17,3 +17,4 @@ export { default as FavoriteList } from "./library_screens/FavoriteList";
 
 // guided_screens
 export { default as Guided } from "./guided_screens/Guided";
+export { default as Breathing } from "./guided_screens/Breathing";

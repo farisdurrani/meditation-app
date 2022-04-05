@@ -13,6 +13,7 @@ import {
   SettingPage,
   FavoriteList,
   Guided,
+  Breathing,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -21,6 +22,11 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Breathing"
+          component={Breathing}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="Guided"
