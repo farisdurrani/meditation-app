@@ -3,7 +3,7 @@ import React from "react";
 import { HeaderButtons, MButton, MText } from "../../components";
 import { COLORS } from "../../constants";
 
-const Begin = ({ navigation, route }) => {
+const BeginChooseWord = ({ navigation, route }) => {
   const { chosenWord } = route;
   return (
     <View style={{ alignItems: "center" }}>
@@ -28,6 +28,6 @@ const Begin = ({ navigation, route }) => {
   );
 };
 
-export default Begin;
+export default BeginChooseWord;
 
 const styles = StyleSheet.create({});

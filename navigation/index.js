@@ -8,12 +8,13 @@ import {
   CurrentScore,
   Timer,
   ChooseWordPage,
-  Begin,
+  BeginChooseWord,
   FocusedMeditation,
   SettingPage,
   FavoriteList,
   Guided,
   Breathing,
+  BeginScreen,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -22,6 +23,11 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="BeginScreen"
+          component={BeginScreen}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="Breathing"
@@ -49,8 +55,8 @@ const Navigation = () => {
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Begin"
-          component={Begin}
+          name="BeginChooseWord"
+          component={BeginChooseWord}
         />
         <Stack.Screen
           options={{ headerShown: false }}
