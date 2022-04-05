@@ -13,7 +13,7 @@ const HelpButton = (props) => {
         name="help"
         size={defaultSize}
         color={defaultColor}
-        onPress={onPress}
+        onPress={onPress ? onPress : () => {}}
       />
     </TouchableOpacity>
   );
