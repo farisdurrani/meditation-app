@@ -9,6 +9,7 @@ import {
   Timer,
   ChooseWordPage,
   Begin,
+  FocusedMeditation,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -17,6 +18,11 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="FocusedMeditation"
+          component={FocusedMeditation}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="Begin"
