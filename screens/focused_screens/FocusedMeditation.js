@@ -19,7 +19,7 @@ const FocusedMeditation = ({ navigation, route }) => {
       style={styles.image}
     >
       <View style={styles.mainContainer}>
-        <HeaderButtons pause={true} navigation={navigation} />
+        <HeaderButtons pause={true} navigation={navigation} timer />
         <Text style={styles.chosenWord}>
           {chosenWord ? chosenWord : "Chosen Word"}
         </Text>

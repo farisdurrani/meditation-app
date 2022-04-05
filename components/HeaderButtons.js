@@ -2,10 +2,10 @@ import React from "react";
 import { COLORS } from "../constants";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { HelpButton } from "./index";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
 
 const BackCancelButtons = (props) => {
-  const { navigation, pause, onSetPause, settings } = props;
+  const { navigation, pause, onSetPause, settings, timer, setTimer } = props;
   const defaultSize = 40;
   const defaultColor = COLORS.primary_blue;
   return (
@@ -34,6 +34,8 @@ const BackCancelButtons = (props) => {
         </TouchableOpacity>
       )}
 
+      {timer ? <Text style={styles.timer}>10:00</Text> : undefined}
+
       {settings ? (
         <TouchableOpacity>
           <MaterialIcons
@@ -61,7 +63,13 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     width: "90%",
     marginTop: 60,
+  },
+  timer: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: COLORS.primary_blue,
   },
 });
