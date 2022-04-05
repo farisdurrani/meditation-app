@@ -1,31 +1,55 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import React from "react";
+import { COLORS } from "../constants";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { HelpButton } from "./index";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 const BackCancelButtons = (props) => {
-  const { navigation } = props;
+  const { navigation, pause, onSetPause, settings } = props;
+  const defaultSize = 40;
+  const defaultColor = COLORS.primary_blue;
   return (
     <View style={styles.upperButtons}>
-      <TouchableOpacity onPress={navigation.goBack}>
-        <Ionicons
-          name="arrow-back"
-          size={24}
-          color="black"
+      {pause ? (
+        <TouchableOpacity onPress={navigation.goBack}>
+          <Ionicons
+            name="pause"
+            size={defaultSize}
+            color={defaultColor}
+            onPress={() => {
+              onSetPause(true);
+            }}
+          />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity onPress={navigation.goBack}>
+          <Ionicons
+            name="arrow-back"
+            size={defaultSize}
+            color={defaultColor}
+            onPress={() => {
+              navigation.goBack();
+            }}
+          />
+        </TouchableOpacity>
+      )}
+
+      {settings ? (
+        <TouchableOpacity>
+          <MaterialIcons
+            name="settings"
+            size={defaultSize}
+            color={defaultColor}
+            onPress={() => {}}
+          />
+        </TouchableOpacity>
+      ) : (
+        <HelpButton
           onPress={() => {
-            navigation.goBack();
+            navigation.navigate("SquareInfo2");
           }}
         />
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <MaterialIcons
-          name="cancel"
-          size={24}
-          color="black"
-          onPress={() => {
-            navigation.navigate("Cancellation");
-          }}
-        />
-      </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -37,6 +61,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    width: "100%",
+    width: "90%",
+    marginTop: 60,
   },
 });

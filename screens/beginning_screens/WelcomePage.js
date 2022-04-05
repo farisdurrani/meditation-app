@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import React from "react";
-import { MText, MButton } from "../../components";
-import { LAYOUT, COLORS } from "../../constants";
+import { MText, MButton, HeaderButtons } from "../../components";
+import { COLORS } from "../../constants";
 
 const WelcomePage = ({ navigation }) => {
   return (
