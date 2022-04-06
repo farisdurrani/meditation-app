@@ -11,6 +11,7 @@ const InhaleHold = ({ navigation, route }) => {
   const [title, setTitle] = useState("Inhale");
   const [timeLeft, setTimeLeft] = useState(4);
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const [sequence, setSequence] = useState(0);
 
   const updateTitle = () => {
@@ -20,17 +21,26 @@ const InhaleHold = ({ navigation, route }) => {
     setTimeLeft(sequences[meditationType].timeLeft[index]);
   };
 
-  if (timeLeft >= 0) {
-    setTimeout(() => {
-      setTimeLeft(timeLeft - 1);
-    }, 1000);
-  } else {
-    updateTitle();
+  if (!paused) {
+    if (timeLeft >= 0) {
+      setTimeout(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+    } else {
+      updateTitle();
+    }
   }
 
   return (
     <View style={{ alignItems: "center" }}>
-      <HeaderButtons navigation={navigation} timer pause />
+      <HeaderButtons
+        navigation={navigation}
+        timer
+        pause
+        onPause={() => {
+          setPaused(!paused);
+        }}
+      />
       <View marginTop={Dimensions.get("window").height * 0.25} />
       <MText text={title} />
       <MText text={timeLeft} />

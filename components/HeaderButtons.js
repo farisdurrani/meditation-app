@@ -16,6 +16,7 @@ const BackCancelButtons = (props) => {
   } = props;
   const defaultSize = 40;
   const defaultColor = COLORS.primary_blue;
+  const [paused, setPaused] = React.useState(false);
 
   const RightButton = () => {
     if (noRightButton) {
@@ -47,10 +48,13 @@ const BackCancelButtons = (props) => {
       {pause ? (
         <TouchableOpacity onPress={navigation.goBack}>
           <Ionicons
-            name="pause"
+            name={paused ? "pause" : "play"}
             size={defaultSize}
             color={defaultColor}
-            onPress={onPause}
+            onPress={() => {
+              onPause();
+              setPaused(!paused);
+            }}
           />
         </TouchableOpacity>
       ) : (
