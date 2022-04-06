@@ -12,11 +12,16 @@ const BackCancelButtons = (props) => {
     noRightButton,
     settings,
     timer,
-    setTimer,
+    onTimerZero,
   } = props;
   const defaultSize = 40;
   const defaultColor = COLORS.primary_blue;
   const [paused, setPaused] = React.useState(false);
+  const [timeLeft, setTimeLeft] = React.useState(timer);
+
+  const clock = `${Math.floor(timeLeft / 60)}:${timeLeft % 60 < 10 ? "0" : ""}${
+    timeLeft % 60
+  }`;
 
   const RightButton = () => {
     if (noRightButton) {
@@ -43,12 +48,22 @@ const BackCancelButtons = (props) => {
     }
   };
 
+  if (!paused) {
+    if (timeLeft > 0) {
+      setTimeout(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+    } else if (onTimerZero) {
+      onTimerZero();
+    }
+  }
+
   return (
     <View style={styles.upperButtons}>
       {pause ? (
         <TouchableOpacity onPress={navigation.goBack}>
           <Ionicons
-            name={paused ? "pause" : "play"}
+            name={paused ? "play" : "pause"}
             size={defaultSize}
             color={defaultColor}
             onPress={() => {
@@ -70,7 +85,7 @@ const BackCancelButtons = (props) => {
         </TouchableOpacity>
       )}
 
-      {timer ? <Text style={styles.timer}>10:00</Text> : undefined}
+      {timer ? <Text style={styles.timer}>{clock}</Text> : undefined}
 
       <RightButton />
     </View>

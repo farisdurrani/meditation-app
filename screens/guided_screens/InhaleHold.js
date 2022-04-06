@@ -35,11 +35,13 @@ const InhaleHold = ({ navigation, route }) => {
     <View style={{ alignItems: "center" }}>
       <HeaderButtons
         navigation={navigation}
-        timer
+        timer={10}
         pause
         onPause={() => {
           setPaused(!paused);
         }}
+        // onTimerZero={() => {
+        // }}
       />
       <View marginTop={Dimensions.get("window").height * 0.25} />
       <MText text={title} />
