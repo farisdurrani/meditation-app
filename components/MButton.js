@@ -3,16 +3,19 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { COLORS } from "../constants";
 
 const MButton = (props) => {
-  const [curButtonStyle, setCurButtonStyle] = React.useState(
-    buttonStyle ? buttonStyle : styles.button
-  );
-
   const { text, onPress, containerStyle, buttonStyle, textStyle } = props;
+  const [buttonPressed, setButtonPressed] = React.useState(false);
+
+  let curButtonStyle = buttonStyle ? buttonStyle : styles.button;
+  if (buttonPressed) {
+    curButtonStyle = styles.clicked_button;
+  }
+
   return (
     <View style={containerStyle}>
       <TouchableOpacity
         onPress={() => {
-          setCurButtonStyle(styles.clicked_button);
+          setButtonPressed(!buttonPressed);
           if (onPress) {
             onPress();
           }
