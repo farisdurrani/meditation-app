@@ -67,7 +67,9 @@ const HeaderButtons = (props) => {
             size={defaultSize}
             color={defaultColor}
             onPress={() => {
-              onPause();
+              if (!paused) {
+                onPause();
+              }
               setPaused(!paused);
             }}
           />

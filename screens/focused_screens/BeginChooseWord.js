@@ -18,12 +18,21 @@ const BeginChooseWord = ({ navigation, route }) => {
           color: COLORS.primary_blue,
           fontSize: 35,
           fontStyle: "italic",
+          textAlign: "center",
         }}
       >
-        {chosenWord ? chosenWord : "Word"}
+        {chosenWord}
       </Text>
       <View style={{ marginVertical: 20 }} />
-      <MButton text="Begin" onPress />
+      <MButton
+        text="Begin"
+        onPress={() => {
+          navigation.navigate("FocusedMeditation", {
+            minutes: minutes,
+            chosenWord: chosenWord,
+          });
+        }}
+      />
     </View>
   );
 };

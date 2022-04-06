@@ -22,7 +22,7 @@ const ChooseWordPage = ({ navigation, route }) => {
         onPress={() => {
           navigation.navigate("BeginChooseWord", {
             minutes: minutes,
-            word: text,
+            chosenWord: text,
           });
         }}
       />

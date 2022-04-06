@@ -12,12 +12,21 @@ import { Bar } from "react-native-progress";
 import { Button, Overlay } from "react-native-elements";
 
 const FocusedMeditation = ({ navigation, route }) => {
-  const { chosenWord } = route;
-  const [overlay, setOverlay] = React.useState(true);
+  const { minutes, chosenWord } = route.params;
+  const [paused, setPaused] = React.useState(false);
+  const [progress, setProgress] = React.useState(0);
+
+  const progressPerSec = 1 / (minutes * 60);
 
   const _toggleOverlay = () => {
-    setOverlay(!overlay);
+    setPaused(!paused);
   };
+
+  if (!paused && progress < 1) {
+    setTimeout(() => {
+      setProgress(progress + progressPerSec);
+    }, 1000);
+  }
 
   return (
     <ImageBackground
@@ -25,19 +34,19 @@ const FocusedMeditation = ({ navigation, route }) => {
       resizeMode="cover"
       style={{ flex: 1 }}
     >
-      <View style={styles.mainContainer}>
+      <View style={{ alignItems: "center" }}>
         <HeaderButtons
           pause={true}
           onPause={_toggleOverlay}
           navigation={navigation}
-          timer
+          timer={minutes * 60}
         />
         <Text style={styles.chosenWord}>
           {chosenWord ? chosenWord : "Chosen Word"}
         </Text>
         <View style={{ marginTop: screenHeight * 0.3 }}>
           <Bar
-            progress={0.3}
+            progress={progress}
             color={COLORS.primary_blue}
             height={20}
             width={screenWidth * 0.9}
@@ -45,27 +54,9 @@ const FocusedMeditation = ({ navigation, route }) => {
           />
         </View>
 
-        <Overlay isVisible={overlay} onBackdropPress={_toggleOverlay}>
-          <View
-            style={{
-              width: screenWidth * 0.7,
-              height: screenHeight * 0.4,
-              borderRadius: 20,
-              alignItems: "center",
-              padding: 20,
-              justifyContent: "space-around",
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 40,
-                fontWeight: "bold",
-                color: COLORS.primary_blue,
-                marginBottom: 20,
-              }}
-            >
-              PAUSE
-            </Text>
+        <Overlay isVisible={paused} onBackdropPress={_toggleOverlay}>
+          <View style={styles.overlayView}>
+            <Text style={styles.overlayTitle}>PAUSE</Text>
             <MButton
               containerStyle={{ width: "90%" }}
               text="Continue"
@@ -88,13 +79,25 @@ const [screenWidth, screenHeight] = [
 ];
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    alignItems: "center",
-  },
   chosenWord: {
     color: COLORS.white,
     fontWeight: "bold",
-    fontSize: 45,
+    fontSize: 50,
     marginTop: screenHeight * 0.3,
+    textAlign: "center",
+  },
+  overlayView: {
+    width: screenWidth * 0.7,
+    height: screenHeight * 0.4,
+    borderRadius: 20,
+    alignItems: "center",
+    padding: 20,
+    justifyContent: "space-around",
+  },
+  overlayTitle: {
+    fontSize: 40,
+    fontWeight: "bold",
+    color: COLORS.primary_blue,
+    marginBottom: 20,
   },
 });

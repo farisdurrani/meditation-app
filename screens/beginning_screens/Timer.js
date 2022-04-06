@@ -7,8 +7,7 @@ const Timer = ({ navigation }) => {
   const [minutesSelected, setMinutesSelected] = React.useState(null);
   const [sessionSelected, setSessionSelected] = React.useState(null);
 
-  const _SessionLengthButton = (props) => {
-    const { minutes } = props;
+  const _SessionLengthButton = (minutes) => {
     return (
       <MButton
         containerStyle={{ width: "45%" }}
@@ -20,8 +19,7 @@ const Timer = ({ navigation }) => {
     );
   };
 
-  const _SessionTypeButton = (props) => {
-    const { type } = props;
+  const _SessionTypeButton = (type) => {
     return (
       <MButton
         containerStyle={{ width: "75%" }}
@@ -69,24 +67,24 @@ const Timer = ({ navigation }) => {
       <HeaderButtons settings={true} navigation={navigation} />
       <Text style={styles.label}>Length of Session</Text>
       <View style={styles.oneRow}>
-        <_SessionLengthButton minutes={2} />
-        <_SessionLengthButton minutes={5} />
+        {_SessionLengthButton(2)}
+        {_SessionLengthButton(5)}
       </View>
       <View style={styles.oneRow}>
-        <_SessionLengthButton minutes={10} />
-        <_SessionLengthButton minutes={15} />
+        {_SessionLengthButton(10)}
+        {_SessionLengthButton(15)}
       </View>
       <Text style={styles.label}>Type of Session</Text>
       <View style={styles.oneRow}>
-        <_SessionTypeButton type="Focused" />
+        {_SessionTypeButton("Focused")}
         <HelpButton />
       </View>
       <View style={styles.oneRow}>
-        <_SessionTypeButton type="Guided breathing" />
+        {_SessionTypeButton("Guided breathing")}
         <HelpButton />
       </View>
       <View style={styles.oneRow}>
-        <_SessionTypeButton type="Library" />
+        {_SessionTypeButton("Library")}
       </View>
       <MButton
         containerStyle={{
