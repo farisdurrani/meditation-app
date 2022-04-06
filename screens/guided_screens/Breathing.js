@@ -11,7 +11,8 @@ import {
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
-const Breathing = ({ navigation }) => {
+const Breathing = ({ navigation, route }) => {
+  const { minutes } = route.params;
   return (
     <View style={{ alignItems: "center" }}>
       <HeaderButtons navigation={navigation} noRightButton />
@@ -25,6 +26,12 @@ const Breathing = ({ navigation }) => {
         <MButton
           containerStyle={{ width: screenWidth * 0.5 }}
           text="Square Breathing"
+          onPress={() => {
+            navigation.navigate("BeginScreen", {
+              title: "SQUARE BREATHING",
+              minutes: minutes,
+            });
+          }}
         />
         <HelpButton />
       </OneRow>
@@ -32,6 +39,12 @@ const Breathing = ({ navigation }) => {
         <MButton
           containerStyle={{ width: screenWidth * 0.5 }}
           text="Deep Breathing"
+          onPress={() => {
+            navigation.navigate("BeginScreen", {
+              title: "DEEP BREATHING",
+              minutes: minutes,
+            });
+          }}
         />
         <HelpButton />
       </OneRow>

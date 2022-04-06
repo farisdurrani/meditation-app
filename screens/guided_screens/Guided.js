@@ -3,14 +3,27 @@ import { COLORS } from "../../constants";
 import { HeaderButtons, DropDown, MButton } from "../../components";
 import React from "react";
 
-const Guided = ({ navigation }) => {
+const Guided = ({ navigation, route }) => {
+  const { minutes } = route.params;
   return (
     <View style={{ alignItems: "center" }}>
       <HeaderButtons navigation={navigation} />
       <View style={styles.contents}>
         <Text style={{ fontSize: 45 }}>Select a session</Text>
-        <MButton containerStyle={{width: screenWidth * 0.5}} text="Breathing" />
-        <MButton containerStyle={{width: screenWidth * 0.5}} text="Breathing with stretching" />
+        <MButton
+          containerStyle={{ width: screenWidth * 0.5 }}
+          text="Breathing"
+          onPress={() => {
+            navigation.navigate("Breathing", { minutes: minutes });
+          }}
+        />
+        <MButton
+          containerStyle={{ width: screenWidth * 0.5 }}
+          text="Breathing with stretching"
+          onPress={() => {
+            navigation.navigate("Breathing", { minutes: minutes });
+          }}
+        />
       </View>
     </View>
   );
@@ -26,6 +39,6 @@ const styles = StyleSheet.create({
     marginTop: screenHeight * 0.2,
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
   },
 });

@@ -4,9 +4,7 @@ import { COLORS } from "../../constants";
 import { HeaderButtons, DropDown, MButton, MText } from "../../components";
 
 const InhaleHold = ({ navigation, route }) => {
-  const { meditationType, withStretching } = route.params
-    ? route.params
-    : { meditationType: "SquareBreathing", withStretching: false };
+  const { minutes, meditationType, withStretching } = route.params;
 
   const [title, setTitle] = useState("Inhale");
   const [timeLeft, setTimeLeft] = useState(4);
@@ -35,7 +33,7 @@ const InhaleHold = ({ navigation, route }) => {
     <View style={{ alignItems: "center" }}>
       <HeaderButtons
         navigation={navigation}
-        timer={3}
+        timer={minutes * 60}
         pause
         onPause={() => {
           setPaused(!paused);
