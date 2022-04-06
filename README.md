@@ -2,7 +2,7 @@
 
 Meditation App for the Georgia Tech [VIP](https://www.vip.gatech.edu/) [BTAP](https://www.vip.gatech.edu/teams/vv2) team, initiated by the Android & Unity and the NeroSky subteams in Spring 2022.
 
-> **Implemented:** 04/01/2022 – present <br/> **GitHub source:**: https://github.gatech.edu/VIP-BTAP/meditation-app
+> **Implemented:** 04/01/2022 – present <br/> **GitHub source:** https://github.gatech.edu/VIP-BTAP/meditation-app
 
 ## How to Run
 
@@ -13,7 +13,7 @@ npm install
 npm start
 ```
 
-2. At `http://localhost:19002/`, switch connection mode from LAN to Tunnel, and scan the QR code to open the [Expo Go](https://expo.dev/tools) app on your mobile phone.
+2. At http://localhost:19002/, switch connection mode from LAN to Tunnel, and scan the QR code to open the [Expo Go](https://expo.dev/tools) app on your mobile phone.
 
 > Note: this app has not been tested on any other platforms
 
