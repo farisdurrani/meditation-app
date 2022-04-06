@@ -18,6 +18,9 @@ export { default as FavoriteList } from "./library_screens/FavoriteList";
 // guided_screens
 export { default as Guided } from "./guided_screens/Guided";
 export { default as Breathing } from "./guided_screens/Breathing";
+export { default as InhaleHold } from "./guided_screens/InhaleHold";
+export { default as PromptActivities } from "./guided_screens/PromptActivities";
+export { default as Info } from "./guided_screens/Info";
 
 // common
 export { default as BeginScreen } from "./BeginScreen";

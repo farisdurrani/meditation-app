@@ -15,6 +15,9 @@ import {
   Guided,
   Breathing,
   BeginScreen,
+  InhaleHold,
+  PromptActivities,
+  Info,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -23,6 +26,22 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="InhaleHold"
+          component={InhaleHold}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Info"
+          component={Info}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="PromptActivities"
+          component={PromptActivities}
+        />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="BeginScreen"
