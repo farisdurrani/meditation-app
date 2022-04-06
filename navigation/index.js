@@ -26,6 +26,16 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen
+          options={{ headerShown: false }}
+          name="Timer"
+          component={Timer}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="BeginScreen"
+          component={BeginScreen}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="InhaleHold"
@@ -40,12 +50,6 @@ const Navigation = () => {
           options={{ headerShown: false }}
           name="PromptActivities"
           component={PromptActivities}
-        />
-
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="BeginScreen"
-          component={BeginScreen}
         />
         <Stack.Screen
           options={{ headerShown: false }}
@@ -107,11 +111,7 @@ const Navigation = () => {
           name="HomeScreen"
           component={HomeScreen}
         />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Timer"
-          component={Timer}
-        />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -7,6 +7,8 @@ export const COLORS = {
   transparent_gray: "#A40E4C0D",
   dark_gray: "#a9a9a9",
   orange: "#F49D6E",
+  navy_blue: "#000080",
+  blue: "#0000FF",
 };
 
 export const LAYOUT = {
