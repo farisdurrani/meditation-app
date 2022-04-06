@@ -7,57 +7,86 @@ const Timer = ({ navigation }) => {
   const [minutesSelected, setMinutesSelected] = React.useState(null);
   const [sessionSelected, setSessionSelected] = React.useState(null);
 
+  const _SessionLengthButton = (props) => {
+    const { minutes } = props;
+    return (
+      <MButton
+        containerStyle={{ width: "45%" }}
+        text={`${minutes} min`}
+        onPress={() => {
+          setMinutesSelected(minutes);
+        }}
+      />
+    );
+  };
+
+  const _SessionTypeButton = (props) => {
+    const { type } = props;
+    return (
+      <MButton
+        containerStyle={{ width: "75%" }}
+        text={type}
+        onPress={() => {
+          setSessionSelected(type);
+        }}
+      />
+    );
+  };
+
+  const _nextPage = () => {
+    if (!minutesSelected || !sessionSelected) {
+      Alert.alert(
+        "Incomplete selections",
+        "Select both a session length and type",
+        [{ text: "OK", onPress: () => {} }]
+      );
+      return;
+    }
+    switch (sessionSelected) {
+      case "Focused": {
+        navigation.navigate("ChooseWordPage", {
+          minutes: minutesSelected,
+        });
+        break;
+      }
+      case "Guided breathing": {
+        navigation.navigate("Guided", {
+          minutes: minutesSelected,
+        });
+        break;
+      }
+      case "Library": {
+        navigation.navigate("FavoriteList", {
+          minutes: minutesSelected,
+        });
+        break;
+      }
+    }
+  };
+
   return (
     <View style={styles.mainContainer}>
       <HeaderButtons settings={true} navigation={navigation} />
       <Text style={styles.label}>Length of Session</Text>
       <View style={styles.oneRow}>
-        <MButton
-          containerStyle={{ width: "45%" }}
-          text="2 min"
-          onPress={() => {setMinutesSelected(2)}}
-          />
-        <MButton
-          containerStyle={{ width: "45%" }}
-          text="5 min"
-          onPress={() => {setMinutesSelected(5)}}
-          />
+        <_SessionLengthButton minutes={2} />
+        <_SessionLengthButton minutes={5} />
       </View>
       <View style={styles.oneRow}>
-        <MButton
-          containerStyle={{ width: "45%" }}
-          text="10 min"
-          onPress={() => {setMinutesSelected(10)}}
-          />
-        <MButton
-          containerStyle={{ width: "45%" }}
-          text="15 min"
-          onPress={() => {setMinutesSelected(15)}}
-        />
+        <_SessionLengthButton minutes={10} />
+        <_SessionLengthButton minutes={15} />
       </View>
       <Text style={styles.label}>Type of Session</Text>
       <View style={styles.oneRow}>
-        <MButton
-          containerStyle={{ width: "75%" }}
-          text="Focused"
-          onPress={() => {setSessionSelected("Focused")}}
-          />
+        <_SessionTypeButton type="Focused" />
         <HelpButton />
       </View>
       <View style={styles.oneRow}>
-        <MButton
-          containerStyle={{ width: "75%" }}
-          text="Guided breathing"
-          onPress={() => {setSessionSelected("Guided breathing")}}
-          />
+        <_SessionTypeButton type="Guided breathing" />
         <HelpButton />
       </View>
       <View style={styles.oneRow}>
-        <MButton
-          containerStyle={{ width: "75%" }}
-          text="Library"
-          onPress={() => {setSessionSelected("Library")}}
-        />
+        <_SessionTypeButton type="Library" />
       </View>
       <MButton
         containerStyle={{
@@ -66,34 +95,7 @@ const Timer = ({ navigation }) => {
         }}
         text="Continue"
         onPress={() => {
-          if (!minutesSelected || !sessionSelected) {
-            Alert.alert(
-              "Incomplete selections",
-              "Select both a session length and type",
-              [{ text: "OK", onPress: () => {} }]
-            );
-            return;
-          }
-          switch (sessionSelected) {
-            case "Focused": {
-              navigation.navigate("ChooseWordPage", {
-                minutes: minutesSelected,
-              });
-              break;
-            }
-            case "Guided breathing": {
-              navigation.navigate("Guided", {
-                minutes: minutesSelected,
-              });
-              break;
-            }
-            case "Library": {
-              navigation.navigate("FavoriteList", {
-                minutes: minutesSelected,
-              });
-              break;
-            }
-          }
+          _nextPage();
         }}
       />
     </View>

@@ -9,41 +9,64 @@ import React from "react";
 import { HeaderButtons, MButton } from "../../components";
 import { COLORS } from "../../constants";
 
-const ChooseWordPage = ({ navigation }) => {
+const ChooseWordPage = ({ navigation, route }) => {
+  const { minutes } = route.params;
   const [newWord, setNewWord] = React.useState("");
 
+  const _WordButton = (params) => {
+    const { text, long } = params;
+    return (
+      <MButton
+        containerStyle={{ width: long ? "49%" : "32%" }}
+        text={text}
+        onPress={() => {
+          navigation.navigate("BeginChooseWord", {
+            minutes: minutes,
+            word: text,
+          });
+        }}
+      />
+    );
+  };
+
   return (
-    <View style={styles.mainContainer}>
+    <View style={{ alignItems: "center" }}>
       <HeaderButtons navigation={navigation} />
       <Text style={styles.label}>Preloaded</Text>
       <View style={styles.oneRow}>
-        <MButton containerStyle={{ width: "32%" }} text="safe" />
-        <MButton containerStyle={{ width: "32%" }} text="nurtured" />
-        <MButton containerStyle={{ width: "32%" }} text="serenity" />
+        <_WordButton text="safe" />
+        <_WordButton text="nurtured" />
+        <_WordButton text="serenity" />
       </View>
       <View style={styles.oneRow}>
-        <MButton containerStyle={{ width: "32%" }} text="namaste" />
-        <MButton containerStyle={{ width: "32%" }} text="wabi-sabi" />
-        <MButton containerStyle={{ width: "32%" }} text="seren-dipity" />
+        <_WordButton text="namaste" />
+        <_WordButton text="wabi-sabi" />
+        <MButton
+          containerStyle={{ width: "32%" }}
+          text="seren-dipity"
+          onPress={() => {
+            navigation.navigate("BeginChooseWord", { word: "serendipity" });
+          }}
+        />
       </View>
 
       <View style={styles.oneRow}>
-        <MButton
-          containerStyle={{ width: "49%" }}
+        <_WordButton
           text="loving-
         kindness"
+          long
         />
-        <MButton
-          containerStyle={{ width: "49%" }}
+        <_WordButton
           text="warm-
-        heartedness"
+          heartedness"
+          long
         />
       </View>
       <Text style={styles.label}>My Own Words</Text>
       <View style={styles.oneRow}>
-        <MButton containerStyle={{ width: "33%" }} text="Word" />
-        <MButton containerStyle={{ width: "33%" }} text="Word" />
-        <MButton containerStyle={{ width: "33%" }} text="Word" />
+        <_WordButton text="Word" />
+        <_WordButton text="Word" />
+        <_WordButton text="Word" />
       </View>
 
       <KeyboardAvoidingView style={styles.inputBox}>
@@ -61,9 +84,6 @@ const ChooseWordPage = ({ navigation }) => {
 export default ChooseWordPage;
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    alignItems: "center",
-  },
   oneRow: {
     display: "flex",
     width: "90%",

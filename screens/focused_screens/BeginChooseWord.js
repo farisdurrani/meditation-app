@@ -4,7 +4,7 @@ import { HeaderButtons, MButton, MText } from "../../components";
 import { COLORS } from "../../constants";
 
 const BeginChooseWord = ({ navigation, route }) => {
-  const { chosenWord } = route;
+  const { minutes, chosenWord } = route.params;
   return (
     <View style={{ alignItems: "center" }}>
       <HeaderButtons navigation={navigation} />
@@ -23,7 +23,7 @@ const BeginChooseWord = ({ navigation, route }) => {
         {chosenWord ? chosenWord : "Word"}
       </Text>
       <View style={{ marginVertical: 20 }} />
-      <MButton text="Begin" />
+      <MButton text="Begin" onPress />
     </View>
   );
 };
