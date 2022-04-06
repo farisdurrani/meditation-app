@@ -3,14 +3,29 @@ import React, { useState, useEffect } from "react";
 import { COLORS } from "../../constants";
 import { HeaderButtons, DropDown, MButton, MText } from "../../components";
 
-const InhaleHold = ({ navigation }) => {
+const InhaleHold = ({ navigation, route }) => {
+  const { meditationType, withStretching } = route.params
+    ? route.params
+    : { meditationType: "SquareBreathing", withStretching: false };
+
   const [title, setTitle] = useState("Inhale");
   const [timeLeft, setTimeLeft] = useState(4);
+  const [index, setIndex] = useState(0);
+  const [sequence, setSequence] = useState(0);
 
-  if (timeLeft > 0) {
+  const updateTitle = () => {
+    const length = sequences[meditationType].activities.length;
+    setIndex((index + 1) % length);
+    setTitle(sequences[meditationType].activities[index]);
+    setTimeLeft(sequences[meditationType].timeLeft[index]);
+  };
+
+  if (timeLeft >= 0) {
     setTimeout(() => {
       setTimeLeft(timeLeft - 1);
     }, 1000);
+  } else {
+    updateTitle();
   }
 
   return (
@@ -24,5 +39,16 @@ const InhaleHold = ({ navigation }) => {
 };
 
 export default InhaleHold;
+
+const sequences = {
+  SquareBreathing: {
+    activities: ["Inhale", "Hold", "Exhale", "Hold"],
+    timeLeft: [4, 4, 4, 4],
+  },
+  DeepBreathing: {
+    activities: ["Inhale", "Hold", "Exhale"],
+    timeLeft: [4, 7, 8],
+  },
+};
 
 const styles = StyleSheet.create({});
