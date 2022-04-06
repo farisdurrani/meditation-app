@@ -35,13 +35,12 @@ const InhaleHold = ({ navigation, route }) => {
     <View style={{ alignItems: "center" }}>
       <HeaderButtons
         navigation={navigation}
-        timer={5}
+        timer={3}
         pause
         onPause={() => {
           setPaused(!paused);
         }}
         onTimerZero={() => {
-          setTimeLeft("Complete");
           navigation.replace("CurrentScore");
         }}
       />

@@ -54,7 +54,7 @@ const HeaderButtons = (props) => {
         setTimeLeft(timeLeft - 1);
       }, 1000);
     } else if (onTimerZero) {
-      onTimerZero();
+      requestAnimationFrame(onTimerZero);
     }
   }
 
