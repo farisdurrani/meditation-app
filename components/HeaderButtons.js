@@ -4,7 +4,7 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import HelpButton from "./HelpButton";
 import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
 
-const BackCancelButtons = (props) => {
+const HeaderButtons = (props) => {
   const {
     navigation,
     pause,
@@ -92,7 +92,7 @@ const BackCancelButtons = (props) => {
   );
 };
 
-export default BackCancelButtons;
+export default HeaderButtons;
 
 const styles = StyleSheet.create({
   upperButtons: {
