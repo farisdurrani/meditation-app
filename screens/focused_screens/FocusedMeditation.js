@@ -62,8 +62,20 @@ const FocusedMeditation = ({ navigation, route }) => {
               text="Continue"
               onPress={_toggleOverlay}
             />
-            <MButton containerStyle={{ width: "90%" }} text="Home" />
-            <MButton containerStyle={{ width: "90%" }} text="Settings" />
+            <MButton
+              containerStyle={{ width: "90%" }}
+              text="Home"
+              onPress={() => {
+                navigation.navigate("Timer");
+              }}
+            />
+            <MButton
+              containerStyle={{ width: "90%" }}
+              text="Settings"
+              onPress={() => {
+                navigation.navigate("SettingPage");
+              }}
+            />
           </View>
         </Overlay>
       </View>
