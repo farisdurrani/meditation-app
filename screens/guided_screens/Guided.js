@@ -21,7 +21,10 @@ const Guided = ({ navigation, route }) => {
           containerStyle={{ width: screenWidth * 0.5 }}
           text="Breathing with stretching"
           onPress={() => {
-            navigation.navigate("Breathing", { minutes: minutes });
+            navigation.navigate("Breathing", {
+              minutes: minutes,
+              withStretching: true,
+            });
           }}
         />
       </View>

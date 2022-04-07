@@ -3,7 +3,7 @@ import React from "react";
 import { HeaderButtons, MButton } from "../components";
 
 const BeginScreen = ({ navigation, route }) => {
-  const { title, minutes } = route.params;
+  const { minutes, meditationType, withStretching } = route.params;
   const screenWidth = Dimensions.get("window").width;
   const screenHeight = Dimensions.get("window").height;
   return (
@@ -16,7 +16,9 @@ const BeginScreen = ({ navigation, route }) => {
           marginTop: screenHeight * 0.1,
         }}
       >
-        {title}
+        {meditationType === "SquareBreathing"
+          ? "SQUARE BREATHING"
+          : "DEEP BREATHING"}
       </Text>
       <MButton
         containerStyle={{
@@ -25,10 +27,17 @@ const BeginScreen = ({ navigation, route }) => {
         }}
         text="Begin"
         onPress={() => {
-          navigation.navigate("InhaleHold", {
-            meditationType: "SquareBreathing",
-            minutes: minutes,
-          });
+          if (withStretching) {
+            navigation.navigate("PromptActivities", {
+              meditationType: meditationType,
+              minutes: minutes,
+            });
+          } else {
+            navigation.navigate("InhaleHold", {
+              meditationType: meditationType,
+              minutes: minutes,
+            });
+          }
         }}
       />
     </View>

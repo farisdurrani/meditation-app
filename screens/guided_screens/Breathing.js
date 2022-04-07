@@ -12,12 +12,14 @@ import {
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 const Breathing = ({ navigation, route }) => {
-  const { minutes } = route.params;
+  const { minutes, withStretching } = route.params;
   return (
     <View style={{ alignItems: "center" }}>
       <HeaderButtons navigation={navigation} noRightButton />
       <View style={{ marginTop: 50 }} />
-      <MText text="Breathing" />
+      <MText
+        text={withStretching ? "Breathing with Stretching" : "Breathing"}
+      />
       <Text style={{ fontSize: 40, textAlign: "center", marginTop: 80 }}>
         Select Guided Meditation
       </Text>
@@ -28,8 +30,9 @@ const Breathing = ({ navigation, route }) => {
           text="Square Breathing"
           onPress={() => {
             navigation.navigate("BeginScreen", {
-              title: "SQUARE BREATHING",
               minutes: minutes,
+              meditationType: "SquareBreathing",
+              withStretching: withStretching,
             });
           }}
         />
@@ -41,8 +44,9 @@ const Breathing = ({ navigation, route }) => {
           text="Deep Breathing"
           onPress={() => {
             navigation.navigate("BeginScreen", {
-              title: "DEEP BREATHING",
               minutes: minutes,
+              meditationType: "DeepBreathing",
+              withStretching: withStretching,
             });
           }}
         />

@@ -26,11 +26,17 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen
+        <Stack.Screen
           options={{ headerShown: false }}
           name="Timer"
           component={Timer}
         />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="WelcomePage"
+          component={WelcomePage}
+        />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="BeginScreen"
@@ -86,11 +92,7 @@ const Navigation = () => {
           name="ChooseWordPage"
           component={ChooseWordPage}
         />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="WelcomePage"
-          component={WelcomePage}
-        />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="LoginScreen"
@@ -111,7 +113,6 @@ const Navigation = () => {
           name="HomeScreen"
           component={HomeScreen}
         />
-        
       </Stack.Navigator>
     </NavigationContainer>
   );
