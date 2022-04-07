@@ -26,3 +26,6 @@ export const LAYOUT = {
     justifyContent: "center",
   },
 };
+
+export const defaultIconSize = 40;
+export const defaultIconColor = COLORS.primary_blue;
