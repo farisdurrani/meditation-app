@@ -1,11 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {
+import { 
   HomeScreen,
   LoginScreen,
   WelcomePage,
   RegisterScreen,
   CurrentScore,
+  FocusedInfo,
+  SquareInfo
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -13,7 +15,12 @@ const Stack = createNativeStackNavigator();
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator>   
+      <Stack.Screen
+          options={{ headerShown: false }}
+          name="SquareInfo"
+          component={SquareInfo}
+        />  
         <Stack.Screen
           options={{ headerShown: false }}
           name="WelcomePage"
@@ -39,6 +46,12 @@ const Navigation = () => {
           name="HomeScreen"
           component={HomeScreen}
         />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="FocusedInfo"
+          component={FocusedInfo}
+        />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
