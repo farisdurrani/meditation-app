@@ -24,3 +24,6 @@ export { default as Info } from "./guided_screens/Info";
 
 // common
 export { default as BeginScreen } from "./BeginScreen";
+
+export { default as FocusedInfo } from "./beginning_screens/FocusedInfo";
+export { default as SquareInfo } from "./beginning_screens/SquareInfo";

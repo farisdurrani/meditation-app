@@ -18,6 +18,8 @@ import {
   InhaleHold,
   PromptActivities,
   Info,
+  FocusedInfo,
+  SquareInfo,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -28,15 +30,19 @@ const Navigation = () => {
       <Stack.Navigator>
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Timer"
-          component={Timer}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
           name="WelcomePage"
           component={WelcomePage}
         />
-
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SquareInfo"
+          component={SquareInfo}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Timer"
+          component={Timer}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="BeginScreen"
@@ -112,6 +118,11 @@ const Navigation = () => {
           options={{ headerShown: false }}
           name="HomeScreen"
           component={HomeScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="FocusedInfo"
+          component={FocusedInfo}
         />
       </Stack.Navigator>
     </NavigationContainer>
