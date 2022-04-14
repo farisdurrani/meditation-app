@@ -1,5 +1,5 @@
 import React from "react";
-import { COLORS } from "../constants";
+import { COLORS, defaultIconColor, defaultIconSize } from "../constants";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import HelpButton from "./HelpButton";
 import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
@@ -10,12 +10,11 @@ const HeaderButtons = (props) => {
     pause,
     onPause,
     noRightButton,
+    customLeftButton,
     settings,
     timer,
     onTimerZero,
   } = props;
-  const defaultSize = 40;
-  const defaultColor = COLORS.primary_blue;
   const [paused, setPaused] = React.useState(false);
   const [timeLeft, setTimeLeft] = React.useState(timer);
 
@@ -23,7 +22,40 @@ const HeaderButtons = (props) => {
     timeLeft % 60
   }`;
 
-  const RightButton = () => {
+  const _LeftButton = () => {
+    if (customLeftButton) {
+      return customLeftButton();
+    } else if (pause) {
+      return (
+        <TouchableOpacity onPress={navigation.goBack}>
+          <Ionicons
+            name={paused ? "play" : "pause"}
+            size={defaultIconSize}
+            color={defaultIconColor}
+            onPress={() => {
+              onPause();
+              setPaused(!paused);
+            }}
+          />
+        </TouchableOpacity>
+      );
+    } else {
+      return (
+        <TouchableOpacity onPress={navigation.goBack}>
+          <Ionicons
+            name="arrow-back"
+            size={defaultIconSize}
+            color={defaultIconColor}
+            onPress={() => {
+              navigation.goBack();
+            }}
+          />
+        </TouchableOpacity>
+      );
+    }
+  };
+
+  const _RightButton = () => {
     if (noRightButton) {
       return <View />;
     } else if (settings) {
@@ -31,8 +63,8 @@ const HeaderButtons = (props) => {
         <TouchableOpacity>
           <MaterialIcons
             name="settings"
-            size={defaultSize}
-            color={defaultColor}
+            size={defaultIconSize}
+            color={defaultIconColor}
             onPress={() => {}}
           />
         </TouchableOpacity>
@@ -60,36 +92,11 @@ const HeaderButtons = (props) => {
 
   return (
     <View style={styles.upperButtons}>
-      {pause ? (
-        <TouchableOpacity onPress={navigation.goBack}>
-          <Ionicons
-            name={paused ? "play" : "pause"}
-            size={defaultSize}
-            color={defaultColor}
-            onPress={() => {
-              if (!paused) {
-                onPause();
-              }
-              setPaused(!paused);
-            }}
-          />
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity onPress={navigation.goBack}>
-          <Ionicons
-            name="arrow-back"
-            size={defaultSize}
-            color={defaultColor}
-            onPress={() => {
-              navigation.goBack();
-            }}
-          />
-        </TouchableOpacity>
-      )}
+      <_LeftButton />
 
       {timer ? <Text style={styles.timer}>{clock}</Text> : undefined}
 
-      <RightButton />
+      <_RightButton />
     </View>
   );
 };

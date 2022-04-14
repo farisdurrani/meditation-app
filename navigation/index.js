@@ -19,7 +19,9 @@ import {
   PromptActivities,
   Info,
   ExerciseHandsAbove,
-  ExerciseTouchToes
+  ExerciseTouchToes,
+  FocusedInfo,
+  SquareInfo,
 } from "../screens";
 
 
@@ -29,8 +31,18 @@ const Stack = createNativeStackNavigator();
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator> 
-      <Stack.Screen
+      <Stack.Navigator>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="WelcomePage"
+          component={WelcomePage}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SquareInfo"
+          component={SquareInfo}
+        />
+        <Stack.Screen
           options={{ headerShown: false }}
           name="Timer"
           component={Timer}
@@ -100,11 +112,7 @@ const Navigation = () => {
           name="ChooseWordPage"
           component={ChooseWordPage}
         />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="WelcomePage"
-          component={WelcomePage}
-        />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="LoginScreen"
@@ -125,7 +133,11 @@ const Navigation = () => {
           name="HomeScreen"
           component={HomeScreen}
         />
-        
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="FocusedInfo"
+          component={FocusedInfo}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -4,10 +4,12 @@ import {
   Text,
   View,
   Dimensions,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 import { HeaderButtons, MButton } from "../../components";
-import { COLORS } from "../../constants";
+import { Ionicons } from "@expo/vector-icons";
+import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 import { Bar } from "react-native-progress";
 import { Button, Overlay } from "react-native-elements";
 
@@ -28,6 +30,21 @@ const FocusedMeditation = ({ navigation, route }) => {
     }, 1000);
   }
 
+  const _PauseButton = () => {
+    return (
+      <TouchableOpacity onPress={navigation.goBack}>
+        <Ionicons
+          name={paused ? "play" : "pause"}
+          size={defaultIconSize}
+          color={defaultIconColor}
+          onPress={() => {
+            setPaused(!paused);
+          }}
+        />
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <ImageBackground
       source={require("../../assets/background.png")}
@@ -36,10 +53,9 @@ const FocusedMeditation = ({ navigation, route }) => {
     >
       <View style={{ alignItems: "center" }}>
         <HeaderButtons
-          pause={true}
-          onPause={_toggleOverlay}
           navigation={navigation}
           timer={minutes * 60}
+          customLeftButton={_PauseButton}
         />
         <Text style={styles.chosenWord}>
           {chosenWord ? chosenWord : "Chosen Word"}
@@ -62,8 +78,20 @@ const FocusedMeditation = ({ navigation, route }) => {
               text="Continue"
               onPress={_toggleOverlay}
             />
-            <MButton containerStyle={{ width: "90%" }} text="Home" />
-            <MButton containerStyle={{ width: "90%" }} text="Settings" />
+            <MButton
+              containerStyle={{ width: "90%" }}
+              text="Home"
+              onPress={() => {
+                navigation.navigate("Timer");
+              }}
+            />
+            <MButton
+              containerStyle={{ width: "90%" }}
+              text="Settings"
+              onPress={() => {
+                navigation.navigate("SettingPage");
+              }}
+            />
           </View>
         </Overlay>
       </View>

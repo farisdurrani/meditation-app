@@ -27,4 +27,6 @@ export { default as BeginScreen } from "./BeginScreen";
 
 //exercise
 export { default as ExerciseHandsAbove } from "./exercise/ExerciseHandsAbove";
-export { default as ExerciseTouchToes } from "./exercise/ExerciseTouchToes"
+export { default as ExerciseTouchToes } from "./exercise/ExerciseTouchToes";
+export { default as FocusedInfo } from "./beginning_screens/FocusedInfo";
+export { default as SquareInfo } from "./beginning_screens/SquareInfo";
