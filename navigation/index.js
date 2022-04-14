@@ -22,6 +22,7 @@ import {
   ExerciseTouchToes,
   FocusedInfo,
   SquareInfo,
+  DeepInfo
 } from "../screens";
 
 
@@ -71,6 +72,11 @@ const Navigation = () => {
           options={{ headerShown: false }}
           name="Info"
           component={Info}
+        />
+        <Stack.Screen 
+          options={{ headerShown: false }}
+          name="DeepInfo"
+          component={DeepInfo}
         />
         <Stack.Screen
           options={{ headerShown: false }}
