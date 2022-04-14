@@ -7,7 +7,8 @@ import {
   RegisterScreen,
   CurrentScore,
   FocusedInfo,
-  SquareInfo
+  SquareInfo,
+  Exercise4,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -16,11 +17,12 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>   
+
       <Stack.Screen
           options={{ headerShown: false }}
-          name="SquareInfo"
-          component={SquareInfo}
-        />  
+          name="Exercise4"
+          component={Exercise4}
+        /> 
         <Stack.Screen
           options={{ headerShown: false }}
           name="WelcomePage"
@@ -51,7 +53,11 @@ const Navigation = () => {
           name="FocusedInfo"
           component={FocusedInfo}
         />
-        
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SquareInfo"
+          component={SquareInfo}
+        /> 
       </Stack.Navigator>
     </NavigationContainer>
   );
