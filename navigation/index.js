@@ -18,14 +18,18 @@ import {
   InhaleHold,
   PromptActivities,
   Info,
+  ExerciseHandsAbove,
+  ExerciseTouchToes
 } from "../screens";
+
+
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator> 
       <Stack.Screen
           options={{ headerShown: false }}
           name="Timer"
@@ -40,6 +44,16 @@ const Navigation = () => {
           options={{ headerShown: false }}
           name="InhaleHold"
           component={InhaleHold}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="ExerciseHandsAbove"
+          component={ExerciseHandsAbove}
+        />
+      <Stack.Screen
+          options={{ headerShown: false }}
+          name="ExerciseTouchToes"
+          component={ExerciseTouchToes}
         />
         <Stack.Screen
           options={{ headerShown: false }}
