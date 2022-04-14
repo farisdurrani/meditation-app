@@ -24,3 +24,7 @@ export { default as Info } from "./guided_screens/Info";
 
 // common
 export { default as BeginScreen } from "./BeginScreen";
+
+//exercise
+export { default as ExerciseHandsAbove } from "./exercise/ExerciseHandsAbove";
+export { default as ExerciseTouchToes } from "./exercise/ExerciseTouchToes"
