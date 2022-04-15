@@ -19,7 +19,8 @@ import {
   PromptActivities,
   Info,
   FocusedInfo,
-  SquareInfo
+  SquareInfo,
+  Exercise4,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
