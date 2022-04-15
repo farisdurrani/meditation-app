@@ -10,6 +10,7 @@ const SquareInfo = () => {
           <Text style = {{fontSize: 70, textAlign: "center"}}>guide user in breathing by ailgning breath with guide</Text>
           <MButton
             text="CLOSE"
+            containerStyle={{ width: 200, marginTop: 100}}
           />
         </View>
       );
@@ -18,4 +19,8 @@ const SquareInfo = () => {
 export default SquareInfo;
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    marginTop: Dimensions.get("window").height * 0.12,
+    alignItems: "center",
+  }
 });

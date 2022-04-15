@@ -20,6 +20,7 @@ import {
   Info,
   FocusedInfo,
   SquareInfo,
+  Exercise4,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -32,12 +33,7 @@ const Navigation = () => {
           options={{ headerShown: false }}
           name="WelcomePage"
           component={WelcomePage}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="SquareInfo"
-          component={SquareInfo}
-        />
+        />    
         <Stack.Screen
           options={{ headerShown: false }}
           name="Timer"
@@ -123,6 +119,16 @@ const Navigation = () => {
           options={{ headerShown: false }}
           name="FocusedInfo"
           component={FocusedInfo}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SquareInfo"
+          component={SquareInfo}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Exercise4"
+          component={Exercise4}
         />
       </Stack.Navigator>
     </NavigationContainer>

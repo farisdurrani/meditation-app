@@ -27,3 +27,4 @@ export { default as BeginScreen } from "./BeginScreen";
 
 export { default as FocusedInfo } from "./beginning_screens/FocusedInfo";
 export { default as SquareInfo } from "./beginning_screens/SquareInfo";
+export { default as Exercise4 } from "./beginning_screens/Exercise4";
