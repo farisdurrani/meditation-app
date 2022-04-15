@@ -3,9 +3,9 @@ import React from "react";
 import { COLORS } from "../constants";
 
 const MText = (props) => {
-  const { text } = props;
+  const { text, containerStyle } = props;
   return (
-    <View>
+    <View style={containerStyle}>
       <Text style={styles.text}>{text}</Text>
     </View>
   );

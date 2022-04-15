@@ -6,8 +6,8 @@ import { LAYOUT, COLORS } from "../../constants";
 const SquareInfo = () => {
     return (
         <View style={styles.mainContainer}>
-          <Text style = {{fontSize: 60, textAlign: "center", color: COLORS.primary_blue}}>Guided Breathing</Text>
-          <Text style = {{fontSize: 39, textAlign: "center", marginTop: 50}}>guide user in breathing by ailgning breath with guide</Text>
+          <Text style = {{fontSize: 70, textAlign: "center", color: COLORS.primary_blue}}>Guided Breathing</Text>
+          <Text style = {{fontSize: 70, textAlign: "center"}}>guide user in breathing by ailgning breath with guide</Text>
           <MButton
             text="CLOSE"
             containerStyle={{ width: 200, marginTop: 100}}
