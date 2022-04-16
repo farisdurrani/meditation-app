@@ -32,7 +32,18 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Exercise"
+          component={Exercise}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Exercise2"
+          component={Exercise2}
+        />
+
+        <Stack.Screen
           options={{ headerShown: false }}
           name="SquareInfo3"
           component={SquareInfo3}
@@ -67,16 +78,7 @@ const Navigation = () => {
           name="InhaleHold"
           component={InhaleHold}
         />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Exercise"
-          component={Exercise}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Exercise2"
-          component={Exercise2}
-        />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="PromptActivities"

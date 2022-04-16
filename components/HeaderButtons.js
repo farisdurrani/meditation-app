@@ -18,9 +18,9 @@ const HeaderButtons = (props) => {
   const [paused, setPaused] = React.useState(false);
   const [timeLeft, setTimeLeft] = React.useState(timer);
 
-  const clock = `${Math.floor(timeLeft / 60)}:${timeLeft % 60 < 10 ? "0" : ""}${
-    timeLeft % 60
-  }`;
+  const clock = `${Math.floor(timeLeft / 60)}:${
+    timeLeft % 60 < 10 ? "0" : ""
+  }${Math.round(timeLeft % 60)}`;
 
   const _LeftButton = () => {
     if (customLeftButton) {

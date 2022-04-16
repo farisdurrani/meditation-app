@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import { COLORS } from "../../constants";
 import { HeaderButtons, DropDown, MButton, MText } from "../../components";
 
-const Exercise2 = ({ navigation, route }) => {
+const Exercise = ({ navigation, route }) => {
   const minutes = 10;
 
-  const title = "Touch Toes";
+  const title = "Release";
   const [timeLeft, setTimeLeft] = useState(20);
   const [paused, setPaused] = useState(false);
 
@@ -33,8 +33,8 @@ const Exercise2 = ({ navigation, route }) => {
       <Text style={styles.text}>{title}</Text>
       <View marginTop={20} />
       <Image
-        source={require("../../assets/exercise_positions/touchtoes.png")}
-        style={{ maxHeight: Dimensions.get("window").height * 0.65 }}
+        source={require("../../assets/exercise_positions/release_hands.png")}
+        style={{ maxHeight: Dimensions.get("window").height * 0.65}}
       />
       <View marginTop={10} />
       <MText text={timeLeft} />
@@ -42,7 +42,7 @@ const Exercise2 = ({ navigation, route }) => {
   );
 };
 
-export default Exercise2;
+export default Exercise;
 
 const styles = StyleSheet.create({
   text: {
