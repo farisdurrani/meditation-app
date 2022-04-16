@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     height: Dimensions.get("window").height * 0.6,
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
   },
   text: {
     fontSize: 30,

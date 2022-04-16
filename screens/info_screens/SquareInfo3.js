@@ -8,10 +8,10 @@ const SquareInfo3 = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.mainContainer}>
         <MText text="Square Breathing" />
-        <Text style={styles.text}>
-          inhale for 4 seconds hold for 4 seconds \n exhale for 4 seconds \n
-          hold for 4 seconds
-        </Text>
+        <Text style={styles.text}>inhale for 4 seconds</Text>
+        <Text style={styles.text}>hold for 4 seconds</Text>
+        <Text style={styles.text}>exhale for 4 seconds</Text>
+        <Text style={styles.text}>hold for 4 seconds</Text>
         <MButton
           text="CLOSE"
           onPress={() => navigation.goBack}
