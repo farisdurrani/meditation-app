@@ -34,16 +34,17 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen
+          options={{ headerShown: false }}
+          name="Timer"
+          component={Timer}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="WelcomePage"
           component={WelcomePage}
         />    
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Timer"
-          component={Timer}
-        />
+        
         <Stack.Screen
           options={{ headerShown: false }}
           name="BeginScreen"
