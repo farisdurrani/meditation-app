@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { COLORS } from "../../constants";
 import { HeaderButtons, DropDown, MButton, MText } from "../../components";
 
-const ExerciseHandsAbove = ({ navigation, route }) => {
+const Exercise = ({ navigation, route }) => {
 
     const minutes = 10;
   
@@ -50,7 +50,7 @@ const ExerciseHandsAbove = ({ navigation, route }) => {
     );
   };
   
-  export default ExerciseHandsAbove;
+  export default Exercise;
  
   
   const styles = StyleSheet.create({

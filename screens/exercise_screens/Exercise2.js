@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { COLORS } from "../../constants";
 import { HeaderButtons, DropDown, MButton, MText } from "../../components";
 
-const ExerciseTouchToes = ({ navigation, route }) => {
+const Exercise2 = ({ navigation, route }) => {
 
     const minutes = 10;
   
@@ -51,7 +51,7 @@ const ExerciseTouchToes = ({ navigation, route }) => {
     );
   };
   
-  export default ExerciseTouchToes;
+  export default Exercise2;
  
   
   const styles = StyleSheet.create({

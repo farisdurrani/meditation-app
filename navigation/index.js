@@ -17,16 +17,13 @@ import {
   BeginScreen,
   InhaleHold,
   PromptActivities,
-  Info,
-  ExerciseHandsAbove,
-  ExerciseTouchToes,
+  Exercise,
+  Exercise2,
   FocusedInfo,
   SquareInfo,
   DeepInfo,
   Exercise4,
 } from "../screens";
-
-
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +33,16 @@ const Navigation = () => {
       <Stack.Navigator>
       <Stack.Screen
           options={{ headerShown: false }}
+          name="SquareInfo"
+          component={SquareInfo}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="DeepInfo"
+          component={DeepInfo}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
           name="Timer"
           component={Timer}
         />
@@ -43,8 +50,7 @@ const Navigation = () => {
           options={{ headerShown: false }}
           name="WelcomePage"
           component={WelcomePage}
-        />    
-        
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="BeginScreen"
@@ -57,23 +63,13 @@ const Navigation = () => {
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="ExerciseHandsAbove"
-          component={ExerciseHandsAbove}
-        />
-      <Stack.Screen
-          options={{ headerShown: false }}
-          name="ExerciseTouchToes"
-          component={ExerciseTouchToes}
+          name="Exercise"
+          component={Exercise}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Info"
-          component={Info}
-        />
-        <Stack.Screen 
-          options={{ headerShown: false }}
-          name="DeepInfo"
-          component={DeepInfo}
+          name="Exercise2"
+          component={Exercise2}
         />
         <Stack.Screen
           options={{ headerShown: false }}
@@ -141,11 +137,7 @@ const Navigation = () => {
           name="FocusedInfo"
           component={FocusedInfo}
         />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="SquareInfo"
-          component={SquareInfo}
-        />
+        
         <Stack.Screen
           options={{ headerShown: false }}
           name="Exercise4"
