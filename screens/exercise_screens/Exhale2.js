@@ -1,14 +1,13 @@
-import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
-import React, { useState, useEffect } from "react";
-import { COLORS } from "../../constants";
-import { HeaderButtons, DropDown, MButton, MText } from "../../components";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { HeaderButtons, MText } from "../../components";
+import { COLORS, defaultIconColor, defaultIconSize } from "../constants";
 
-const Exercise = ({ navigation, route }) => {
-  const { mainSecondsLeftCopy } = route.params;
+const Exhale2 = ({ navigation, route }) => {
+  const { mainSecondsLeftCopy, text, prevScreen } = route.params;
 
-  const title = "Hands Above Head";
-  const [secondsLeft, setSecondsLeft] = useState(mainSecondsLeftCopy);
-  const [mainSecondsLeft, setMainSecondsLeft] = useState(minutes * 60);
+  const [secondsLeft, setSecondsLeft] = useState(20);
+  const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
   const [paused, setPaused] = useState(false);
 
   if (!paused) {
@@ -20,10 +19,8 @@ const Exercise = ({ navigation, route }) => {
     } else if (mainSecondsLeft < 0) {
       navigation.navigate("CurrentScore");
     } else if (secondsLeft < 0) {
-      navigation.navigate("Exhale2", {
+      navigation.navigate(prevScreen, {
         mainSecondsLeftCopy: mainSecondsLeft,
-        text: "Relax hands",
-        prevScreen: "Exercise",
       });
     }
   }
@@ -60,26 +57,26 @@ const Exercise = ({ navigation, route }) => {
   return (
     <View style={{ alignItems: "center" }}>
       <_HeaderButtons />
-      <View marginTop={20} />
-      <Text style={styles.text}>{title}</Text>
-      <View marginTop={20} />
-      <Image
-        source={require("../../assets/exercise_positions/exercisehold.png")}
-        style={{ maxHeight: Dimensions.get("window").height * 0.65 }}
-      />
-      <View marginTop={10} />
-      <MText text={secondsLeft} />
+      <View marginTop={Dimensions.get("window").height * 0.3} />
+      <MText text={text} containerStyle={{ maxWidth: 375 }} />
     </View>
   );
 };
 
-export default Exercise;
+export default Exhale2;
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 40,
-    fontWeight: "500",
+const header_styles = StyleSheet.create({
+  upperButtons: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "90%",
+    marginTop: 60,
+  },
+  timer: {
+    fontSize: 20,
+    fontWeight: "bold",
     color: COLORS.primary_blue,
-    textAlign: "center",
   },
 });

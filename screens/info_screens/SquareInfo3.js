@@ -14,7 +14,7 @@ const SquareInfo3 = ({ navigation }) => {
         <Text style={styles.text}>hold for 4 seconds</Text>
         <MButton
           text="CLOSE"
-          onPress={() => navigation.goBack}
+          onPress={() => navigation.goBack()}
           containerStyle={{ marginTop: 100, width: 200 }}
         />
       </View>

@@ -13,7 +13,7 @@ const SquareInfo2 = ({ navigation }) => {
         </Text>
         <MButton
           text="CLOSE"
-          onPress={() => navigation.goBack}
+          onPress={() => navigation.goBack()}
           containerStyle={{ marginTop: 100, width: 200 }}
         />
       </View>

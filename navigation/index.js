@@ -14,6 +14,7 @@ import {
   FocusedInfo,
   SquareInfo2,
   SquareInfo3,
+  Exhale2,
   FocusedMeditation,
   Guided,
   HomeScreen,
@@ -34,6 +35,11 @@ const Navigation = () => {
       <Stack.Navigator>
         <Stack.Screen
           options={{ headerShown: false }}
+          name="Exhale2"
+          component={Exhale2}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
           name="Exercise"
           component={Exercise}
         />
@@ -42,7 +48,6 @@ const Navigation = () => {
           name="Exercise2"
           component={Exercise2}
         />
-
         <Stack.Screen
           options={{ headerShown: false }}
           name="SquareInfo3"
