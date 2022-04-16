@@ -21,10 +21,14 @@ export { default as Breathing } from "./guided_screens/Breathing";
 export { default as InhaleHold } from "./guided_screens/InhaleHold";
 export { default as PromptActivities } from "./guided_screens/PromptActivities";
 export { default as Info } from "./guided_screens/Info";
+export { default as DeepInfo } from "./guided_screens/DeepInfo";
 
 // common
 export { default as BeginScreen } from "./BeginScreen";
 
+//exercise
+export { default as ExerciseHandsAbove } from "./exercise/ExerciseHandsAbove";
+export { default as ExerciseTouchToes } from "./exercise/ExerciseTouchToes";
 export { default as FocusedInfo } from "./beginning_screens/FocusedInfo";
 export { default as SquareInfo } from "./beginning_screens/SquareInfo";
 export { default as Exercise4 } from "./beginning_screens/Exercise4";

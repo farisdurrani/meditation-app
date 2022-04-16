@@ -18,10 +18,15 @@ import {
   InhaleHold,
   PromptActivities,
   Info,
+  ExerciseHandsAbove,
+  ExerciseTouchToes,
   FocusedInfo,
   SquareInfo,
+  DeepInfo,
   Exercise4,
 } from "../screens";
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -51,8 +56,23 @@ const Navigation = () => {
         />
         <Stack.Screen
           options={{ headerShown: false }}
+          name="ExerciseHandsAbove"
+          component={ExerciseHandsAbove}
+        />
+      <Stack.Screen
+          options={{ headerShown: false }}
+          name="ExerciseTouchToes"
+          component={ExerciseTouchToes}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
           name="Info"
           component={Info}
+        />
+        <Stack.Screen 
+          options={{ headerShown: false }}
+          name="DeepInfo"
+          component={DeepInfo}
         />
         <Stack.Screen
           options={{ headerShown: false }}
