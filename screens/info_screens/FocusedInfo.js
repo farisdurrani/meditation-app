@@ -3,13 +3,13 @@ import React from "react";
 import { MText, MButton } from "../../components";
 import { COLORS } from "../../constants";
 
-const SquareInfo = ({ navigation }) => {
+const FocusedInfo = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
-        <MText text="Guided Breathing" />
+        <MText text="Focused Meditation" />
         <Text style={styles.text}>
-          Guides user in breathing by ailgning breath with guide
+          Self meditation using a word to focus on
         </Text>
         <MButton
           text="CLOSE"
@@ -21,7 +21,7 @@ const SquareInfo = ({ navigation }) => {
   );
 };
 
-export default SquareInfo;
+export default FocusedInfo;
 
 const styles = StyleSheet.create({
   mainContainer: {

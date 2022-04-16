@@ -1,28 +1,29 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
-  HomeScreen,
-  LoginScreen,
-  WelcomePage,
-  RegisterScreen,
-  CurrentScore,
-  Timer,
-  ChooseWordPage,
   BeginChooseWord,
-  FocusedMeditation,
-  SettingPage,
-  FavoriteList,
-  Guided,
-  Breathing,
   BeginScreen,
-  InhaleHold,
-  PromptActivities,
+  Breathing,
+  ChooseWordPage,
+  CurrentScore,
+  DeepInfo,
   Exercise,
   Exercise2,
-  FocusedInfo,
-  SquareInfo,
-  DeepInfo,
   Exercise4,
+  FavoriteList,
+  FocusedInfo,
+  SquareInfo2,
+  SquareInfo3,
+  FocusedMeditation,
+  Guided,
+  HomeScreen,
+  InhaleHold,
+  LoginScreen,
+  PromptActivities,
+  RegisterScreen,
+  SettingPage,
+  Timer,
+  WelcomePage,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -33,8 +34,8 @@ const Navigation = () => {
       <Stack.Navigator>
       <Stack.Screen
           options={{ headerShown: false }}
-          name="SquareInfo"
-          component={SquareInfo}
+          name="SquareInfo3"
+          component={SquareInfo3}
         />
         <Stack.Screen
           options={{ headerShown: false }}
@@ -45,6 +46,11 @@ const Navigation = () => {
           options={{ headerShown: false }}
           name="Timer"
           component={Timer}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SquareInfo2"
+          component={SquareInfo2}
         />
         <Stack.Screen
           options={{ headerShown: false }}
@@ -137,7 +143,7 @@ const Navigation = () => {
           name="FocusedInfo"
           component={FocusedInfo}
         />
-        
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="Exercise4"

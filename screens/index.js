@@ -31,5 +31,6 @@ export { default as Exercise2 } from "./exercise_screens/Exercise2";
 export { default as Exercise4 } from "./exercise_screens/Exercise4";
 
 // info_screens
-export { default as FocusedInfo } from "./beginning_screens/FocusedInfo";
-export { default as SquareInfo } from "./info_screens/SquareInfo";
+export { default as FocusedInfo } from "./info_screens/FocusedInfo";
+export { default as SquareInfo2 } from "./info_screens/SquareInfo2";
+export { default as SquareInfo3 } from "./info_screens/SquareInfo3";
