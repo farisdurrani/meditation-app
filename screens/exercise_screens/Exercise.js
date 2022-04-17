@@ -12,11 +12,10 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { HeaderButtons, DropDown, MButton, MText } from "../../components";
 
 const Exercise = ({ navigation, route }) => {
-  // const { mainSecondsLeftCopy } = route.params;
-  const mainSecondsLeftCopy = 30;
+  const { mainSecondsLeftCopy, meditationType } = route.params;
 
   const title = "Hands Above Head";
-  const [secondsLeft, setSecondsLeft] = useState(5);
+  const [secondsLeft, setSecondsLeft] = useState(20);
   const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
   const [paused, setPaused] = useState(false);
 

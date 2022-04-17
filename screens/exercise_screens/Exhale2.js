@@ -11,7 +11,7 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 
 const Exhale2 = ({ navigation, route }) => {
-  const { mainSecondsLeftCopy, text, prevScreen } = route.params;
+  const { mainSecondsLeftCopy, text } = route.params;
 
   const [secondsLeft, setSecondsLeft] = useState(20);
   const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
@@ -24,10 +24,12 @@ const Exhale2 = ({ navigation, route }) => {
         setMainSecondsLeft(mainSecondsLeft - 1);
       }, 1000);
     } else if (mainSecondsLeft < 0) {
-      navigation.replace("Exercise");
+      navigation.replace("CurrentScore");
     } else if (secondsLeft < 0) {
-      navigation.replace(prevScreen, {
-        mainSecondsLeftCopy: mainSecondsLeft,
+      navigation.replace("InhaleHold", {
+        minutes: mainSecondsLeft / 60,
+        meditationType: meditationType,
+        withStretching: true,
       });
     }
   }

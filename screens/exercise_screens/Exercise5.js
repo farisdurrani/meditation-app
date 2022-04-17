@@ -1,43 +1,86 @@
-import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
-import React, { useState, useEffect } from "react";
-import { COLORS } from "../../constants";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { HeaderButtons, DropDown, MButton, MText } from "../../components";
 
 const Exercise = ({ navigation, route }) => {
-  const minutes = 10;
+  const { mainSecondsLeftCopy, meditationType } = route.params;
 
   const title = "Release";
-  const [timeLeft, setTimeLeft] = useState(20);
+  const [secondsLeft, setSecondsLeft] = useState(10);
+  const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
   const [paused, setPaused] = useState(false);
 
-  if (!paused && timeLeft >= 0) {
-    setTimeout(() => {
-      setTimeLeft(timeLeft - 1);
-    }, 1000);
+  if (!paused) {
+    if (mainSecondsLeft >= 0 && secondsLeft >= 0) {
+      setTimeout(() => {
+        setSecondsLeft(secondsLeft - 1);
+        setMainSecondsLeft(mainSecondsLeft - 1);
+      }, 1000);
+    } else if (mainSecondsLeft < 0) {
+      navigation.replace("CurrentScore");
+    } else if (secondsLeft < 0) {
+      navigation.replace("InhaleHold", {
+        minutes: mainSecondsLeft / 60,
+        meditationType: meditationType,
+        withStretching: true,
+      });
+    }
   }
+
+  const _HeaderButtons = () => {
+    const clock = `${Math.floor(mainSecondsLeft / 60)}:${
+      mainSecondsLeft % 60 < 10 ? "0" : ""
+    }${Math.round(mainSecondsLeft % 60)}`;
+    return (
+      <View style={header_styles.upperButtons}>
+        <TouchableOpacity>
+          <Ionicons
+            name={paused ? "play" : "pause"}
+            size={defaultIconSize}
+            color={defaultIconColor}
+            onPress={() => {
+              setPaused(!paused);
+            }}
+          />
+        </TouchableOpacity>
+        <Text style={header_styles.timer}>{clock}</Text>
+        <TouchableOpacity>
+          <MaterialIcons
+            name="help"
+            size={defaultIconSize}
+            color={defaultIconColor}
+            onPress={() =>
+              navigation.navigate("HelpScreen", {
+                mainSecondsLeft: mainSecondsLeft,
+              })
+            }
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   return (
     <View style={{ alignItems: "center" }}>
-      <HeaderButtons
-        navigation={navigation}
-        timer={minutes * 60}
-        pause
-        onPause={() => {
-          setPaused(!paused);
-        }}
-        onTimerZero={() => {
-          navigation.replace("ExerciseTouchToes");
-        }}
-      />
+      <_HeaderButtons />
       <View marginTop={20} />
       <Text style={styles.text}>{title}</Text>
       <View marginTop={20} />
       <Image
         source={require("../../assets/exercise_positions/release_hands.png")}
-        style={{ maxHeight: Dimensions.get("window").height * 0.65}}
+        style={{ maxHeight: Dimensions.get("window").height * 0.65 }}
       />
       <View marginTop={10} />
-      <MText text={timeLeft} />
+      <MText text={secondsLeft} />
     </View>
   );
 };
@@ -50,5 +93,21 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: COLORS.primary_blue,
     textAlign: "center",
+  },
+});
+
+const header_styles = StyleSheet.create({
+  upperButtons: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "90%",
+    marginTop: 60,
+  },
+  timer: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: COLORS.primary_blue,
   },
 });
