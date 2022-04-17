@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { COLORS, defaultIconColor, defaultIconSize } from "../constants";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import HelpButton from "./HelpButton";
 import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
 
 const HeaderButtons = (props) => {
@@ -68,7 +67,16 @@ const HeaderButtons = (props) => {
         </TouchableOpacity>
       );
     } else {
-      return <HelpButton onPress={() => onPressHelp(secondsLeft)} />;
+      return (
+        <TouchableOpacity>
+          <MaterialIcons
+            name="help"
+            size={defaultIconSize}
+            color={defaultIconColor}
+            onPress={() => onPressHelp(secondsLeft)}
+          />
+        </TouchableOpacity>
+      );
     }
   };
 

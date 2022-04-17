@@ -35,14 +35,15 @@ const Navigation = () => {
       <Stack.Navigator>
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Exhale2"
-          component={Exhale2}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
           name="Exercise"
           component={Exercise}
         />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Exhale2"
+          component={Exhale2}
+        />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="Exercise2"

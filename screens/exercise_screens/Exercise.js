@@ -1,14 +1,24 @@
-import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  Image,
+  TouchableOpacity,
+  Ionicons,
+  MaterialIcons,
+} from "react-native";
 import React, { useState, useEffect } from "react";
-import { COLORS } from "../../constants";
+import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 import { HeaderButtons, DropDown, MButton, MText } from "../../components";
 
 const Exercise = ({ navigation, route }) => {
-  const { mainSecondsLeftCopy } = route.params;
+  // const { mainSecondsLeftCopy } = route.params;
+  const mainSecondsLeftCopy = 30;
 
   const title = "Hands Above Head";
   const [secondsLeft, setSecondsLeft] = useState(mainSecondsLeftCopy);
-  const [mainSecondsLeft, setMainSecondsLeft] = useState(minutes * 60);
+  const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
   const [paused, setPaused] = useState(false);
 
   if (!paused) {
@@ -46,13 +56,18 @@ const Exercise = ({ navigation, route }) => {
           />
         </TouchableOpacity>
         <Text style={header_styles.timer}>{clock}</Text>
-        <HelpButton
-          onPress={() =>
-            navigation.navigate("HelpScreen", {
-              mainSecondsLeft: mainSecondsLeft,
-            })
-          }
-        />
+        <TouchableOpacity>
+          <MaterialIcons
+            name="help"
+            size={defaultIconSize}
+            color={defaultIconColor}
+            onPress={() =>
+              navigation.navigate("HelpScreen", {
+                mainSecondsLeft: mainSecondsLeft,
+              })
+            }
+          />
+        </TouchableOpacity>
       </View>
     );
   };
@@ -81,5 +96,21 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: COLORS.primary_blue,
     textAlign: "center",
+  },
+});
+
+const header_styles = StyleSheet.create({
+  upperButtons: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "90%",
+    marginTop: 60,
+  },
+  timer: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: COLORS.primary_blue,
   },
 });
