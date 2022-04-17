@@ -4,11 +4,10 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Ionicons,
-  MaterialIcons,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { HeaderButtons, MText } from "../../components";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 
 const Exhale2 = ({ navigation, route }) => {
@@ -25,53 +24,53 @@ const Exhale2 = ({ navigation, route }) => {
         setMainSecondsLeft(mainSecondsLeft - 1);
       }, 1000);
     } else if (mainSecondsLeft < 0) {
-      navigation.navigate("CurrentScore");
+      navigation.replace("Exercise");
     } else if (secondsLeft < 0) {
-      navigation.navigate(prevScreen, {
+      navigation.replace(prevScreen, {
         mainSecondsLeftCopy: mainSecondsLeft,
       });
     }
   }
 
-//   const _HeaderButtons = () => {
-//     const clock = `${Math.floor(secondsLeft / 60)}:${
-//       secondsLeft % 60 < 10 ? "0" : ""
-//     }${Math.round(secondsLeft % 60)}`;
-
-//     return (
-//       <View style={header_styles.upperButtons}>
-//         <TouchableOpacity>
-//           <Ionicons
-//             name={paused ? "play" : "pause"}
-//             size={defaultIconSize}
-//             color={defaultIconColor}
-//             onPress={() => {
-//               setPaused(!paused);
-//             }}
-//           />
-//         </TouchableOpacity>
-//         <Text style={header_styles.timer}>{clock}</Text>
-//         <TouchableOpacity>
-//           <MaterialIcons
-//             name="help"
-//             size={defaultIconSize}
-//             color={defaultIconColor}
-//             onPress={() =>
-//               navigation.navigate("HelpScreen", {
-//                 mainSecondsLeft: mainSecondsLeft,
-//               })
-//             }
-//           />
-//         </TouchableOpacity>
-//       </View>
-//     );
-//   };
+  const _HeaderButtons = () => {
+    const clock = `${Math.floor(mainSecondsLeft / 60)}:${
+      mainSecondsLeft % 60 < 10 ? "0" : ""
+    }${Math.round(mainSecondsLeft % 60)}`;
+    return (
+      <View style={header_styles.upperButtons}>
+        <TouchableOpacity>
+          <Ionicons
+            name={paused ? "play" : "pause"}
+            size={defaultIconSize}
+            color={defaultIconColor}
+            onPress={() => {
+              setPaused(!paused);
+            }}
+          />
+        </TouchableOpacity>
+        <Text style={header_styles.timer}>{clock}</Text>
+        <TouchableOpacity>
+          <MaterialIcons
+            name="help"
+            size={defaultIconSize}
+            color={defaultIconColor}
+            onPress={() =>
+              navigation.navigate("HelpScreen", {
+                mainSecondsLeft: mainSecondsLeft,
+              })
+            }
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   return (
     <View style={{ alignItems: "center" }}>
-      {/* <_HeaderButtons /> */}
-      <View marginTop={Dimensions.get("window").height * 0.3} />
-      <MText text={text} containerStyle={{ maxWidth: 375 }} />
+      <_HeaderButtons />
+      <View marginTop={Dimensions.get("window").height * 0.2} />
+      <MText text={text} containerStyle={{ maxWidth: 350 }} />
+      <MText text={secondsLeft} containerStyle={{ marginTop: 20 }}/>
     </View>
   );
 };

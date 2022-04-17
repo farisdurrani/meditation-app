@@ -5,11 +5,10 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
-  Ionicons,
-  MaterialIcons,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { HeaderButtons, DropDown, MButton, MText } from "../../components";
 
 const Exercise = ({ navigation, route }) => {
@@ -17,7 +16,7 @@ const Exercise = ({ navigation, route }) => {
   const mainSecondsLeftCopy = 30;
 
   const title = "Hands Above Head";
-  const [secondsLeft, setSecondsLeft] = useState(mainSecondsLeftCopy);
+  const [secondsLeft, setSecondsLeft] = useState(5);
   const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
   const [paused, setPaused] = useState(false);
 
@@ -28,9 +27,9 @@ const Exercise = ({ navigation, route }) => {
         setMainSecondsLeft(mainSecondsLeft - 1);
       }, 1000);
     } else if (mainSecondsLeft < 0) {
-      navigation.navigate("CurrentScore");
+      navigation.replace("CurrentScore");
     } else if (secondsLeft < 0) {
-      navigation.navigate("Exhale2", {
+      navigation.replace("Exhale2", {
         mainSecondsLeftCopy: mainSecondsLeft,
         text: "Relax hands",
         prevScreen: "Exercise",
@@ -39,10 +38,9 @@ const Exercise = ({ navigation, route }) => {
   }
 
   const _HeaderButtons = () => {
-    const clock = `${Math.floor(secondsLeft / 60)}:${
-      secondsLeft % 60 < 10 ? "0" : ""
-    }${Math.round(secondsLeft % 60)}`;
-
+    const clock = `${Math.floor(mainSecondsLeft / 60)}:${
+      mainSecondsLeft % 60 < 10 ? "0" : ""
+    }${Math.round(mainSecondsLeft % 60)}`;
     return (
       <View style={header_styles.upperButtons}>
         <TouchableOpacity>
