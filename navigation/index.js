@@ -13,6 +13,7 @@ import {
   Exercise4,
   Exercise5,
   Exhale2,
+  Favorite,
   FavoriteList,
   FocusedInfo,
   FocusedMeditation,
@@ -36,6 +37,11 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Favorite"
+          component={Favorite}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="WelcomePage"

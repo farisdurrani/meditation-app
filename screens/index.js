@@ -24,6 +24,7 @@ export { default as PromptActivities } from "./guided_screens/PromptActivities";
 
 // common
 export { default as BeginScreen } from "./BeginScreen";
+export { default as Favorite } from "./Favorite";
 
 // exercise_screens
 export { default as Exercise } from "./exercise_screens/Exercise";
