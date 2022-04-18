@@ -15,6 +15,11 @@ const DeepInfo = () => {
           <View marginTop={ Dimensions.get('window').width *0.50} />
           <MButton
             text="CLOSE"
+            containerStyle={{
+                width: 200,
+                marginHorizontal: 100,
+                marginVertical: 10,
+            }}
           />
         </View>
       );
