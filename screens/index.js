@@ -29,6 +29,7 @@ export { default as BeginScreen } from "./BeginScreen";
 export { default as Exercise } from "./exercise_screens/Exercise";
 export { default as Exercise2 } from "./exercise_screens/Exercise2";
 export { default as Exercise4 } from "./exercise_screens/Exercise4";
+export { default as Exercise5 } from "./exercise_screens/Exercise5";
 export { default as Exhale2 } from "./exercise_screens/Exhale2";
 
 // info_screens

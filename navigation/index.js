@@ -10,11 +10,10 @@ import {
   Exercise,
   Exercise2,
   Exercise4,
+  Exercise5,
+  Exhale2,
   FavoriteList,
   FocusedInfo,
-  SquareInfo2,
-  SquareInfo3,
-  Exhale2,
   FocusedMeditation,
   Guided,
   HomeScreen,
@@ -23,6 +22,8 @@ import {
   PromptActivities,
   RegisterScreen,
   SettingPage,
+  SquareInfo2,
+  SquareInfo3,
   Timer,
   WelcomePage,
 } from "../screens";
@@ -33,6 +34,11 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="WelcomePage"
+          component={WelcomePage}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="Exercise"
@@ -48,6 +54,16 @@ const Navigation = () => {
           options={{ headerShown: false }}
           name="Exercise2"
           component={Exercise2}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Exercise4"
+          component={Exercise4}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Exercise5"
+          component={Exercise5}
         />
         <Stack.Screen
           options={{ headerShown: false }}
@@ -69,11 +85,7 @@ const Navigation = () => {
           name="SquareInfo2"
           component={SquareInfo2}
         />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="WelcomePage"
-          component={WelcomePage}
-        />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="BeginScreen"
@@ -150,12 +162,6 @@ const Navigation = () => {
           options={{ headerShown: false }}
           name="FocusedInfo"
           component={FocusedInfo}
-        />
-
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Exercise4"
-          component={Exercise4}
         />
       </Stack.Navigator>
     </NavigationContainer>
