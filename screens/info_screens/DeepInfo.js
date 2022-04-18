@@ -27,7 +27,12 @@ const DeepInfo = () => {
         exhale for 8 seconds
       </Text>
       <View marginTop={Dimensions.get("window").width * 0.5} />
-      <MButton text="CLOSE" />
+      <MButton text="CLOSE" 
+       containerStyle={{
+        width: 200,
+        marginHorizontal: 100,
+        marginVertical: 10,
+    }}/>
     </View>
   );
 };
