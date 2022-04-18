@@ -28,15 +28,13 @@ export { default as BeginScreen } from "./BeginScreen";
 // exercise_screens
 export { default as Exercise } from "./exercise_screens/Exercise";
 export { default as Exercise2 } from "./exercise_screens/Exercise2";
+export { default as Exercise3 } from "./exercise_screens/Exercise3";
 export { default as Exercise4 } from "./exercise_screens/Exercise4";
 export { default as Exercise5 } from "./exercise_screens/Exercise5";
 export { default as Exhale2 } from "./exercise_screens/Exhale2";
 
 // info_screens
 export { default as FocusedInfo } from "./info_screens/FocusedInfo";
+export { default as SquareInfo } from "./info_screens/SquareInfo";
 export { default as SquareInfo2 } from "./info_screens/SquareInfo2";
 export { default as SquareInfo3 } from "./info_screens/SquareInfo3";
-
-// Sadia's screens
-export { default as Excercise3 } from "./beginning_screens/excercises/Excercise3";
-export { default as SquareInfo } from "./beginning_screens/SquareInfo";

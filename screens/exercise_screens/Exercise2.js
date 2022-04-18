@@ -31,7 +31,7 @@ const Exercise = ({ navigation, route }) => {
       navigation.replace("Exhale2", {
         mainSecondsLeftCopy: mainSecondsLeft,
         text: "Stand up",
-        prevScreen: "Exercise2",
+        meditationType: meditationType,
       });
     }
   }

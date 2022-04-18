@@ -28,8 +28,9 @@ const Exercise = ({ navigation, route }) => {
     } else if (mainSecondsLeft < 0) {
       navigation.replace("CurrentScore");
     } else if (secondsLeft < 0) {
-      navigation.replace("Exercise4", {
+      navigation.replace("Exercise5", {
         mainSecondsLeftCopy: mainSecondsLeft,
+        meditationType: meditationType,
       });
     }
   }

@@ -1,8 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
-  SquareInfo,
-  Exercise3,
   BeginChooseWord,
   BeginScreen,
   Breathing,
@@ -11,7 +9,7 @@ import {
   DeepInfo,
   Exercise,
   Exercise2,
-  Excercise3,
+  Exercise3,
   Exercise4,
   Exercise5,
   Exhale2,
@@ -25,6 +23,7 @@ import {
   PromptActivities,
   RegisterScreen,
   SettingPage,
+  SquareInfo,
   SquareInfo2,
   SquareInfo3,
   Timer,
@@ -39,16 +38,6 @@ const Navigation = () => {
       <Stack.Navigator>
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Excercise3"
-          component={Excercise3}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="SquareInfo"
-          component={SquareInfo}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
           name="WelcomePage"
           component={WelcomePage}
         />
@@ -57,6 +46,17 @@ const Navigation = () => {
           name="Exercise"
           component={Exercise}
         />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Exercise3"
+          component={Exercise3}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SquareInfo"
+          component={SquareInfo}
+        />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="Exhale2"

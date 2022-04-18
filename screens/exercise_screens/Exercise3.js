@@ -14,7 +14,7 @@ import { HeaderButtons, DropDown, MButton, MText } from "../../components";
 const Exercise = ({ navigation, route }) => {
   const { mainSecondsLeftCopy, meditationType } = route.params;
 
-  const title = "Hands Above Head";
+  const title = "Legs Crossed";
   const [secondsLeft, setSecondsLeft] = useState(20);
   const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
   const [paused, setPaused] = useState(false);
@@ -30,7 +30,7 @@ const Exercise = ({ navigation, route }) => {
     } else if (secondsLeft < 0) {
       navigation.replace("Exhale2", {
         mainSecondsLeftCopy: mainSecondsLeft,
-        text: "Relax hands",
+        text: "Stand up",
         meditationType: meditationType,
       });
     }
@@ -76,7 +76,7 @@ const Exercise = ({ navigation, route }) => {
       <Text style={styles.text}>{title}</Text>
       <View marginTop={20} />
       <Image
-        source={require("../../assets/exercise_positions/exercisehold.png")}
+        source={require("../../assets/exercise_positions/legs_crossed.png")}
         style={{ maxHeight: Dimensions.get("window").height * 0.65 }}
       />
       <View marginTop={10} />

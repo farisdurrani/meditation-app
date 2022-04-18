@@ -11,7 +11,7 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 
 const Exhale2 = ({ navigation, route }) => {
-  const { mainSecondsLeftCopy, text } = route.params;
+  const { mainSecondsLeftCopy, text, meditationType } = route.params;
 
   const [secondsLeft, setSecondsLeft] = useState(20);
   const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
