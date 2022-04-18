@@ -1,6 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
+  SquareInfo,
+  Exercise3,
   BeginChooseWord,
   BeginScreen,
   Breathing,
@@ -9,6 +11,7 @@ import {
   DeepInfo,
   Exercise,
   Exercise2,
+  Excercise3,
   Exercise4,
   Exercise5,
   Exhale2,
@@ -34,6 +37,16 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Excercise3"
+          component={Excercise3}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SquareInfo"
+          component={SquareInfo}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="WelcomePage"
