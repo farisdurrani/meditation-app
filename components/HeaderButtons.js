@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { COLORS, defaultIconColor, defaultIconSize } from "../constants";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import HelpButton from "./HelpButton";
 import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
 
 const HeaderButtons = (props) => {
@@ -11,23 +10,24 @@ const HeaderButtons = (props) => {
     onPause,
     noRightButton,
     customLeftButton,
+    onPressHelp,
     settings,
     timer,
     onTimerZero,
   } = props;
-  const [paused, setPaused] = React.useState(false);
-  const [timeLeft, setTimeLeft] = React.useState(timer);
+  const [paused, setPaused] = useState(false);
+  const [secondsLeft, setSecondsLeft] = useState(timer);
 
-  const clock = `${Math.floor(timeLeft / 60)}:${timeLeft % 60 < 10 ? "0" : ""}${
-    timeLeft % 60
-  }`;
+  const clock = `${Math.floor(secondsLeft / 60)}:${
+    secondsLeft % 60 < 10 ? "0" : ""
+  }${Math.round(secondsLeft % 60)}`;
 
   const _LeftButton = () => {
     if (customLeftButton) {
       return customLeftButton();
     } else if (pause) {
       return (
-        <TouchableOpacity onPress={navigation.goBack}>
+        <TouchableOpacity>
           <Ionicons
             name={paused ? "play" : "pause"}
             size={defaultIconSize}
@@ -41,14 +41,12 @@ const HeaderButtons = (props) => {
       );
     } else {
       return (
-        <TouchableOpacity onPress={navigation.goBack}>
+        <TouchableOpacity>
           <Ionicons
             name="arrow-back"
             size={defaultIconSize}
             color={defaultIconColor}
-            onPress={() => {
-              navigation.goBack();
-            }}
+            onPress={() => navigation.goBack()}
           />
         </TouchableOpacity>
       );
@@ -65,26 +63,26 @@ const HeaderButtons = (props) => {
             name="settings"
             size={defaultIconSize}
             color={defaultIconColor}
-            onPress={() => {}}
           />
         </TouchableOpacity>
       );
     } else {
       return (
-        <HelpButton
-          onPress={() => {
-            navigation.navigate("SquareInfo2");
-          }}
-        />
+        <TouchableOpacity>
+          <MaterialIcons
+            name="help"
+            size={defaultIconSize}
+            color={defaultIconColor}
+            onPress={() => onPressHelp(secondsLeft)}
+          />
+        </TouchableOpacity>
       );
     }
   };
 
   if (!paused) {
-    if (timeLeft > 0) {
-      setTimeout(() => {
-        setTimeLeft(timeLeft - 1);
-      }, 1000);
+    if (secondsLeft > 0) {
+      setTimeout(() => setSecondsLeft(secondsLeft - 1), 1000);
     } else if (onTimerZero) {
       requestAnimationFrame(onTimerZero);
     }

@@ -4,6 +4,7 @@ import { COLORS } from "../constants";
 
 const MText = (props) => {
   const { text, containerStyle } = props;
+
   return (
     <View style={containerStyle}>
       <Text style={styles.text}>{text}</Text>

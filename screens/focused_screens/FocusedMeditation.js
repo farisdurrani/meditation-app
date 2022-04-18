@@ -32,7 +32,7 @@ const FocusedMeditation = ({ navigation, route }) => {
 
   const _PauseButton = () => {
     return (
-      <TouchableOpacity onPress={navigation.goBack}>
+      <TouchableOpacity>
         <Ionicons
           name={paused ? "play" : "pause"}
           size={defaultIconSize}

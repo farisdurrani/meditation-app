@@ -1,31 +1,34 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
-  HomeScreen,
-  LoginScreen,
-  WelcomePage,
-  RegisterScreen,
-  CurrentScore,
-  Timer,
-  ChooseWordPage,
   BeginChooseWord,
-  FocusedMeditation,
-  SettingPage,
-  FavoriteList,
-  Guided,
-  Breathing,
   BeginScreen,
-  InhaleHold,
-  PromptActivities,
-  Info,
-  ExerciseHandsAbove,
-  ExerciseTouchToes,
+  Breathing,
+  ChooseWordPage,
+  CurrentScore,
+  DeepInfo,
+  Exercise,
+  Exercise2,
+  Exercise3,
+  Exercise4,
+  Exercise5,
+  Exhale2,
+  FavoriteList,
   FocusedInfo,
+  FocusedMeditation,
+  Guided,
+  HomeScreen,
+  InhaleHold,
+  LoginScreen,
+  PromptActivities,
+  RegisterScreen,
+  SettingPage,
   SquareInfo,
-  DeepInfo
+  SquareInfo2,
+  SquareInfo3,
+  Timer,
+  WelcomePage,
 } from "../screens";
-
-
 
 const Stack = createNativeStackNavigator();
 
@@ -40,14 +43,62 @@ const Navigation = () => {
         />
         <Stack.Screen
           options={{ headerShown: false }}
+          name="Exercise"
+          component={Exercise}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Exercise3"
+          component={Exercise3}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
           name="SquareInfo"
           component={SquareInfo}
+        />
+
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Exhale2"
+          component={Exhale2}
+        />
+
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Exercise2"
+          component={Exercise2}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Exercise4"
+          component={Exercise4}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Exercise5"
+          component={Exercise5}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SquareInfo3"
+          component={SquareInfo3}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="DeepInfo"
+          component={DeepInfo}
         />
         <Stack.Screen
           options={{ headerShown: false }}
           name="Timer"
           component={Timer}
         />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SquareInfo2"
+          component={SquareInfo2}
+        />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="BeginScreen"
@@ -58,26 +109,7 @@ const Navigation = () => {
           name="InhaleHold"
           component={InhaleHold}
         />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="ExerciseHandsAbove"
-          component={ExerciseHandsAbove}
-        />
-      <Stack.Screen
-          options={{ headerShown: false }}
-          name="ExerciseTouchToes"
-          component={ExerciseTouchToes}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Info"
-          component={Info}
-        />
-        <Stack.Screen 
-          options={{ headerShown: false }}
-          name="DeepInfo"
-          component={DeepInfo}
-        />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="PromptActivities"
