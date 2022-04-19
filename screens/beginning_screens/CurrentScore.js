@@ -8,6 +8,7 @@ const CurrentScore = ({ navigation, route }) => {
 
   return (
     <View style={styles.mainContainer}>
+      <HeaderButtons navigation={navigation} />
       <Text style={{ fontSize: 70, textAlign: "center" }}>Current Score</Text>
       <Text
         style={{

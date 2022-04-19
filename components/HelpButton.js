@@ -1,11 +1,7 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  MaterialIcons,
-} from "react-native";
 import React from "react";
+import { MaterialIcons } from "@expo/vector-icons";
+import { View, TouchableOpacity } from "react-native";
+import { defaultIconSize, defaultIconColor } from "../constants";
 
 const HelpButton = (props) => {
   const { onPressHelp } = props;
@@ -15,12 +11,10 @@ const HelpButton = (props) => {
         name="help"
         size={defaultIconSize}
         color={defaultIconColor}
-        onPress={() => onPressHelp(secondsLeft)}
+        onPress={onPressHelp ? onPressHelp : () => {}}
       />
     </TouchableOpacity>
   );
 };
 
 export default HelpButton;
-
-const styles = StyleSheet.create({});
