@@ -9,7 +9,13 @@ import {
 import React, { useState, useEffect, useRef } from "react";
 import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { HeaderButtons, DropDown, MButton, MText } from "../../components";
+import {
+  HeaderButtons,
+  DropDown,
+  MButton,
+  MText,
+  HelpButton,
+} from "../../components";
 
 const Exercise = ({ navigation, route }) => {
   const { mainSecondsLeftCopy, meditationType } = route.params;
@@ -53,18 +59,7 @@ const Exercise = ({ navigation, route }) => {
           />
         </TouchableOpacity>
         <Text style={header_styles.timer}>{clock}</Text>
-        <TouchableOpacity>
-          <MaterialIcons
-            name="help"
-            size={defaultIconSize}
-            color={defaultIconColor}
-            onPress={() =>
-              navigation.navigate("HelpScreen", {
-                mainSecondsLeft: mainSecondsLeft,
-              })
-            }
-          />
-        </TouchableOpacity>
+        <HelpButton onPressHelp={() => navigation.navigate("SquareInfo")} />
       </View>
     );
   };
