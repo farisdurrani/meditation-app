@@ -12,8 +12,22 @@ const InhaleHold = ({ navigation, route }) => {
   const [paused, setPaused] = useState(false);
   const [sequence, setSequence] = useState(0);
 
+  if (withStretching && sequence === 2) {
+    const randomExerciseScreen =
+      allExerciseScreens[Math.floor(Math.random() * allExerciseScreens.length)];
+    navigation.replace(randomExerciseScreen, {
+      mainSecondsLeftCopy: 10,
+      meditationType: meditationType,
+    });
+  }
+
   const updateTitle = () => {
     const length = sequences[meditationType].activities.length;
+
+    if (withStretching && index + 1 === length) {
+      setSequence(sequence + 1);
+    }
+
     setIndex((index + 1) % length);
     setTitle(sequences[meditationType].activities[index]);
     setTimeLeft(sequences[meditationType].timeLeft[index]);
@@ -35,12 +49,11 @@ const InhaleHold = ({ navigation, route }) => {
         navigation={navigation}
         timer={minutes * 60}
         pause
+        onPressHelp={() => navigation.navigate('SquareInfo')}
         onPause={() => {
           setPaused(!paused);
         }}
-        onTimerZero={() => {
-          navigation.replace("CurrentScore");
-        }}
+        onTimerZero={() => navigation.navigate("CurrentScore")}
       />
       <View marginTop={Dimensions.get("window").height * 0.25} />
       <MText text={title} />
@@ -61,5 +74,7 @@ const sequences = {
     timeLeft: [4, 7, 8],
   },
 };
+
+const allExerciseScreens = ["Exercise1", "Exercise2", "Exercise3", "Exercise4"];
 
 const styles = StyleSheet.create({});

@@ -1,121 +1,187 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import {
-  HomeScreen,
-  LoginScreen,
-  WelcomePage,
-  RegisterScreen,
-  CurrentScore,
-  Timer,
-  ChooseWordPage,
+  SquareInfo,
+  Exercise3,
   BeginChooseWord,
-  FocusedMeditation,
-  SettingPage,
-  FavoriteList,
-  Guided,
-  Breathing,
   BeginScreen,
+  Breathing,
+  ChooseWordPage,
+  CurrentScore,
+  DeepInfo,
+  Exercise,
+  Exercise2,
+  Excercise3,
+  Exercise4,
+  Exercise5,
+  Exhale2,
+  FavoriteList,
+  FocusedInfo,
+  FocusedMeditation,
+  Guided,
+  HomeScreen,
   InhaleHold,
+  LoginScreen,
   PromptActivities,
-  Info,
-} from "../screens";
+  RegisterScreen,
+  SettingPage,
+  SquareInfo2,
+  SquareInfo3,
+  Timer,
+  WelcomePage
+} from '../screens'
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
 const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
+      <Stack.Screen
           options={{ headerShown: false }}
-          name="Timer"
+          name='Timer'
           component={Timer}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="WelcomePage"
+          name='WelcomePage'
           component={WelcomePage}
         />
-
         <Stack.Screen
           options={{ headerShown: false }}
-          name="BeginScreen"
-          component={BeginScreen}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="InhaleHold"
-          component={InhaleHold}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Info"
-          component={Info}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="PromptActivities"
-          component={PromptActivities}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Breathing"
+          name='Breathing'
           component={Breathing}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Guided"
+          name='Excercise3'
+          component={Excercise3}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='SquareInfo'
+          component={SquareInfo}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='Exercise'
+          component={Exercise}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='Exhale2'
+          component={Exhale2}
+        />
+
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='Exercise2'
+          component={Exercise2}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='Exercise4'
+          component={Exercise4}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='Exercise5'
+          component={Exercise5}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='SquareInfo3'
+          component={SquareInfo3}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='DeepInfo'
+          component={DeepInfo}
+        />
+        
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='SquareInfo2'
+          component={SquareInfo2}
+        />
+
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='BeginScreen'
+          component={BeginScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='InhaleHold'
+          component={InhaleHold}
+        />
+
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='PromptActivities'
+          component={PromptActivities}
+        />
+
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='Guided'
           component={Guided}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="FavoriteList"
+          name='FavoriteList'
           component={FavoriteList}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="SettingPage"
+          name='SettingPage'
           component={SettingPage}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="FocusedMeditation"
+          name='FocusedMeditation'
           component={FocusedMeditation}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="BeginChooseWord"
+          name='BeginChooseWord'
           component={BeginChooseWord}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="ChooseWordPage"
+          name='ChooseWordPage'
           component={ChooseWordPage}
         />
 
         <Stack.Screen
           options={{ headerShown: false }}
-          name="LoginScreen"
+          name='LoginScreen'
           component={LoginScreen}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="RegisterScreen"
+          name='RegisterScreen'
           component={RegisterScreen}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="CurrentScore"
+          name='CurrentScore'
           component={CurrentScore}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="HomeScreen"
+          name='HomeScreen'
           component={HomeScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='FocusedInfo'
+          component={FocusedInfo}
         />
       </Stack.Navigator>
     </NavigationContainer>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation

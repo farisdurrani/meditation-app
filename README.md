@@ -13,6 +13,15 @@ npm install
 npm start
 ```
 
+FOR MAC USERS: If you run into any errors such as
+```
+EACCES: permission denied, mkdir '/usr/local/lib/node_modules/expo-cli'
+```
+- Run this command
+```
+sudo npm install expo-cli -g --unsafe-perm
+```
+
 2. At http://localhost:19002/, switch connection mode from LAN to Tunnel, and scan the QR code to open the [Expo Go](https://expo.dev/tools) app on your mobile phone.
 
 > Note: this app has not been tested on any other platforms

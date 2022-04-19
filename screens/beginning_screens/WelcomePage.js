@@ -17,6 +17,7 @@ const WelcomePage = ({ navigation }) => {
           navigation.navigate("LoginScreen");
         }}
       />
+      
     </View>
   );
 };

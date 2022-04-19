@@ -4,61 +4,62 @@ import {
   Text,
   View,
   Dimensions,
-  TouchableOpacity,
-} from "react-native";
-import React from "react";
-import { HeaderButtons, MButton } from "../../components";
-import { Ionicons } from "@expo/vector-icons";
-import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
-import { Bar } from "react-native-progress";
-import { Button, Overlay } from "react-native-elements";
+  TouchableOpacity
+} from 'react-native'
+import React from 'react'
+import { HeaderButtons, MButton } from '../../components'
+import { Ionicons } from '@expo/vector-icons'
+import { COLORS, defaultIconColor, defaultIconSize } from '../../constants'
+import { Bar } from 'react-native-progress'
+import { Button, Overlay } from 'react-native-elements'
 
 const FocusedMeditation = ({ navigation, route }) => {
-  const { minutes, chosenWord } = route.params;
-  const [paused, setPaused] = React.useState(false);
-  const [progress, setProgress] = React.useState(0);
+  const { minutes, chosenWord } = route.params
+  const [paused, setPaused] = React.useState(false)
+  const [progress, setProgress] = React.useState(0)
 
-  const progressPerSec = 1 / (minutes * 60);
+  const progressPerSec = 1 / (minutes * 60)
 
   const _toggleOverlay = () => {
-    setPaused(!paused);
-  };
+    setPaused(!paused)
+  }
 
   if (!paused && progress < 1) {
     setTimeout(() => {
-      setProgress(progress + progressPerSec);
-    }, 1000);
+      setProgress(progress + progressPerSec)
+    }, 1000)
   }
 
   const _PauseButton = () => {
     return (
-      <TouchableOpacity onPress={navigation.goBack}>
+      <TouchableOpacity>
         <Ionicons
-          name={paused ? "play" : "pause"}
+          name={paused ? 'play' : 'pause'}
           size={defaultIconSize}
           color={defaultIconColor}
           onPress={() => {
-            setPaused(!paused);
+            setPaused(!paused)
           }}
         />
       </TouchableOpacity>
-    );
-  };
+    )
+  }
 
   return (
     <ImageBackground
-      source={require("../../assets/background.png")}
-      resizeMode="cover"
+      source={require('../../assets/background.png')}
+      resizeMode='cover'
       style={{ flex: 1 }}
     >
-      <View style={{ alignItems: "center" }}>
+      <View style={{ alignItems: 'center' }}>
         <HeaderButtons
           navigation={navigation}
           timer={minutes * 60}
+          onPressHelp={() => navigation.navigate('SquareInfo2')}
           customLeftButton={_PauseButton}
         />
         <Text style={styles.chosenWord}>
-          {chosenWord ? chosenWord : "Chosen Word"}
+          {chosenWord ? chosenWord : 'Chosen Word'}
         </Text>
         <View style={{ marginTop: screenHeight * 0.3 }}>
           <Bar
@@ -74,58 +75,58 @@ const FocusedMeditation = ({ navigation, route }) => {
           <View style={styles.overlayView}>
             <Text style={styles.overlayTitle}>PAUSE</Text>
             <MButton
-              containerStyle={{ width: "90%" }}
-              text="Continue"
+              containerStyle={{ width: '90%' }}
+              text='Continue'
               onPress={_toggleOverlay}
             />
             <MButton
-              containerStyle={{ width: "90%" }}
-              text="Home"
+              containerStyle={{ width: '90%' }}
+              text='Home'
               onPress={() => {
-                navigation.navigate("Timer");
+                navigation.navigate('Timer')
               }}
             />
             <MButton
-              containerStyle={{ width: "90%" }}
-              text="Settings"
+              containerStyle={{ width: '90%' }}
+              text='Settings'
               onPress={() => {
-                navigation.navigate("SettingPage");
+                navigation.navigate('SettingPage')
               }}
             />
           </View>
         </Overlay>
       </View>
     </ImageBackground>
-  );
-};
+  )
+}
 
-export default FocusedMeditation;
+export default FocusedMeditation
 
 const [screenWidth, screenHeight] = [
-  Dimensions.get("window").width,
-  Dimensions.get("window").height,
-];
+  Dimensions.get('window').width,
+  Dimensions.get('window').height
+]
 
 const styles = StyleSheet.create({
   chosenWord: {
     color: COLORS.white,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 50,
     marginTop: screenHeight * 0.3,
-    textAlign: "center",
+    textAlign: 'center'
   },
   overlayView: {
     width: screenWidth * 0.7,
     height: screenHeight * 0.4,
     borderRadius: 20,
-    alignItems: "center",
+    alignItems: 'center',
     padding: 20,
-    justifyContent: "space-around",
+    justifyContent: 'space-around'
   },
   overlayTitle: {
     fontSize: 40,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: COLORS.primary_blue,
-    marginBottom: 20,
-  },
-});
+    marginBottom: 20
+  }
+})

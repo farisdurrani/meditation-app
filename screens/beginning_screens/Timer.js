@@ -64,7 +64,7 @@ const Timer = ({ navigation }) => {
 
   return (
     <View style={styles.mainContainer}>
-      <HeaderButtons settings={true} navigation={navigation} />
+      <HeaderButtons noRightButton navigation={navigation} />
       <Text style={styles.label}>Length of Session</Text>
       <View style={styles.oneRow}>
         {_SessionLengthButton(2)}
