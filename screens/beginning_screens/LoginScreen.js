@@ -23,11 +23,17 @@ const LoginScreen = ({ navigation }) => {
       .then((userCredentials) => {
         const user = userCredentials.user;
         console.log("Logged in with", user.email);
-        navigation.replace("HomeScreen");
+        goToNextScreen();
       })
-      .catch((error) => {
-        alert(error.message);
-      });
+      .catch((error) => alert(error.message));
+  };
+
+  const goToNextScreen = () => {
+    navigation.navigate("CurrentScore", {
+      ORIG_MINUTES: null,
+      meditationType: null,
+      withStretching: null,
+    });
   };
 
   return (
@@ -56,16 +62,9 @@ const LoginScreen = ({ navigation }) => {
         </KeyboardAvoidingView>
         <MButton
           text="Log In"
-          onPress={
-            email
-              ? handleLogin
-              : () => {
-                  navigation.navigate("CurrentScore");
-                }
-          }
+          onPress={email ? handleLogin : goToNextScreen}
         />
       </View>
-
       <Text
         style={{ fontSize: 19, color: COLORS.primary_blue, marginBottom: 20 }}
       >
@@ -73,9 +72,7 @@ const LoginScreen = ({ navigation }) => {
       </Text>
       <MButton
         text="Register"
-        onPress={() => {
-          navigation.navigate("RegisterScreen");
-        }}
+        onPress={() => navigation.navigate("RegisterScreen")}
         containerStyle={{ width: 200 }}
       />
     </View>

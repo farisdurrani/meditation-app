@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, Alert } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import React from "react";
 import { HeaderButtons, HelpButton, MButton } from "../../components";
 import { COLORS, LAYOUT } from "../../constants";
@@ -12,9 +12,7 @@ const Timer = ({ navigation }) => {
       <MButton
         containerStyle={{ width: "45%" }}
         text={`${minutes} min`}
-        onPress={() => {
-          setMinutesSelected(minutes);
-        }}
+        onPress={() => setMinutesSelected(minutes)}
       />
     );
   };
@@ -24,16 +22,14 @@ const Timer = ({ navigation }) => {
       <MButton
         containerStyle={{ width: "75%" }}
         text={type}
-        onPress={() => {
-          setSessionSelected(type);
-        }}
+        onPress={() => setSessionSelected(type)}
       />
     );
   };
 
   const _nextPage = () => {
     if (!minutesSelected || !sessionSelected) {
-      Alert.alert(
+      alert(
         "Incomplete selections",
         "Select both a session length and type",
         [{ text: "OK", onPress: () => {} }]
@@ -83,18 +79,14 @@ const Timer = ({ navigation }) => {
         {_SessionTypeButton("Guided breathing")}
         <HelpButton />
       </View>
-      <View style={styles.oneRow}>
-        {_SessionTypeButton("Library")}
-      </View>
+      <View style={styles.oneRow}>{_SessionTypeButton("Library")}</View>
       <MButton
         containerStyle={{
           width: "90%",
           marginTop: Dimensions.get("window").height * 0.1,
         }}
         text="Continue"
-        onPress={() => {
-          _nextPage();
-        }}
+        onPress={() => _nextPage()}
       />
     </View>
   );

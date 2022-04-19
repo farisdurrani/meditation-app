@@ -4,7 +4,7 @@ import { COLORS } from "../../constants";
 import { HeaderButtons, DropDown, MButton, MText } from "../../components";
 
 const InhaleHold = ({ navigation, route }) => {
-  const { minutes, meditationType, withStretching } = route.params;
+  const { ORIG_MINUTES, minutes, meditationType, withStretching } = route.params;
 
   const [title, setTitle] = useState("Inhale");
   const [timeLeft, setTimeLeft] = useState(4);

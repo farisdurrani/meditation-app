@@ -4,6 +4,8 @@ import { COLORS, LAYOUT } from "../constants";
 import { MButton } from "../components";
 
 const Favorite = ({ navigation, route }) => {
+  const { ORIG_MINUTES, meditationType, withStretching } = route.params;
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.container}>

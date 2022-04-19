@@ -39,13 +39,19 @@ const Navigation = () => {
       <Stack.Navigator>
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Favorite"
-          component={Favorite}
+          name="WelcomePage"
+          component={WelcomePage}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="WelcomePage"
-          component={WelcomePage}
+          name="CurrentScore"
+          component={CurrentScore}
+        />
+
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Favorite"
+          component={Favorite}
         />
         <Stack.Screen
           options={{ headerShown: false }}
@@ -62,13 +68,11 @@ const Navigation = () => {
           name="SquareInfo"
           component={SquareInfo}
         />
-
         <Stack.Screen
           options={{ headerShown: false }}
           name="Exhale2"
           component={Exhale2}
         />
-
         <Stack.Screen
           options={{ headerShown: false }}
           name="Exercise2"
@@ -104,7 +108,6 @@ const Navigation = () => {
           name="SquareInfo2"
           component={SquareInfo2}
         />
-
         <Stack.Screen
           options={{ headerShown: false }}
           name="BeginScreen"
@@ -115,7 +118,6 @@ const Navigation = () => {
           name="InhaleHold"
           component={InhaleHold}
         />
-
         <Stack.Screen
           options={{ headerShown: false }}
           name="PromptActivities"
@@ -156,7 +158,6 @@ const Navigation = () => {
           name="ChooseWordPage"
           component={ChooseWordPage}
         />
-
         <Stack.Screen
           options={{ headerShown: false }}
           name="LoginScreen"
@@ -167,11 +168,7 @@ const Navigation = () => {
           name="RegisterScreen"
           component={RegisterScreen}
         />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="CurrentScore"
-          component={CurrentScore}
-        />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="HomeScreen"
