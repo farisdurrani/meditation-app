@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import React from "react";
-import { MText, MButton, HeaderButtons } from "../../components";
+import { MText, MButton } from "../../components";
 import { COLORS } from "../../constants";
 
 const WelcomePage = ({ navigation }) => {
+  
+
   return (
     <View style={styles.mainContainer}>
       <MText text="Welcome" />
@@ -13,7 +15,9 @@ const WelcomePage = ({ navigation }) => {
       <MButton
         text="Continue"
         containerStyle={{ marginTop: 50 }}
-        onPress={() => navigation.replace("LoginScreen")}
+        onPress={() => {
+          navigation.replace("LoginScreen");
+        }}
       />
     </View>
   );

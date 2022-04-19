@@ -40,6 +40,11 @@ const Navigation = () => {
       <Stack.Navigator>
         <Stack.Screen
           options={{ headerShown: false }}
+          name="Timer"
+          component={Timer}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
           name="WelcomePage"
           component={WelcomePage}
         />
@@ -99,11 +104,7 @@ const Navigation = () => {
           name="DeepInfo"
           component={DeepInfo}
         />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Timer"
-          component={Timer}
-        />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="SquareInfo2"

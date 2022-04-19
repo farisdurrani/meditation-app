@@ -1,14 +1,14 @@
-import { StyleSheet, Text, View, Switch } from "react-native";
 import React from "react";
 import { COLORS } from "../../constants";
 import { HeaderButtons, DropDown } from "../../components";
 import { Slider } from "@miblanchard/react-native-slider";
+import { StyleSheet, Text, View, Switch } from "react-native";
 
 const SettingPage = ({ navigation }) => {
   const [isEnabledSound, setIsEnabledSound] = React.useState(false);
   const [isEnabledTextToSpeech, setIsEnabledTextToSpeech] =
     React.useState(false);
-  const [soundLevel, setSoundLevel] = React.useState(0.3);
+  // const [soundLevel, setSoundLevel] = React.useState(0.3);
   const [textSize, setTextSize] = React.useState(0.3);
 
   return (
@@ -30,7 +30,7 @@ const SettingPage = ({ navigation }) => {
         />
       </View>
       {/* from https://snack.expo.dev/@miblanchard/@miblanchard-react-native-slider */}
-      <Slider
+      {/* <Slider
         animateTransitions
         minimumTrackTintColor={
           isEnabledSound ? COLORS.primary_blue : COLORS.dark_gray
@@ -45,7 +45,7 @@ const SettingPage = ({ navigation }) => {
         disabled={!isEnabledSound}
         onValueChange={setSoundLevel}
         containerStyle={{ width: "90%" }}
-      />
+      /> */}
       <DropDown listOfItems={["Rainfall", "Banana"]} />
       <View style={styles.oneRow}>
         <Text style={{ fontSize: 30, color: COLORS.primary_blue }}>

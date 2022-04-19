@@ -17,6 +17,7 @@
     "@react-navigation/native-stack": "^6.2.5",
     "axios": "^0.25.0",
     "expo": "~44.0.0",
+    "expo-av": "^10.2.1",
     "expo-camera": "~12.1.2",
     "expo-location": "~14.0.1",
     "expo-permissions": "^13.1.0",

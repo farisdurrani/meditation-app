@@ -6,21 +6,28 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { HeaderButtons, MButton } from "../../components";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 import { Bar } from "react-native-progress";
 import { Button, Overlay } from "react-native-elements";
+import { Audio } from "expo-av";
 
 const FocusedMeditation = ({ navigation, route }) => {
   const { minutes, chosenWord } = route.params;
-  const [paused, setPaused] = React.useState(false);
-  const [progress, setProgress] = React.useState(0);
+  const [paused, setPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [currentMusic, setCurrentMusic] = useState(null);
 
   const progressPerSec = 1 / (minutes * 60);
 
   const _toggleOverlay = () => {
+    if (!paused) {
+      (async () => await currentMusic.pauseAsync())();
+    } else {
+      (async () => await currentMusic.playAsync())();
+    }
     setPaused(!paused);
   };
 
@@ -37,13 +44,20 @@ const FocusedMeditation = ({ navigation, route }) => {
           name={paused ? "play" : "pause"}
           size={defaultIconSize}
           color={defaultIconColor}
-          onPress={() => {
-            setPaused(!paused);
-          }}
+          onPress={_toggleOverlay}
         />
       </TouchableOpacity>
     );
   };
+
+  React.useEffect(async () => {
+    let { sound } = await Audio.Sound.createAsync(
+      require("../../assets/music/woosh.wav")
+    );
+    setCurrentMusic(sound);
+    sound.setIsLoopingAsync(true);
+    await sound.replayAsync();
+  }, []);
 
   return (
     <ImageBackground
@@ -81,16 +95,12 @@ const FocusedMeditation = ({ navigation, route }) => {
             <MButton
               containerStyle={{ width: "90%" }}
               text="Home"
-              onPress={() => {
-                navigation.navigate("Timer");
-              }}
+              onPress={() => navigation.navigate("Timer")}
             />
             <MButton
               containerStyle={{ width: "90%" }}
               text="Settings"
-              onPress={() => {
-                navigation.navigate("SettingPage");
-              }}
+              onPress={() => navigation.navigate("SettingPage")}
             />
           </View>
         </Overlay>
