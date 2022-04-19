@@ -9,7 +9,7 @@ import {
 import React, { useState } from "react";
 import { HeaderButtons, MButton } from "../../components";
 import { Ionicons } from "@expo/vector-icons";
-import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
+impor;t { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 import { Bar } from "react-native-progress";
 import { Button, Overlay } from "react-native-elements";
 import { Audio } from "expo-av";
@@ -51,8 +51,9 @@ const FocusedMeditation = ({ navigation, route }) => {
   };
 
   React.useEffect(async () => {
+    console.log(meditationSounds[0].source);
     let { sound } = await Audio.Sound.createAsync(
-      require("../../assets/music/woosh.wav")
+      j]
     );
     setCurrentMusic(sound);
     sound.setIsLoopingAsync(true);
@@ -139,3 +140,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
+
+const meditationSounds = [
+  { title: "Rain sound (빗소리)", source: "../../assets/music/rain.mp3" },
+  { title: "Cordillera Breeze", source: "../../assets/music/breeze.mp3" },
+  { title: "Relaxing Flute Music", source: "../../assets/music/flute.mp3" },
+];
