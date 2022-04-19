@@ -29,13 +29,17 @@ const BeginScreen = ({ navigation, route }) => {
         onPress={() => {
           if (withStretching) {
             navigation.navigate("PromptActivities", {
-              meditationType: meditationType,
+              ORIG_MINUTES: minutes,
               minutes: minutes,
+              meditationType: meditationType,
+              withStretching: true,
             });
           } else {
             navigation.navigate("InhaleHold", {
-              meditationType: meditationType,
+              ORIG_MINUTES: minutes,
               minutes: minutes,
+              meditationType: meditationType,
+              withStretching: false,
             });
           }
         }}

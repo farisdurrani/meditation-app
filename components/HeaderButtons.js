@@ -1,3 +1,4 @@
+import HelpButton from "./HelpButton";
 import React, { useState } from "react";
 import { COLORS, defaultIconColor, defaultIconSize } from "../constants";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
@@ -67,16 +68,7 @@ const HeaderButtons = (props) => {
         </TouchableOpacity>
       );
     } else {
-      return (
-        <TouchableOpacity>
-          <MaterialIcons
-            name="help"
-            size={defaultIconSize}
-            color={defaultIconColor}
-            onPress={() => onPressHelp(secondsLeft)}
-          />
-        </TouchableOpacity>
-      );
+      return <HelpButton onPressHelp={() => onPressHelp(secondsLeft)} />;
     }
   };
 
