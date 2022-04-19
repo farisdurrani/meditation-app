@@ -25,7 +25,7 @@ const RegisterScreen = ({ navigation }) => {
       .then((userCredentials) => {
         const user = userCredentials.user;
         console.log("Registered with", user.email);
-        navigation.navigate("LoginScreen");
+        navigation.replace("LoginScreen");
       })
       .catch((error) => alert(error.message));
   };

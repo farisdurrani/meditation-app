@@ -51,9 +51,7 @@ const FocusedMeditation = ({ navigation, route }) => {
   };
 
   React.useEffect(async () => {
-    let { sound } = await Audio.Sound.createAsync(
-      require("../../assets/music/woosh.wav")
-    );
+    let { sound } = await Audio.Sound.createAsync(meditationSounds[0].source);
     setCurrentMusic(sound);
     sound.setIsLoopingAsync(true);
     await sound.replayAsync();
@@ -139,3 +137,18 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
+
+const meditationSounds = [
+  {
+    title: "Rain sound (빗소리)",
+    source: require("../../assets/music/rain.mp3"),
+  },
+  {
+    title: "Cordillera Breeze",
+    source: require("../../assets/music/breeze.mp3"),
+  },
+  {
+    title: "Relaxing Flute Music",
+    source: require("../../assets/music/flute.mp3"),
+  },
+];
