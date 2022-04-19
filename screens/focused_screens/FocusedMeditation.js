@@ -9,7 +9,7 @@ import {
 import React, { useState } from "react";
 import { HeaderButtons, MButton } from "../../components";
 import { Ionicons } from "@expo/vector-icons";
-impor;t { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
+import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 import { Bar } from "react-native-progress";
 import { Button, Overlay } from "react-native-elements";
 import { Audio } from "expo-av";
@@ -51,10 +51,7 @@ const FocusedMeditation = ({ navigation, route }) => {
   };
 
   React.useEffect(async () => {
-    console.log(meditationSounds[0].source);
-    let { sound } = await Audio.Sound.createAsync(
-      j]
-    );
+    let { sound } = await Audio.Sound.createAsync(meditationSounds[0].source);
     setCurrentMusic(sound);
     sound.setIsLoopingAsync(true);
     await sound.replayAsync();
@@ -142,7 +139,16 @@ const styles = StyleSheet.create({
 });
 
 const meditationSounds = [
-  { title: "Rain sound (빗소리)", source: "../../assets/music/rain.mp3" },
-  { title: "Cordillera Breeze", source: "../../assets/music/breeze.mp3" },
-  { title: "Relaxing Flute Music", source: "../../assets/music/flute.mp3" },
+  {
+    title: "Rain sound (빗소리)",
+    source: require("../../assets/music/rain.mp3"),
+  },
+  {
+    title: "Cordillera Breeze",
+    source: require("../../assets/music/breeze.mp3"),
+  },
+  {
+    title: "Relaxing Flute Music",
+    source: require("../../assets/music/flute.mp3"),
+  },
 ];
