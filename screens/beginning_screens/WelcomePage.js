@@ -13,7 +13,7 @@ const WelcomePage = ({ navigation }) => {
       <MButton
         text="Continue"
         containerStyle={{ marginTop: 50 }}
-        onPress={() => navigation.navigate("LoginScreen")}
+        onPress={() => navigation.replace("LoginScreen")}
       />
     </View>
   );

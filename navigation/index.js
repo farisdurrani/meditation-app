@@ -38,11 +38,6 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen
-          options={{ headerShown: false }}
-          name="HelpButton"
-          component={HelpButton}
-        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="WelcomePage"
