@@ -4,6 +4,7 @@ import { HeaderButtons, MButton } from "../../components";
 import { Slider } from "@miblanchard/react-native-slider";
 import { StyleSheet, Text, View, Switch } from "react-native";
 import { meditationSounds } from "./FocusedMeditation";
+import DropDownPicker from "react-native-dropdown-picker";
 
 const getIndexOfMusicTitle = (title) => {
   const matchesTitle = (e) => e.title === title;
@@ -15,8 +16,7 @@ const SettingPage = ({ navigation, route }) => {
     route.params;
 
   const meditationSoundsTitles = meditationSounds.map((e) => e.title);
-
-  const [isEnabledSound, setIsEnabledSound] = React.useState(false);
+  const [isEnabledSound, setIsEnabledSound] = React.useState(true);
   const [isEnabledTextToSpeech, setIsEnabledTextToSpeech] =
     React.useState(false);
   const [textSize, setTextSize] = React.useState(0.3);
@@ -25,7 +25,10 @@ const SettingPage = ({ navigation, route }) => {
   );
 
   const _DropDown = () => {
-    const labelAndValue = meditationSounds.map((e) => ({ label: e, value: e }));
+    const labelAndValue = meditationSoundsTitles.map((e) => ({
+      label: e,
+      value: e,
+    }));
     const [items, setItems] = React.useState(labelAndValue);
     const [open, setOpen] = React.useState(false);
 
@@ -55,9 +58,7 @@ const SettingPage = ({ navigation, route }) => {
         <Text style={{ fontSize: 30, color: COLORS.primary_blue }}>Sound</Text>
         <Switch
           trackColor={{ true: COLORS.primary_blue }}
-          onValueChange={() => {
-            setIsEnabledSound(!isEnabledSound);
-          }}
+          onValueChange={() => setIsEnabledSound(!isEnabledSound)}
           value={isEnabledSound}
         />
       </View>
@@ -68,9 +69,7 @@ const SettingPage = ({ navigation, route }) => {
         </Text>
         <Switch
           trackColor={{ true: COLORS.primary_blue }}
-          onValueChange={() => {
-            setIsEnabledTextToSpeech(!isEnabledTextToSpeech);
-          }}
+          onValueChange={() => setIsEnabledTextToSpeech(!isEnabledTextToSpeech)}
           value={isEnabledTextToSpeech}
         />
       </View>
@@ -91,14 +90,14 @@ const SettingPage = ({ navigation, route }) => {
       />
       <MButton
         text="SAVE"
-        onPress={() =>
-          navigation.navigate("FocusedMeditation", {
+        onPress={() => {
+          navigation.replace("FocusedMeditation", {
             ORIG_MINUTES: ORIG_MINUTES,
             minutes: minutesLeft,
             chosenWord: chosenWord,
             chosenMusicIndex: getIndexOfMusicTitle(chosenMusic),
-          })
-        }
+          });
+        }}
       />
     </View>
   );

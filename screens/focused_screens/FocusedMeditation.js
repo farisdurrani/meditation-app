@@ -11,18 +11,19 @@ import { HeaderButtons, MButton } from "../../components";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 import { Bar } from "react-native-progress";
-import { Button, Overlay } from "react-native-elements";
+import { Overlay } from "react-native-elements";
 import { Audio } from "expo-av";
 
 const FocusedMeditation = ({ navigation, route }) => {
   const { ORIG_MINUTES, minutes, chosenWord, chosenMusicIndex } = route.params;
+
+  const finalChosenMusicIndex = chosenMusicIndex ? chosenMusicIndex : 0;
 
   const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(
     (ORIG_MINUTES - minutes) / ORIG_MINUTES
   );
   const [currentMusic, setCurrentMusic] = useState(null);
-
   const progressPerSec = 1 / (ORIG_MINUTES * 60);
 
   const _toggleOverlay = () => {
@@ -54,13 +55,12 @@ const FocusedMeditation = ({ navigation, route }) => {
   };
 
   React.useEffect(async () => {
-    const finalChosenMusicIndex = chosenMusicIndex ? chosenMusicIndex : 0;
     const { sound } = await Audio.Sound.createAsync(
       meditationSounds[finalChosenMusicIndex].source
     );
     setCurrentMusic(sound);
     sound.setIsLoopingAsync(true);
-    await sound.replayAsync();
+    await sound.playAsync();
   }, []);
 
   return (
@@ -75,8 +75,9 @@ const FocusedMeditation = ({ navigation, route }) => {
           timer={minutes * 60}
           customLeftButton={_PauseButton}
           onTimerZero={() => {
+            currentMusic.stopAsync();
             currentMusic.unloadAsync();
-            navigation.navigate("CurrentScore", {
+            navigation.replace("CurrentScore", {
               ORIG_MINUTES: null,
               meditationType: null,
               withStretching: null,
@@ -108,19 +109,27 @@ const FocusedMeditation = ({ navigation, route }) => {
             <MButton
               containerStyle={{ width: "90%" }}
               text="Home"
-              onPress={() => navigation.navigate("Timer")}
+              onPress={() => {
+                currentMusic.stopAsync();
+                currentMusic.unloadAsync();
+                _toggleOverlay();
+                navigation.replace("Timer");
+              }}
             />
             <MButton
               containerStyle={{ width: "90%" }}
               text="Settings"
-              onPress={() =>
-                navigation.navigate("SettingPage", {
+              onPress={() => {
+                currentMusic.stopAsync();
+                currentMusic.unloadAsync();
+                _toggleOverlay();
+                navigation.replace("SettingPage", {
                   ORIG_MINUTES: ORIG_MINUTES,
-                  minutes: minutes,
+                  minutes: (1 - progress) * minutes,
                   chosenWord: chosenWord,
-                  chosenMusicIndex: chosenMusicIndex,
-                })
-              }
+                  chosenMusicIndex: finalChosenMusicIndex,
+                });
+              }}
             />
           </View>
         </Overlay>
@@ -172,5 +181,9 @@ export const meditationSounds = [
   {
     title: "Relaxing Flute Music",
     source: require("../../assets/music/flute.mp3"),
+  },
+  {
+    title: "Whoosh",
+    source: require("../../assets/music/woosh.wav"),
   },
 ];

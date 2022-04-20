@@ -47,6 +47,7 @@ const Navigation = () => {
           name="WelcomePage"
           component={WelcomePage}
         />
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="CurrentScore"
@@ -169,7 +170,7 @@ const Navigation = () => {
           name="RegisterScreen"
           component={RegisterScreen}
         />
-                <Stack.Screen
+        <Stack.Screen
           options={{ headerShown: false }}
           name="FocusedInfo"
           component={FocusedInfo}

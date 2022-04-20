@@ -3,9 +3,7 @@ import React from "react";
 import { MText, MButton } from "../../components";
 import { COLORS } from "../../constants";
 
-const WelcomePage = ({ navigation }) => {
-  
-
+const WelcomePage = () => {
   return (
     <View style={styles.mainContainer}>
       <MText text="Welcome" />

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import React, { useState, useEffect } from "react";
 import { COLORS } from "../../constants";
-import { HeaderButtons, DropDown, MButton, MText } from "../../components";
+import { HeaderButtons, MButton, MText } from "../../components";
 
 const InhaleHold = ({ navigation, route }) => {
   const { ORIG_MINUTES, minutes, meditationType, withStretching } =
