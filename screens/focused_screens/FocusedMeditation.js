@@ -15,7 +15,7 @@ import { Button, Overlay } from "react-native-elements";
 import { Audio } from "expo-av";
 
 const FocusedMeditation = ({ navigation, route }) => {
-  const { ORIG_MINUTES, minutes, chosenWord } = route.params;
+  const { ORIG_MINUTES, minutes, chosenWord, chosenMusicIndex } = route.params;
 
   const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(
@@ -54,7 +54,10 @@ const FocusedMeditation = ({ navigation, route }) => {
   };
 
   React.useEffect(async () => {
-    let { sound } = await Audio.Sound.createAsync(meditationSounds[0].source);
+    chosenWordIndex = chosenMusicIndex ? 0 : chosenWordIndex;
+    let { sound } = await Audio.Sound.createAsync(
+      meditationSounds[chosenWordIndex].source
+    );
     setCurrentMusic(sound);
     sound.setIsLoopingAsync(true);
     await sound.replayAsync();
@@ -111,7 +114,12 @@ const FocusedMeditation = ({ navigation, route }) => {
               containerStyle={{ width: "90%" }}
               text="Settings"
               onPress={() =>
-                navigation.navigate("SettingPage", { minutesLeft: minutes })
+                navigation.navigate("SettingPage", {
+                  ORIG_MINUTES: ORIG_MINUTES,
+                  minutes: minutes,
+                  chosenWord: chosenWord,
+                  chosenMusicIndex: chosenMusicIndex,
+                })
               }
             />
           </View>

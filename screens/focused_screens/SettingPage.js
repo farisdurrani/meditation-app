@@ -5,8 +5,14 @@ import { Slider } from "@miblanchard/react-native-slider";
 import { StyleSheet, Text, View, Switch } from "react-native";
 import { meditationSounds } from "./FocusedMeditation";
 
+const getIndexOfMusicTitle = (title) => {
+  const matchesTitle = (e) => e.title === title;
+  return meditationSounds.findIndex(matchesTitle);
+};
+
 const SettingPage = ({ navigation, route }) => {
-  const { minutesLeft, chosenWord } = route.params;
+  const { ORIG_MINUTES, minutesLeft, chosenWord, chosenMusicIndex } =
+    route.params;
 
   const meditationSoundsTitles = meditationSounds.map((e) => e.title);
 
@@ -15,7 +21,7 @@ const SettingPage = ({ navigation, route }) => {
     React.useState(false);
   const [textSize, setTextSize] = React.useState(0.3);
   const [chosenMusic, setChosenMusic] = React.useState(
-    meditationSoundsTitles[0]
+    meditationSoundsTitles[chosenMusicIndex]
   );
 
   const _DropDown = () => {
@@ -38,7 +44,7 @@ const SettingPage = ({ navigation, route }) => {
   };
 
   return (
-    <View style={styles.mainContainer}>
+    <View style={{ alignItems: "center" }}>
       <HeaderButtons navigation={navigation} />
       <Text
         style={{ fontSize: 40, color: COLORS.primary_blue, marginBottom: 20 }}
@@ -87,9 +93,10 @@ const SettingPage = ({ navigation, route }) => {
         text="SAVE"
         onPress={() =>
           navigation.navigate("FocusedMeditation", {
+            ORIG_MINUTES: ORIG_MINUTES,
             minutes: minutesLeft,
             chosenWord: chosenWord,
-            chosenMusic: chosenMusic,
+            chosenMusicIndex: getIndexOfMusicTitle(chosenMusic),
           })
         }
       />
@@ -100,9 +107,6 @@ const SettingPage = ({ navigation, route }) => {
 export default SettingPage;
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    alignItems: "center",
-  },
   oneRow: {
     display: "flex",
     width: "90%",
