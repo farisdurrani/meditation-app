@@ -9,12 +9,22 @@ import {
 import React, { useState, useEffect, useRef } from "react";
 import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { HeaderButtons, DropDown, MButton, MText } from "../../components";
+import {
+  HeaderButtons,
+  DropDown,
+  MButton,
+  MText,
+  HelpButton,
+} from "../../components";
 
-const Exercise = ({ navigation, route }) => {
-  const { mainSecondsLeftCopy, meditationType } = route.params;
+const Exercise3 = ({ navigation, route }) => {
+  const { ORIG_MINUTES, mainSecondsLeftCopy, meditationType } = route.params;
 
-  const title = "Legs Crossed";
+  const [title, exhale2Text, imgSource] = [
+    "Legs Crossed",
+    "Stand up",
+    require("../../assets/exercise_positions/legs_crossed.png"),
+  ];
   const [secondsLeft, setSecondsLeft] = useState(20);
   const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
   const [paused, setPaused] = useState(false);
@@ -26,11 +36,17 @@ const Exercise = ({ navigation, route }) => {
         setMainSecondsLeft(mainSecondsLeft - 1);
       }, 1000);
     } else if (mainSecondsLeft < 0) {
-      navigation.replace("CurrentScore");
+      navigation.replace("CurrentScore", {
+        ORIG_MINUTES: ORIG_MINUTES,
+        meditationType: meditationType,
+        withStretching: true,
+        nextScreen: "Favorite",
+      });
     } else if (secondsLeft < 0) {
       navigation.replace("Exhale2", {
+        ORIG_MINUTES: ORIG_MINUTES,
         mainSecondsLeftCopy: mainSecondsLeft,
-        text: "Stand up",
+        text: exhale2Text,
         meditationType: meditationType,
       });
     }
@@ -53,18 +69,7 @@ const Exercise = ({ navigation, route }) => {
           />
         </TouchableOpacity>
         <Text style={header_styles.timer}>{clock}</Text>
-        <TouchableOpacity>
-          <MaterialIcons
-            name="help"
-            size={defaultIconSize}
-            color={defaultIconColor}
-            onPress={() =>
-              navigation.navigate("HelpScreen", {
-                mainSecondsLeft: mainSecondsLeft,
-              })
-            }
-          />
-        </TouchableOpacity>
+        <HelpButton onPressHelp={() => navigation.navigate("SquareInfo")} />
       </View>
     );
   };
@@ -76,7 +81,7 @@ const Exercise = ({ navigation, route }) => {
       <Text style={styles.text}>{title}</Text>
       <View marginTop={20} />
       <Image
-        source={require("../../assets/exercise_positions/legs_crossed.png")}
+        source={imgSource}
         style={{ maxHeight: Dimensions.get("window").height * 0.65 }}
       />
       <View marginTop={10} />
@@ -85,7 +90,7 @@ const Exercise = ({ navigation, route }) => {
   );
 };
 
-export default Exercise;
+export default Exercise3;
 
 const styles = StyleSheet.create({
   text: {

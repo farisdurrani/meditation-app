@@ -20,7 +20,11 @@ import {
 const Exercise = ({ navigation, route }) => {
   const { ORIG_MINUTES, mainSecondsLeftCopy, meditationType } = route.params;
 
-  const title = "Hands Above Head";
+  const [title, exhale2Text, imgSource] = [
+    "Hands Above Head",
+    "Relax hands",
+    require("../../assets/exercise_positions/exercisehold.png"),
+  ];
   const [secondsLeft, setSecondsLeft] = useState(20);
   const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
   const [paused, setPaused] = useState(false);
@@ -42,7 +46,7 @@ const Exercise = ({ navigation, route }) => {
       navigation.replace("Exhale2", {
         ORIG_MINUTES: ORIG_MINUTES,
         mainSecondsLeftCopy: mainSecondsLeft,
-        text: "Relax hands",
+        text: exhale2Text,
         meditationType: meditationType,
       });
     }
@@ -77,7 +81,7 @@ const Exercise = ({ navigation, route }) => {
       <Text style={styles.text}>{title}</Text>
       <View marginTop={20} />
       <Image
-        source={require("../../assets/exercise_positions/exercisehold.png")}
+        source={imgSource}
         style={{ maxHeight: Dimensions.get("window").height * 0.65 }}
       />
       <View marginTop={10} />
