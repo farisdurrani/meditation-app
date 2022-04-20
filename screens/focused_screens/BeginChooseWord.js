@@ -31,7 +31,7 @@ const BeginChooseWord = ({ navigation, route }) => {
             ORIG_MINUTES: minutes,
             minutes: minutes,
             chosenWord: chosenWord,
-            chosenMusic: null,
+            chosenMusicIndex: null,
           });
         }}
       />

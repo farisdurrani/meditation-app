@@ -54,9 +54,9 @@ const FocusedMeditation = ({ navigation, route }) => {
   };
 
   React.useEffect(async () => {
-    chosenWordIndex = chosenMusicIndex ? 0 : chosenWordIndex;
-    let { sound } = await Audio.Sound.createAsync(
-      meditationSounds[chosenWordIndex].source
+    const finalChosenMusicIndex = chosenMusicIndex ? chosenMusicIndex : 0;
+    const { sound } = await Audio.Sound.createAsync(
+      meditationSounds[finalChosenMusicIndex].source
     );
     setCurrentMusic(sound);
     sound.setIsLoopingAsync(true);

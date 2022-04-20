@@ -15,7 +15,8 @@ const InhaleHold = ({ navigation, route }) => {
 
   if (withStretching && sequence === 2) {
     const randomExerciseScreen =
-      allExerciseScreens[Math.floor(Math.random() * allExerciseScreens.length)];
+      // allExerciseScreens[Math.floor(Math.random() * allExerciseScreens.length)];
+      allExerciseScreens[0];
     navigation.replace(randomExerciseScreen, {
       mainSecondsLeftCopy: 10,
       meditationType: meditationType,
@@ -82,6 +83,6 @@ const sequences = {
   },
 };
 
-const allExerciseScreens = ["Exercise1", "Exercise2", "Exercise3", "Exercise4"];
+const allExerciseScreens = ["Exercise", "Exercise2", "Exercise3", "Exercise4"];
 
 const styles = StyleSheet.create({});
