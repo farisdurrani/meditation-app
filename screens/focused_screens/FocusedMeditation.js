@@ -15,12 +15,15 @@ import { Button, Overlay } from "react-native-elements";
 import { Audio } from "expo-av";
 
 const FocusedMeditation = ({ navigation, route }) => {
-  const { minutes, chosenWord } = route.params;
+  const { ORIG_MINUTES, minutes, chosenWord } = route.params;
+
   const [paused, setPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(
+    (ORIG_MINUTES - minutes) / ORIG_MINUTES
+  );
   const [currentMusic, setCurrentMusic] = useState(null);
 
-  const progressPerSec = 1 / (minutes * 60);
+  const progressPerSec = 1 / (ORIG_MINUTES * 60);
 
   const _toggleOverlay = () => {
     if (!paused) {
@@ -68,6 +71,15 @@ const FocusedMeditation = ({ navigation, route }) => {
           navigation={navigation}
           timer={minutes * 60}
           customLeftButton={_PauseButton}
+          onTimerZero={() => {
+            currentMusic.unloadAsync();
+            navigation.navigate("CurrentScore", {
+              ORIG_MINUTES: null,
+              meditationType: null,
+              withStretching: null,
+              nextScreen: "Timer",
+            });
+          }}
         />
         <Text style={styles.chosenWord}>
           {chosenWord ? chosenWord : "Chosen Word"}
@@ -98,7 +110,9 @@ const FocusedMeditation = ({ navigation, route }) => {
             <MButton
               containerStyle={{ width: "90%" }}
               text="Settings"
-              onPress={() => navigation.navigate("SettingPage")}
+              onPress={() =>
+                navigation.navigate("SettingPage", { minutesLeft: minutes })
+              }
             />
           </View>
         </Overlay>
@@ -138,7 +152,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const meditationSounds = [
+export const meditationSounds = [
   {
     title: "Rain sound (빗소리)",
     source: require("../../assets/music/rain.mp3"),

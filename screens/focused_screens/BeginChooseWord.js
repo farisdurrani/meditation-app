@@ -28,6 +28,7 @@ const BeginChooseWord = ({ navigation, route }) => {
         text="Begin"
         onPress={() => {
           navigation.navigate("FocusedMeditation", {
+            ORIG_MINUTES: minutes,
             minutes: minutes,
             chosenWord: chosenWord,
           });

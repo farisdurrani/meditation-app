@@ -6,6 +6,10 @@ import { MButton } from "../components";
 const Favorite = ({ navigation, route }) => {
   const { ORIG_MINUTES, meditationType, withStretching } = route.params;
 
+  const moveToHomeScreen = () => {
+    moveToHomeScreen();
+  };
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.container}>
@@ -23,12 +27,12 @@ const Favorite = ({ navigation, route }) => {
           <MButton
             text="No"
             containerStyle={styles.button}
-            onPress={() => navigation.navigate("CurrentScore")}
+            onPress={() => moveToHomeScreen()}
           />
           <MButton
             text="Yes"
             containerStyle={styles.button}
-            onPress={() => navigation.navigate("CurrentScore")}
+            onPress={() => moveToHomeScreen()}
           />
         </View>
       </View>

@@ -1,15 +1,41 @@
 import React from "react";
 import { COLORS } from "../../constants";
-import { HeaderButtons, DropDown } from "../../components";
+import { HeaderButtons, MButton } from "../../components";
 import { Slider } from "@miblanchard/react-native-slider";
 import { StyleSheet, Text, View, Switch } from "react-native";
+import { meditationSounds } from "./FocusedMeditation";
 
-const SettingPage = ({ navigation }) => {
+const SettingPage = ({ navigation, route }) => {
+  const { minutesLeft, chosenWord } = route.params;
+
+  const meditationSoundsTitles = meditationSounds.map((e) => e.title);
+
   const [isEnabledSound, setIsEnabledSound] = React.useState(false);
   const [isEnabledTextToSpeech, setIsEnabledTextToSpeech] =
     React.useState(false);
-  // const [soundLevel, setSoundLevel] = React.useState(0.3);
   const [textSize, setTextSize] = React.useState(0.3);
+  const [chosenMusic, setChosenMusic] = React.useState(
+    meditationSoundsTitles[0]
+  );
+
+  const _DropDown = () => {
+    const labelAndValue = meditationSounds.map((e) => ({ label: e, value: e }));
+    const [items, setItems] = React.useState(labelAndValue);
+    const [open, setOpen] = React.useState(false);
+
+    return (
+      <DropDownPicker
+        open={open}
+        value={chosenMusic}
+        items={items}
+        setOpen={setOpen}
+        setValue={setChosenMusic}
+        setItems={setItems}
+        containerStyle={{ width: "90%" }}
+        textStyle={{ fontSize: 20, color: COLORS.primary_blue }}
+      />
+    );
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -29,24 +55,7 @@ const SettingPage = ({ navigation }) => {
           value={isEnabledSound}
         />
       </View>
-      {/* from https://snack.expo.dev/@miblanchard/@miblanchard-react-native-slider */}
-      {/* <Slider
-        animateTransitions
-        minimumTrackTintColor={
-          isEnabledSound ? COLORS.primary_blue : COLORS.dark_gray
-        }
-        thumbStyle={
-          isEnabledSound ? customStyles3.thumb : customStyles3.disabledThumb
-        }
-        trackStyle={
-          isEnabledSound ? customStyles3.track : customStyles3.disabledTrack
-        }
-        value={soundLevel}
-        disabled={!isEnabledSound}
-        onValueChange={setSoundLevel}
-        containerStyle={{ width: "90%" }}
-      /> */}
-      <DropDown listOfItems={["Rainfall", "Banana"]} />
+      <_DropDown listOfItems={meditationSounds.map((e) => e.title)} />
       <View style={styles.oneRow}>
         <Text style={{ fontSize: 30, color: COLORS.primary_blue }}>
           Text to Speech
@@ -73,6 +82,16 @@ const SettingPage = ({ navigation }) => {
         value={textSize}
         onValueChange={setTextSize}
         containerStyle={{ width: "90%" }}
+      />
+      <MButton
+        text="SAVE"
+        onPress={() =>
+          navigation.navigate("FocusedMeditation", {
+            minutes: minutesLeft,
+            chosenWord: chosenWord,
+            chosenMusic: chosenMusic,
+          })
+        }
       />
     </View>
   );

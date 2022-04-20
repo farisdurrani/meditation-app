@@ -18,7 +18,7 @@ import {
 } from "../../components";
 
 const Exercise = ({ navigation, route }) => {
-  const { mainSecondsLeftCopy, meditationType } = route.params;
+  const { ORIG_MINUTES, mainSecondsLeftCopy, meditationType } = route.params;
 
   const title = "Hands Above Head";
   const [secondsLeft, setSecondsLeft] = useState(20);
@@ -32,9 +32,15 @@ const Exercise = ({ navigation, route }) => {
         setMainSecondsLeft(mainSecondsLeft - 1);
       }, 1000);
     } else if (mainSecondsLeft < 0) {
-      navigation.replace("CurrentScore");
+      navigation.replace("CurrentScore", {
+        ORIG_MINUTES: ORIG_MINUTES,
+        meditationType: meditationType,
+        withStretching: true,
+        nextScreen: "Favorite",
+      });
     } else if (secondsLeft < 0) {
       navigation.replace("Exhale2", {
+        ORIG_MINUTES: ORIG_MINUTES,
         mainSecondsLeftCopy: mainSecondsLeft,
         text: "Relax hands",
         meditationType: meditationType,

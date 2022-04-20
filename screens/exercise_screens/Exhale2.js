@@ -11,7 +11,7 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 
 const Exhale2 = ({ navigation, route }) => {
-  const { mainSecondsLeftCopy, text, meditationType } = route.params;
+  const { ORIG_MINUTES, mainSecondsLeftCopy, text, meditationType } = route.params;
 
   const [secondsLeft, setSecondsLeft] = useState(20);
   const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
@@ -24,9 +24,15 @@ const Exhale2 = ({ navigation, route }) => {
         setMainSecondsLeft(mainSecondsLeft - 1);
       }, 1000);
     } else if (mainSecondsLeft < 0) {
-      navigation.replace("CurrentScore");
+      navigation.replace("CurrentScore", {
+        ORIG_MINUTES: ORIG_MINUTES,
+        meditationType: meditationType,
+        withStretching: true,
+        nextScreen: "Favorite",
+      });
     } else if (secondsLeft < 0) {
       navigation.replace("InhaleHold", {
+        ORIG_MINUTES: ORIG_MINUTES,
         minutes: mainSecondsLeft / 60,
         meditationType: meditationType,
         withStretching: true,
@@ -72,7 +78,7 @@ const Exhale2 = ({ navigation, route }) => {
       <_HeaderButtons />
       <View marginTop={Dimensions.get("window").height * 0.2} />
       <MText text={text} containerStyle={{ maxWidth: 350 }} />
-      <MText text={secondsLeft} containerStyle={{ marginTop: 20 }}/>
+      <MText text={secondsLeft} containerStyle={{ marginTop: 20 }} />
     </View>
   );
 };

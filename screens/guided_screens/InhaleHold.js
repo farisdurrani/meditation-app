@@ -4,7 +4,8 @@ import { COLORS } from "../../constants";
 import { HeaderButtons, DropDown, MButton, MText } from "../../components";
 
 const InhaleHold = ({ navigation, route }) => {
-  const { ORIG_MINUTES, minutes, meditationType, withStretching } = route.params;
+  const { ORIG_MINUTES, minutes, meditationType, withStretching } =
+    route.params;
 
   const [title, setTitle] = useState("Inhale");
   const [timeLeft, setTimeLeft] = useState(4);
@@ -52,7 +53,14 @@ const InhaleHold = ({ navigation, route }) => {
         onPause={() => {
           setPaused(!paused);
         }}
-        onTimerZero={() => navigation.navigate("CurrentScore")}
+        onTimerZero={() =>
+          navigation.navigate("CurrentScore", {
+            ORIG_MINUTES: ORIG_MINUTES,
+            meditationType: meditationType,
+            withStretching: withStretching,
+            nextScreen: "Favorite",
+          })
+        }
       />
       <View marginTop={Dimensions.get("window").height * 0.25} />
       <MText text={title} />

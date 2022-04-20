@@ -18,7 +18,6 @@ import {
   FocusedInfo,
   FocusedMeditation,
   Guided,
-  HomeScreen,
   InhaleHold,
   LoginScreen,
   PromptActivities,
@@ -170,13 +169,7 @@ const Navigation = () => {
           name="RegisterScreen"
           component={RegisterScreen}
         />
-
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="HomeScreen"
-          component={HomeScreen}
-        />
-        <Stack.Screen
+                <Stack.Screen
           options={{ headerShown: false }}
           name="FocusedInfo"
           component={FocusedInfo}
