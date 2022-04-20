@@ -51,7 +51,7 @@ const Timer = ({ navigation }) => {
       }
       case "Library": {
         navigation.navigate("FavoriteList", {
-          minutes: minutesSelected,
+          minutes: minutesSelected, 
         });
         break;
       }

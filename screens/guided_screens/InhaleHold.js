@@ -8,17 +8,18 @@ const InhaleHold = ({ navigation, route }) => {
     route.params;
 
   const [title, setTitle] = useState("Inhale");
-  const [timeLeft, setTimeLeft] = useState(4);
+  const [secondsLeft, setSecondsLeft] = useState(4);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [sequence, setSequence] = useState(0);
 
   if (withStretching && sequence === 2) {
     const randomExerciseScreen =
-      // allExerciseScreens[Math.floor(Math.random() * allExerciseScreens.length)];
-      allExerciseScreens[0];
+      allExerciseScreens[Math.floor(Math.random() * allExerciseScreens.length)];
+      // allExerciseScreens[0];
     navigation.replace(randomExerciseScreen, {
-      mainSecondsLeftCopy: 10,
+      ORIG_MINUTES: ORIG_MINUTES,
+      mainSecondsLeftCopy: 10,  // TODO
       meditationType: meditationType,
     });
   }
@@ -32,13 +33,13 @@ const InhaleHold = ({ navigation, route }) => {
 
     setIndex((index + 1) % length);
     setTitle(sequences[meditationType].activities[index]);
-    setTimeLeft(sequences[meditationType].timeLeft[index]);
+    setSecondsLeft(sequences[meditationType].timeLeft[index]);
   };
 
   if (!paused) {
-    if (timeLeft >= 0) {
+    if (secondsLeft >= 0) {
       setTimeout(() => {
-        setTimeLeft(timeLeft - 1);
+        setSecondsLeft(secondsLeft - 1);
       }, 1000);
     } else {
       updateTitle();
@@ -65,7 +66,7 @@ const InhaleHold = ({ navigation, route }) => {
       />
       <View marginTop={Dimensions.get("window").height * 0.25} />
       <MText text={title} />
-      <MText text={timeLeft} />
+      <MText text={secondsLeft} />
     </View>
   );
 };

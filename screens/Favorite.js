@@ -17,11 +17,13 @@ const Favorite = ({ navigation, route }) => {
           Would you like to add this session to favorites?
         </Text>
         <View>
-          <Text style={styles.text}>20 minutes</Text>
+          <Text style={styles.text}>{`${ORIG_MINUTES} minutes`}</Text>
           <View marginBottom={10} />
-          <Text style={styles.text}>Breathing w/ stretching</Text>
+          <Text style={styles.text}>{`Breathing ${
+            withStretching ? "w/ Stretching" : ""
+          }`}</Text>
           <View marginBottom={10} />
-          <Text style={styles.text}>Deep breathing</Text>
+          <Text style={styles.text}>{`${meditationType}`}</Text>
         </View>
         <View style={LAYOUT.row}>
           <MButton
