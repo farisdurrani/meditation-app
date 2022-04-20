@@ -61,9 +61,7 @@ const Exercise = ({ navigation, route }) => {
             name={paused ? "play" : "pause"}
             size={defaultIconSize}
             color={defaultIconColor}
-            onPress={() => {
-              setPaused(!paused);
-            }}
+            onPress={() => setPaused(!paused)}
           />
         </TouchableOpacity>
         <Text style={header_styles.timer}>{clock}</Text>
@@ -80,7 +78,10 @@ const Exercise = ({ navigation, route }) => {
       <View marginTop={20} />
       <Image
         source={imgSource}
-        style={{ maxHeight: Dimensions.get("window").height * 0.65 }}
+        style={{
+          maxHeight: Dimensions.get("window").height * 0.65,
+          maxWidth: Dimensions.get("window").width,
+        }}
       />
       <View marginTop={10} />
       <MText text={secondsLeft} />
