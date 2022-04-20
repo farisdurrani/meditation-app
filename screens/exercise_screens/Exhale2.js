@@ -6,9 +6,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
-import { HeaderButtons, MText } from "../../components";
+import { HeaderButtons, MText, MButton } from "../../components";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
+import { Button, Overlay } from "react-native-elements";
 
 const Exhale2 = ({ navigation, route }) => {
   const { mainSecondsLeftCopy, text, meditationType } = route.params;
@@ -16,6 +17,10 @@ const Exhale2 = ({ navigation, route }) => {
   const [secondsLeft, setSecondsLeft] = useState(20);
   const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
   const [paused, setPaused] = useState(false);
+
+  const _toggleOverlay = () => {
+    setPaused(!paused);
+  };
 
   if (!paused) {
     if (mainSecondsLeft >= 0 && secondsLeft >= 0) {
@@ -73,11 +78,38 @@ const Exhale2 = ({ navigation, route }) => {
       <View marginTop={Dimensions.get("window").height * 0.2} />
       <MText text={text} containerStyle={{ maxWidth: 350 }} />
       <MText text={secondsLeft} containerStyle={{ marginTop: 20 }}/>
+      <Overlay isVisible={paused} onBackdropPress={_toggleOverlay}>
+          <View style={styles.overlayView}>
+            <Text style={styles.overlayTitle}>PAUSE</Text>
+
+            <Text style={{ fontSize: 20, marginVertical: 40 }}>Do you want to go Home?</Text>
+            <View style={styles.parent}>
+              <MButton
+                  containerStyle={{ width: "50%" }}
+                  text="Yes"
+                  onPress={() => {
+                    _toggleOverlay()
+                    navigation.navigate("Timer");
+                  }}
+                />
+                <MButton
+                  containerStyle={{ width: "50%" }}
+                  text="No"
+                  onPress={_toggleOverlay}
+                />
+            </View>
+          </View>
+        </Overlay>
     </View>
   );
 };
 
 export default Exhale2;
+
+const [screenWidth, screenHeight] = [
+  Dimensions.get("window").width,
+  Dimensions.get("window").height,
+];
 
 const header_styles = StyleSheet.create({
   upperButtons: {
@@ -94,3 +126,29 @@ const header_styles = StyleSheet.create({
     color: COLORS.primary_blue,
   },
 });
+
+const styles = StyleSheet.create({
+  overlayView: {
+    width: screenWidth * 0.7,
+    height: screenHeight * 0.4,
+    borderRadius: 20,
+    alignItems: "center",
+    padding: 20,
+    justifyContent: "space-around",
+  },
+  overlayTitle: {
+    fontSize: 40,
+    fontWeight: "bold",
+    color: COLORS.primary_blue,
+    marginBottom: 20,
+  },
+ 
+  parent: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+});
+
+
+

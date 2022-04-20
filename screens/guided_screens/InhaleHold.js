@@ -2,15 +2,20 @@ import { StyleSheet, Text, View, Dimensions } from "react-native";
 import React, { useState, useEffect } from "react";
 import { COLORS } from "../../constants";
 import { HeaderButtons, DropDown, MButton, MText } from "../../components";
+import { Button, Overlay } from "react-native-elements";
 
 const InhaleHold = ({ navigation, route }) => {
   const { minutes, meditationType, withStretching } = route.params;
-
+  
   const [title, setTitle] = useState("Inhale");
   const [timeLeft, setTimeLeft] = useState(4);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [sequence, setSequence] = useState(0);
+
+  const _toggleOverlay = () => {
+    setPaused(!paused);
+  };
 
   if (withStretching && sequence === 2) {
     const randomExerciseScreen =
@@ -57,11 +62,39 @@ const InhaleHold = ({ navigation, route }) => {
       <View marginTop={Dimensions.get("window").height * 0.25} />
       <MText text={title} />
       <MText text={timeLeft} />
+      
+      <Overlay isVisible={paused} onBackdropPress={_toggleOverlay}>
+          <View style={styles.overlayView}>
+            <Text style={styles.overlayTitle}>PAUSE</Text>
+
+            <Text style={{ fontSize: 20, marginVertical: 40 }}>Do you want to go Home?</Text>
+            <View style={styles.parent}>
+            <MButton
+                containerStyle={{ width: "50%" }}
+                text="Yes"
+                onPress={() => {
+                  _toggleOverlay()
+                  navigation.navigate("Timer");
+                }}
+              />
+              <MButton
+                containerStyle={{ width: "50%" }}
+                text="No"
+                onPress={_toggleOverlay}
+              />
+            </View>
+          </View>
+        </Overlay>
     </View>
   );
 };
 
 export default InhaleHold;
+
+const [screenWidth, screenHeight] = [
+  Dimensions.get("window").width,
+  Dimensions.get("window").height,
+];
 
 const sequences = {
   SquareBreathing: {
@@ -76,4 +109,25 @@ const sequences = {
 
 const allExerciseScreens = ["Exercise1", "Exercise2", "Exercise3", "Exercise4"];
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  overlayView: {
+    width: screenWidth * 0.7,
+    height: screenHeight * 0.4,
+    borderRadius: 20,
+    alignItems: "center",
+    padding: 20,
+    justifyContent: "space-around",
+  },
+  overlayTitle: {
+    fontSize: 40,
+    fontWeight: "bold",
+    color: COLORS.primary_blue,
+    marginBottom: 20,
+  },
+ 
+  parent: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+});

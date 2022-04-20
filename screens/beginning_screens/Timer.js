@@ -6,7 +6,6 @@ import { COLORS, LAYOUT } from "../../constants";
 const Timer = ({ navigation }) => {
   const [minutesSelected, setMinutesSelected] = React.useState(null);
   const [sessionSelected, setSessionSelected] = React.useState(null);
-
   const _SessionLengthButton = (minutes) => {
     return (
       <MButton
@@ -18,7 +17,6 @@ const Timer = ({ navigation }) => {
       />
     );
   };
-
   const _SessionTypeButton = (type) => {
     return (
       <MButton
@@ -30,7 +28,6 @@ const Timer = ({ navigation }) => {
       />
     );
   };
-
   const _nextPage = () => {
     if (!minutesSelected || !sessionSelected) {
       Alert.alert(
@@ -61,7 +58,6 @@ const Timer = ({ navigation }) => {
       }
     }
   };
-
   return (
     <View style={styles.mainContainer}>
       <HeaderButtons noRightButton navigation={navigation} />
@@ -77,11 +73,11 @@ const Timer = ({ navigation }) => {
       <Text style={styles.label}>Type of Session</Text>
       <View style={styles.oneRow}>
         {_SessionTypeButton("Focused")}
-        <HelpButton />
+      {/* <HelpButton /> */}
       </View>
       <View style={styles.oneRow}>
         {_SessionTypeButton("Guided breathing")}
-        <HelpButton />
+        {/* <HelpButton /> */}
       </View>
       <View style={styles.oneRow}>
         {_SessionTypeButton("Library")}
@@ -99,7 +95,6 @@ const Timer = ({ navigation }) => {
     </View>
   );
 };
-
 export default Timer;
 
 const styles = StyleSheet.create({
