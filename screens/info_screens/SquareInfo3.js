@@ -3,7 +3,8 @@ import React from "react";
 import { MText, MButton } from "../../components";
 import { COLORS } from "../../constants";
 
-const SquareInfo3 = ({ navigation }) => {
+const SquareInfo3 = ({ navigation, route }) => {
+  const { prevScreen } = route.params;
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
@@ -14,7 +15,7 @@ const SquareInfo3 = ({ navigation }) => {
         <Text style={styles.text}>hold for 4 seconds</Text>
         <MButton
           text="CLOSE"
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.replace(prevScreen, route.params)}
           containerStyle={{ marginTop: 100, width: 200 }}
         />
       </View>

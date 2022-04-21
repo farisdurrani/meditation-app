@@ -8,7 +8,12 @@ import {
 import React, { useState, useEffect } from "react";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { MButton, MText, HelpButton } from "../../components";
-import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
+import {
+  COLORS,
+  defaultIconColor,
+  defaultIconSize,
+  breathingHelpScreens,
+} from "../../constants";
 import { Button, Overlay } from "react-native-elements";
 
 const InhaleHold = ({ navigation, route }) => {
@@ -79,15 +84,14 @@ const InhaleHold = ({ navigation, route }) => {
             name={paused ? "play" : "pause"}
             size={defaultIconSize}
             color={defaultIconColor}
-            onPress={() => {
-              setPaused(!paused);
-            }}
+            onPress={() => setPaused(!paused)}
           />
         </TouchableOpacity>
         <Text style={header_styles.timer}>{clock}</Text>
         <HelpButton
-          onPressHelp={() =>
-            navigation.navigate("SquareInfo", {
+          onPressHelp={() => {
+            const helpScreen = breathingHelpScreens[meditationType];
+            navigation.replace(helpScreen, {
               prevScreen: "InhaleHold",
               ORIG_MINUTES: ORIG_MINUTES,
               minutes: mainSecondsLeft / 60,
@@ -96,8 +100,8 @@ const InhaleHold = ({ navigation, route }) => {
               initIndex: index,
               initSequence: sequence,
               initSecondsLeft: secondsLeft,
-            })
-          }
+            });
+          }}
         />
       </View>
     );

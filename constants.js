@@ -34,3 +34,8 @@ export const allBreathingSessions = {
   DeepBreathing: "Deep Breathing",
   SquareBreathing: "Square Breathing",
 };
+
+export const breathingHelpScreens = {
+  DeepBreathing: "SquareInfo3",
+  SquareBreathing: "DeepInfo",
+}

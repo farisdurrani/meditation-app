@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
-import { HeaderButtons, MText } from "../../components";
+import { HeaderButtons, MText, MButton } from "../../components";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 import { Overlay } from "react-native-elements";
