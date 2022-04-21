@@ -29,11 +29,9 @@ const Timer = ({ navigation }) => {
 
   const _nextPage = () => {
     if (!minutesSelected || !sessionSelected) {
-      alert(
-        "Incomplete selections",
-        "Select both a session length and type",
-        [{ text: "OK", onPress: () => {} }]
-      );
+      alert("Incomplete selections", "Select both a session length and type", [
+        { text: "OK", onPress: () => {} },
+      ]);
       return;
     }
     switch (sessionSelected) {
@@ -51,7 +49,7 @@ const Timer = ({ navigation }) => {
       }
       case "Library": {
         navigation.navigate("FavoriteList", {
-          minutes: minutesSelected, 
+          minutes: minutesSelected,
         });
         break;
       }
@@ -77,7 +75,11 @@ const Timer = ({ navigation }) => {
       </View>
       <View style={styles.oneRow}>
         {_SessionTypeButton("Guided breathing")}
-        <HelpButton onPressHelp={() => navigation.navigate("SquareInfo")} />
+        <HelpButton
+          onPressHelp={() =>
+            navigation.replace("SquareInfo", { prevScreen: "Timer" })
+          }
+        />
       </View>
       <View style={styles.oneRow}>{_SessionTypeButton("Library")}</View>
       <MButton

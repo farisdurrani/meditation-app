@@ -7,7 +7,15 @@ const Guided = ({ navigation, route }) => {
   const { minutes } = route.params;
   return (
     <View style={{ alignItems: "center" }}>
-      <HeaderButtons navigation={navigation} />
+      <HeaderButtons
+        navigation={navigation}
+        onPressHelp={() =>
+          navigation.navigate("SquareInfo", {
+            prevScreen: "Guided",
+            minutes: minutes,
+          })
+        }
+      />
       <View style={styles.contents}>
         <Text style={{ fontSize: 45 }}>Select a session</Text>
         <MButton
