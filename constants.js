@@ -29,3 +29,8 @@ export const LAYOUT = {
 
 export const defaultIconSize = 40;
 export const defaultIconColor = COLORS.primary_blue;
+
+export const allBreathingSessions = {
+  DeepBreathing: "Deep Breathing",
+  SquareBreathing: "Square Breathing",
+};

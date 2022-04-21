@@ -20,14 +20,15 @@ const Prompt = ({ navigation, route }) => {
           text="Continue"
           containerStyle={{ marginTop: 30 }}
           onPress={() => {
-            if (titleTextIndex === 1) {
+            if (titleTextIndex === promptText.length - 1) {
               navigation.navigate("InhaleHold", {
+                ORIG_MINUTES: minutes,
                 minutes: minutes,
                 meditationType: meditationType,
                 withStretching: true,
               });
             } else {
-              setTitleTextIndex(1);
+              setTitleTextIndex(titleTextIndex + 1);
             }
           }}
         />
@@ -37,8 +38,20 @@ const Prompt = ({ navigation, route }) => {
 };
 
 const promptText = [
-  "please move to a clear space",
-  "please release all the tension from your body before beginning this session",
+  "Move to a clear space before beginning",
+  "Before beginning breathing exercises...",
+  "... we will guide you to rduce tension in your body",
+  "Start making a fist, squeezing your hand tightly",
+  "After a few seconds, open your fist one finger at a time",
+  "Focus on feeling the tension leaving your fingers",
+  "Next, repeat this process with your other hand",
+  "If desired, repeat the process again with both hands",
+  "Take notice of your body-where are you feeling tension?",
+  "Common places include shoulders, legs, feet, and back",
+  "Be sure to avoid places where you may have pain or injury",
+  "Follow the same steps as before wherever you need to",
+  "Squeeze and release body parts that you feel have tension",
+  "When you feel ready, continue on to breathing exercises",
 ];
 
 export default Prompt;

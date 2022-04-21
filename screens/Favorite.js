@@ -2,12 +2,13 @@ import { Dimensions, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { COLORS, LAYOUT } from "../constants";
 import { MButton } from "../components";
+import { allBreathingSessions } from "../constants";
 
 const Favorite = ({ navigation, route }) => {
   const { ORIG_MINUTES, meditationType, withStretching } = route.params;
 
   const moveToHomeScreen = () => {
-    moveToHomeScreen();
+    navigation.replace("Timer");
   };
 
   return (
@@ -17,13 +18,17 @@ const Favorite = ({ navigation, route }) => {
           Would you like to add this session to favorites?
         </Text>
         <View>
-          <Text style={styles.text}>{`${ORIG_MINUTES} minutes`}</Text>
-          <View marginBottom={10} />
-          <Text style={styles.text}>{`Breathing ${
-            withStretching ? "w/ Stretching" : ""
+          <Text style={styles.text}>{`${ORIG_MINUTES} minute${
+            Number(ORIG_MINUTES) > 1 ? "s" : ""
           }`}</Text>
           <View marginBottom={10} />
-          <Text style={styles.text}>{`${meditationType}`}</Text>
+          <Text style={styles.text}>{`Breathing ${
+            withStretching ? "with Stretching" : ""
+          }`}</Text>
+          <View marginBottom={10} />
+          <Text
+            style={styles.text}
+          >{`${allBreathingSessions[meditationType]}`}</Text>
         </View>
         <View style={LAYOUT.row}>
           <MButton

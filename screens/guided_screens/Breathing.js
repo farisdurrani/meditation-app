@@ -8,6 +8,7 @@ import {
   OneRow,
   HelpButton,
 } from "../../components";
+import { allBreathingSessions } from "../../constants";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -27,7 +28,7 @@ const Breathing = ({ navigation, route }) => {
       <OneRow>
         <MButton
           containerStyle={{ width: screenWidth * 0.5 }}
-          text="Square Breathing"
+          text={allBreathingSessions["SquareBreathing"]}
           onPress={() => {
             navigation.navigate("BeginScreen", {
               minutes: minutes,
@@ -41,7 +42,7 @@ const Breathing = ({ navigation, route }) => {
       <OneRow>
         <MButton
           containerStyle={{ width: screenWidth * 0.5 }}
-          text="Deep Breathing"
+          text={allBreathingSessions["DeepBreathing"]}
           onPress={() => {
             navigation.navigate("BeginScreen", {
               minutes: minutes,
