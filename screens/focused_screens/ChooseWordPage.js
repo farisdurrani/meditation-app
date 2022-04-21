@@ -31,7 +31,10 @@ const ChooseWordPage = ({ navigation, route }) => {
 
   return (
     <View style={{ alignItems: "center" }}>
-      <HeaderButtons navigation={navigation} />
+      <HeaderButtons
+        navigation={navigation}
+        onPressHelp={() => navigation.navigate("SquareInfo2")}
+      />
       <Text style={styles.label}>Preloaded</Text>
       <View style={styles.oneRow}>
         <_WordButton text="safe" />
