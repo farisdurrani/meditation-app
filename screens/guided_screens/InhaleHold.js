@@ -24,7 +24,7 @@ const InhaleHold = ({ navigation, route }) => {
     withStretching,
     initIndex = 0,
     initSequence = 0,
-    initSecondsLeft = null,
+    initSecondsLeft = -1,
   } = route.params;
 
   const [mainSecondsLeft, setMainSecondsLeft] = useState(minutes * 60);
@@ -35,7 +35,7 @@ const InhaleHold = ({ navigation, route }) => {
     sequences[meditationType].activities[index]
   );
   const [secondsLeft, setSecondsLeft] = useState(
-    initSecondsLeft === null
+    initSecondsLeft === -1
       ? sequences[meditationType].timeLeft[index]
       : initSecondsLeft
   );

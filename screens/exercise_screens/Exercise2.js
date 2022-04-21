@@ -7,7 +7,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState, useEffect, useRef } from "react";
-import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
+import {
+  COLORS,
+  defaultIconColor,
+  defaultIconSize,
+  breathingHelpScreens,
+} from "../../constants";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import {
   HeaderButtons,
@@ -19,14 +24,19 @@ import {
 import { Overlay } from "react-native-elements";
 
 const Exercise2 = ({ navigation, route }) => {
-  const { ORIG_MINUTES, mainSecondsLeftCopy, meditationType } = route.params;
+  const {
+    ORIG_MINUTES,
+    mainSecondsLeftCopy,
+    meditationType,
+    initSecondsLeft = 20,
+  } = route.params;
 
   const [title, exhale2Text, imgSource] = [
     "Touch Toes",
     "Stand up",
     require("../../assets/exercise_positions/touchtoes.png"),
   ];
-  const [secondsLeft, setSecondsLeft] = useState(20);
+  const [secondsLeft, setSecondsLeft] = useState(initSecondsLeft);
   const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
   const [paused, setPaused] = useState(false);
 
@@ -71,7 +81,17 @@ const Exercise2 = ({ navigation, route }) => {
           />
         </TouchableOpacity>
         <Text style={header_styles.timer}>{clock}</Text>
-        <HelpButton onPressHelp={() => navigation.navigate("SquareInfo")} />
+        <HelpButton
+          onPressHelp={() =>
+            navigation.navigate(breathingHelpScreens[meditationType], {
+              prevScreen: "Exercise2",
+              ORIG_MINUTES: ORIG_MINUTES,
+              mainSecondsLeftCopy: mainSecondsLeftCopy,
+              meditationType: meditationType,
+              initSecondsLeft: initSecondsLeft,
+            })
+          }
+        />
         <Overlay isVisible={paused} onBackdropPress={_toggleOverlay}>
           <View style={styles.overlayView}>
             <Text style={styles.overlayTitle}>PAUSE</Text>
