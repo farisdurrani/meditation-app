@@ -32,28 +32,30 @@ const Exercise2 = ({ navigation, route }) => {
 
   const _toggleOverlay = () => setPaused(!paused);
 
-  if (!paused) {
-    if (mainSecondsLeft >= 0 && secondsLeft >= 0) {
-      setTimeout(() => {
-        setSecondsLeft(secondsLeft - 1);
-        setMainSecondsLeft(mainSecondsLeft - 1);
-      }, 1000);
-    } else if (mainSecondsLeft < 0) {
-      navigation.replace("CurrentScore", {
-        ORIG_MINUTES: ORIG_MINUTES,
-        meditationType: meditationType,
-        withStretching: true,
-        nextScreen: "Favorite",
-      });
-    } else if (secondsLeft < 0) {
-      navigation.replace("Exhale2", {
-        ORIG_MINUTES: ORIG_MINUTES,
-        mainSecondsLeftCopy: mainSecondsLeft,
-        text: exhale2Text,
-        meditationType: meditationType,
-      });
+  useEffect(() => {
+    if (!paused) {
+      if (mainSecondsLeft >= 0 && secondsLeft >= 0) {
+        setTimeout(() => {
+          setSecondsLeft(secondsLeft - 1);
+          setMainSecondsLeft(mainSecondsLeft - 1);
+        }, 1000);
+      } else if (mainSecondsLeft < 0) {
+        navigation.replace("CurrentScore", {
+          ORIG_MINUTES: ORIG_MINUTES,
+          meditationType: meditationType,
+          withStretching: true,
+          nextScreen: "Favorite",
+        });
+      } else if (secondsLeft < 0) {
+        navigation.replace("Exhale2", {
+          ORIG_MINUTES: ORIG_MINUTES,
+          mainSecondsLeftCopy: mainSecondsLeft,
+          text: exhale2Text,
+          meditationType: meditationType,
+        });
+      }
     }
-  }
+  }, [secondsLeft, mainSecondsLeft, paused]);
 
   const _HeaderButtons = () => {
     const clock = `${Math.floor(mainSecondsLeft / 60)}:${
@@ -155,8 +157,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
 const header_styles = StyleSheet.create({
   upperButtons: {
     display: "flex",
@@ -171,5 +171,4 @@ const header_styles = StyleSheet.create({
     fontWeight: "bold",
     color: COLORS.primary_blue,
   },
-  
 });

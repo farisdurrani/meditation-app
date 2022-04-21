@@ -26,13 +26,13 @@ const InhaleHold = ({ navigation, route }) => {
   const _updateTitle = () => {
     const length = sequences[meditationType].activities.length;
     if (withStretching && index + 1 === length) {
-      setSequence(sequence + 0.5); // to account for double rendering
+      setSequence(sequence + 1);
     }
     const newIndex = (index + 1) % length;
     setIndex(newIndex);
-    const newTitle = sequences[meditationType].activities[index];
+    const newTitle = sequences[meditationType].activities[newIndex];
     setTitle(newTitle);
-    const newTimeLeft = sequences[meditationType].timeLeft[index];
+    const newTimeLeft = sequences[meditationType].timeLeft[newIndex];
     setSecondsLeft(newTimeLeft);
   };
 
@@ -78,15 +78,19 @@ const InhaleHold = ({ navigation, route }) => {
     );
   };
 
-  if (withStretching && sequence === 2) {
-    const randomExerciseScreen =
-      allExerciseScreens[Math.floor(Math.random() * allExerciseScreens.length)];
-    navigation.replace(randomExerciseScreen, {
-      ORIG_MINUTES: ORIG_MINUTES,
-      mainSecondsLeftCopy: mainSecondsLeft,
-      meditationType: meditationType,
-    });
-  }
+  useEffect(() => {
+    if (withStretching && sequence === 2) {
+      const randomExerciseScreen =
+        allExerciseScreens[
+          Math.floor(Math.random() * allExerciseScreens.length)
+        ];
+      navigation.replace(randomExerciseScreen, {
+        ORIG_MINUTES: ORIG_MINUTES,
+        mainSecondsLeftCopy: mainSecondsLeft,
+        meditationType: meditationType,
+      });
+    }
+  }, [mainSecondsLeft, index, paused]);
 
   return (
     <View style={{ alignItems: "center" }}>

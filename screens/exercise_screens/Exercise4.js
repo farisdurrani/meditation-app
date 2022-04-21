@@ -18,8 +18,7 @@ import {
 } from "../../components";
 import { Overlay } from "react-native-elements";
 
-
-const Exercise = ({ navigation, route }) => {
+const Exercise4 = ({ navigation, route }) => {
   const { ORIG_MINUTES, mainSecondsLeftCopy, meditationType } = route.params;
 
   const [title, imgSource] = [
@@ -32,28 +31,29 @@ const Exercise = ({ navigation, route }) => {
 
   const _toggleOverlay = () => setPaused(!paused);
 
-
-  if (!paused) {
-    if (mainSecondsLeft >= 0 && secondsLeft >= 0) {
-      setTimeout(() => {
-        setSecondsLeft(secondsLeft - 1);
-        setMainSecondsLeft(mainSecondsLeft - 1);
-      }, 1000);
-    } else if (mainSecondsLeft < 0) {
-      navigation.replace("CurrentScore", {
-        ORIG_MINUTES: ORIG_MINUTES,
-        meditationType: meditationType,
-        withStretching: true,
-        nextScreen: "Favorite",
-      });
-    } else if (secondsLeft < 0) {
-      navigation.replace("Exercise5", {
-        ORIG_MINUTES: ORIG_MINUTES,
-        mainSecondsLeftCopy: mainSecondsLeft,
-        meditationType: meditationType,
-      });
+  useEffect(() => {
+    if (!paused) {
+      if (mainSecondsLeft >= 0 && secondsLeft >= 0) {
+        setTimeout(() => {
+          setSecondsLeft(secondsLeft - 1);
+          setMainSecondsLeft(mainSecondsLeft - 1);
+        }, 1000);
+      } else if (mainSecondsLeft < 0) {
+        navigation.replace("CurrentScore", {
+          ORIG_MINUTES: ORIG_MINUTES,
+          meditationType: meditationType,
+          withStretching: true,
+          nextScreen: "Favorite",
+        });
+      } else if (secondsLeft < 0) {
+        navigation.replace("Exercise5", {
+          ORIG_MINUTES: ORIG_MINUTES,
+          mainSecondsLeftCopy: mainSecondsLeft,
+          meditationType: meditationType,
+        });
+      }
     }
-  }
+  }, [secondsLeft, mainSecondsLeft, paused]);
 
   const _HeaderButtons = () => {
     const clock = `${Math.floor(mainSecondsLeft / 60)}:${
@@ -118,7 +118,7 @@ const Exercise = ({ navigation, route }) => {
   );
 };
 
-export default Exercise;
+export default Exercise4;
 
 const [screenWidth, screenHeight] = [
   Dimensions.get("window").width,

@@ -21,28 +21,30 @@ const Exhale2 = ({ navigation, route }) => {
 
   const _toggleOverlay = () => setPaused(!paused);
 
-  if (!paused) {
-    if (mainSecondsLeft >= 0 && secondsLeft >= 0) {
-      setTimeout(() => {
-        setSecondsLeft(secondsLeft - 1);
-        setMainSecondsLeft(mainSecondsLeft - 1);
-      }, 1000);
-    } else if (mainSecondsLeft < 0) {
-      navigation.replace("CurrentScore", {
-        ORIG_MINUTES: ORIG_MINUTES,
-        meditationType: meditationType,
-        withStretching: true,
-        nextScreen: "Favorite",
-      });
-    } else if (secondsLeft < 0) {
-      navigation.replace("InhaleHold", {
-        ORIG_MINUTES: ORIG_MINUTES,
-        minutes: mainSecondsLeft / 60,
-        meditationType: meditationType,
-        withStretching: true,
-      });
+  useEffect(() => {
+    if (!paused) {
+      if (mainSecondsLeft >= 0 && secondsLeft >= 0) {
+        setTimeout(() => {
+          setSecondsLeft(secondsLeft - 1);
+          setMainSecondsLeft(mainSecondsLeft - 1);
+        }, 1000);
+      } else if (mainSecondsLeft < 0) {
+        navigation.replace("CurrentScore", {
+          ORIG_MINUTES: ORIG_MINUTES,
+          meditationType: meditationType,
+          withStretching: true,
+          nextScreen: "Favorite",
+        });
+      } else if (secondsLeft < 0) {
+        navigation.replace("InhaleHold", {
+          ORIG_MINUTES: ORIG_MINUTES,
+          minutes: mainSecondsLeft / 60,
+          meditationType: meditationType,
+          withStretching: true,
+        });
+      }
     }
-  }
+  }, [secondsLeft, mainSecondsLeft, paused]);
 
   const _HeaderButtons = () => {
     const clock = `${Math.floor(mainSecondsLeft / 60)}:${
