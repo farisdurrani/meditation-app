@@ -16,6 +16,7 @@ import {
   MText,
   HelpButton,
 } from "../../components";
+import { Overlay } from "react-native-elements";
 
 const Exercise2 = ({ navigation, route }) => {
   const { ORIG_MINUTES, mainSecondsLeftCopy, meditationType } = route.params;
@@ -28,6 +29,8 @@ const Exercise2 = ({ navigation, route }) => {
   const [secondsLeft, setSecondsLeft] = useState(20);
   const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
   const [paused, setPaused] = useState(false);
+
+  const _toggleOverlay = () => setPaused(!paused);
 
   if (!paused) {
     if (mainSecondsLeft >= 0 && secondsLeft >= 0) {
@@ -68,6 +71,30 @@ const Exercise2 = ({ navigation, route }) => {
         </TouchableOpacity>
         <Text style={header_styles.timer}>{clock}</Text>
         <HelpButton onPressHelp={() => navigation.navigate("SquareInfo")} />
+        <Overlay isVisible={paused} onBackdropPress={_toggleOverlay}>
+          <View style={styles.overlayView}>
+            <Text style={styles.overlayTitle}>PAUSE</Text>
+
+            <Text style={{ fontSize: 20, marginVertical: 40 }}>
+              Do you want to go to Home?
+            </Text>
+            <View style={styles.parent}>
+              <MButton
+                containerStyle={{ width: "50%" }}
+                text="Home"
+                onPress={() => {
+                  _toggleOverlay();
+                  navigation.replace("Timer");
+                }}
+              />
+              <MButton
+                containerStyle={{ width: "50%" }}
+                text="Resume"
+                onPress={_toggleOverlay}
+              />
+            </View>
+          </View>
+        </Overlay>
       </View>
     );
   };
@@ -93,6 +120,11 @@ const Exercise2 = ({ navigation, route }) => {
 
 export default Exercise2;
 
+const [screenWidth, screenHeight] = [
+  Dimensions.get("window").width,
+  Dimensions.get("window").height,
+];
+
 const styles = StyleSheet.create({
   text: {
     fontSize: 40,
@@ -100,7 +132,30 @@ const styles = StyleSheet.create({
     color: COLORS.primary_blue,
     textAlign: "center",
   },
+  overlayView: {
+    width: screenWidth * 0.7,
+    height: screenHeight * 0.4,
+    borderRadius: 20,
+    alignItems: "center",
+    padding: 20,
+    justifyContent: "space-around",
+  },
+  overlayTitle: {
+    fontSize: 40,
+    fontWeight: "bold",
+    color: COLORS.primary_blue,
+    marginBottom: 20,
+  },
+  parent: {
+    flex: 1,
+    width: "100%",
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "space-around",
+  },
 });
+
+
 
 const header_styles = StyleSheet.create({
   upperButtons: {
@@ -116,4 +171,5 @@ const header_styles = StyleSheet.create({
     fontWeight: "bold",
     color: COLORS.primary_blue,
   },
+  
 });

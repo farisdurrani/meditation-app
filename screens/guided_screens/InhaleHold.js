@@ -9,6 +9,7 @@ import React, { useState, useEffect } from "react";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { MButton, MText, HelpButton } from "../../components";
 import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
+import { Button, Overlay } from "react-native-elements";
 
 const InhaleHold = ({ navigation, route }) => {
   const { ORIG_MINUTES, minutes, meditationType, withStretching } =
@@ -21,33 +22,39 @@ const InhaleHold = ({ navigation, route }) => {
   const [paused, setPaused] = useState(false);
   const [sequence, setSequence] = useState(0);
 
+  const _toggleOverlay = () => setPaused(!paused);
   const _updateTitle = () => {
     const length = sequences[meditationType].activities.length;
     if (withStretching && index + 1 === length) {
       setSequence(sequence + 0.5); // to account for double rendering
     }
-    setIndex((index + 1) % length);
-    setTitle(sequences[meditationType].activities[index]);
-    setSecondsLeft(sequences[meditationType].timeLeft[index]);
+    const newIndex = (index + 1) % length;
+    setIndex(newIndex);
+    const newTitle = sequences[meditationType].activities[index];
+    setTitle(newTitle);
+    const newTimeLeft = sequences[meditationType].timeLeft[index];
+    setSecondsLeft(newTimeLeft);
   };
 
-  if (!paused) {
-    if (mainSecondsLeft >= 0 && secondsLeft >= 0) {
-      setTimeout(() => {
-        setSecondsLeft(secondsLeft - 1);
-        setMainSecondsLeft(mainSecondsLeft - 1);
-      }, 1000);
-    } else if (mainSecondsLeft < 0) {
-      navigation.navigate("CurrentScore", {
-        ORIG_MINUTES: ORIG_MINUTES,
-        meditationType: meditationType,
-        withStretching: withStretching,
-        nextScreen: "Favorite",
-      });
-    } else if (secondsLeft < 0) {
-      _updateTitle();
+  React.useEffect(() => {
+    if (!paused) {
+      if (mainSecondsLeft >= 0 && secondsLeft >= 0) {
+        setTimeout(() => {
+          setSecondsLeft(secondsLeft - 1);
+          setMainSecondsLeft(mainSecondsLeft - 1);
+        }, 1000);
+      } else if (mainSecondsLeft < 0) {
+        navigation.navigate("CurrentScore", {
+          ORIG_MINUTES: ORIG_MINUTES,
+          meditationType: meditationType,
+          withStretching: withStretching,
+          nextScreen: "Favorite",
+        });
+      } else if (secondsLeft < 0) {
+        _updateTitle();
+      }
     }
-  }
+  }, [mainSecondsLeft, index, paused]);
 
   const _HeaderButtons = () => {
     const clock = `${Math.floor(mainSecondsLeft / 60)}:${
@@ -87,6 +94,30 @@ const InhaleHold = ({ navigation, route }) => {
       <View marginTop={Dimensions.get("window").height * 0.25} />
       <MText text={title} />
       <MText text={secondsLeft} />
+      <Overlay isVisible={paused} onBackdropPress={_toggleOverlay}>
+        <View style={styles.overlayView}>
+          <Text style={styles.overlayTitle}>PAUSE</Text>
+
+          <Text style={{ fontSize: 20, marginVertical: 40 }}>
+            Do you want to go to Home?
+          </Text>
+          <View style={styles.parent}>
+            <MButton
+              containerStyle={{ width: "50%" }}
+              text="Home"
+              onPress={() => {
+                _toggleOverlay();
+                navigation.replace("Timer");
+              }}
+            />
+            <MButton
+              containerStyle={{ width: "50%" }}
+              text="Resume"
+              onPress={_toggleOverlay}
+            />
+          </View>
+        </View>
+      </Overlay>
     </View>
   );
 };
@@ -105,8 +136,34 @@ const sequences = {
 };
 
 const allExerciseScreens = ["Exercise", "Exercise2", "Exercise3", "Exercise4"];
+const [screenWidth, screenHeight] = [
+  Dimensions.get("window").width,
+  Dimensions.get("window").height,
+];
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  overlayView: {
+    width: screenWidth * 0.7,
+    height: screenHeight * 0.4,
+    borderRadius: 20,
+    alignItems: "center",
+    padding: 20,
+    justifyContent: "space-around",
+  },
+  overlayTitle: {
+    fontSize: 40,
+    fontWeight: "bold",
+    color: COLORS.primary_blue,
+    marginBottom: 20,
+  },
+  parent: {
+    flex: 1,
+    width: "100%",
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "space-around",
+  },
+});
 
 const header_styles = StyleSheet.create({
   upperButtons: {
