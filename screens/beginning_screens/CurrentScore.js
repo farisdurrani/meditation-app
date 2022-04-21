@@ -24,7 +24,7 @@ const CurrentScore = ({ navigation, route }) => {
               navigation.navigate("Timer");
               return;
             }
-            navigation.navigate(nextScreen, {
+            navigation.replace("Favorite", {
               ORIG_MINUTES: ORIG_MINUTES,
               meditationType: meditationType,
               withStretching: withStretching,

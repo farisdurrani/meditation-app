@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import React from "react";
 import { HeaderButtons, MButton } from "../components";
+import { breathingHelpScreens } from "../constants";
 
 const BeginScreen = ({ navigation, route }) => {
   const { minutes, meditationType, withStretching } = route.params;
@@ -8,7 +9,18 @@ const BeginScreen = ({ navigation, route }) => {
   const screenHeight = Dimensions.get("window").height;
   return (
     <View style={{ alignItems: "center" }}>
-      <HeaderButtons navigation={navigation} noRightButton />
+      <HeaderButtons
+        navigation={navigation}
+        noRightButton
+        onPressHelp={() =>
+          navigation.navigate(breathingHelpScreens[meditationType], {
+            prevScreen: "BeginScreen",
+            minutes: minutes,
+            meditationType: meditationType,
+            withStretching: withStretching,
+          })
+        }
+      />
       <Text
         style={{
           fontSize: 50,
