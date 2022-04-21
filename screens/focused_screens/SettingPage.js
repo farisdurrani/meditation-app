@@ -6,11 +6,6 @@ import { StyleSheet, Text, View, Switch } from "react-native";
 import { meditationSounds } from "./FocusedMeditation";
 import DropDownPicker from "react-native-dropdown-picker";
 
-const getIndexOfMusicTitle = (title) => {
-  const matchesTitle = (e) => e.title === title;
-  return meditationSounds.findIndex(matchesTitle);
-};
-
 const SettingPage = ({ navigation, route }) => {
   const { ORIG_MINUTES, minutesLeft, chosenWord, chosenMusicIndex } =
     route.params;
@@ -23,6 +18,14 @@ const SettingPage = ({ navigation, route }) => {
   const [chosenMusic, setChosenMusic] = React.useState(
     meditationSoundsTitles[chosenMusicIndex]
   );
+
+  const _newChosenMusicIndex = () => {
+    for (let i = 0; i < meditationSounds.length; i++) {
+      if (meditationSounds[i].title === chosenMusic) {
+        return i;
+      }
+    }
+  };
 
   const _DropDown = () => {
     const labelAndValue = meditationSoundsTitles.map((e) => ({
@@ -91,12 +94,8 @@ const SettingPage = ({ navigation, route }) => {
       <MButton
         text="SAVE"
         onPress={() => {
-          navigation.replace("FocusedMeditation", {
-            ORIG_MINUTES: ORIG_MINUTES,
-            minutes: minutesLeft,
-            chosenWord: chosenWord,
-            chosenMusicIndex: getIndexOfMusicTitle(chosenMusic),
-          });
+          const newChosenMusicIndex = _newChosenMusicIndex();
+          navigation.replace("FocusedMeditation", route.params);
         }}
       />
     </View>

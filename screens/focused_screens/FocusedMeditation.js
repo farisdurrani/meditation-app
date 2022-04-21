@@ -15,7 +15,7 @@ import { Overlay } from "react-native-elements";
 import { Audio } from "expo-av";
 
 const FocusedMeditation = ({ navigation, route }) => {
-  const { ORIG_MINUTES, minutes, chosenWord, chosenMusicIndex } = route.params;
+  const { ORIG_MINUTES, minutes, chosenWord, chosenMusicIndex = 0 } = route.params;
 
   const finalChosenMusicIndex = chosenMusicIndex ? chosenMusicIndex : 0;
 
@@ -43,16 +43,20 @@ const FocusedMeditation = ({ navigation, route }) => {
         setProgress(progress + progressPerSec);
         setMainSecondsLeft(mainSecondsLeft - 1);
       }, 1000);
+    } else if (mainSecondsLeft < 0) {
+      currentMusic.stopAsync();
+      currentMusic.unloadAsync();
     }
   }, [mainSecondsLeft, paused, progress, currentMusic]);
 
   useEffect(async () => {
-    const { sound } = await Audio.Sound.createAsync(
+    let { sound } = await Audio.Sound.createAsync(
       meditationSounds[finalChosenMusicIndex].source
     );
     setCurrentMusic(sound);
     sound.setIsLoopingAsync(true);
     await sound.playAsync();
+    sound = null;
   }, []);
 
   const _HeaderButtons = () => {

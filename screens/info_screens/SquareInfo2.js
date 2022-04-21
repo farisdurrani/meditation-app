@@ -4,9 +4,7 @@ import { MText, MButton } from "../../components";
 import { COLORS } from "../../constants";
 
 const SquareInfo2 = ({ navigation, route }) => {
-  const {
-    prevScreen = null
-  } = route.params;
+  const { prevScreen = null } = route.params;
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
@@ -21,7 +19,7 @@ const SquareInfo2 = ({ navigation, route }) => {
               navigation.goBack();
               return;
             }
-            navigation.replace(prevScreen, route.params)
+            navigation.replace(prevScreen, route.params);
           }}
           containerStyle={{ marginTop: 100, width: 200 }}
         />
