@@ -60,10 +60,7 @@ const LoginScreen = ({ navigation }) => {
             secureTextEntry={true}
           ></TextInput>
         </KeyboardAvoidingView>
-        <MButton
-          text="Log In"
-          onPress={email ? handleLogin : goToNextScreen}
-        />
+        <MButton text="Log In" onPress={email ? handleLogin : goToNextScreen} />
       </View>
       <Text
         style={{ fontSize: 19, color: COLORS.primary_blue, marginBottom: 20 }}

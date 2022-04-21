@@ -43,7 +43,6 @@ const Exercise3 = ({ navigation, route }) => {
           ORIG_MINUTES: ORIG_MINUTES,
           meditationType: meditationType,
           withStretching: true,
-          nextScreen: "Favorite",
         });
       } else if (secondsLeft < 0) {
         navigation.replace("Exhale2", {

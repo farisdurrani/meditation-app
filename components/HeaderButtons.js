@@ -68,7 +68,7 @@ const HeaderButtons = (props) => {
         </TouchableOpacity>
       );
     } else {
-      return <HelpButton onPressHelp={() => onPressHelp(secondsLeft)} />;
+      return <HelpButton onPressHelp={() => onPressHelp()} />;
     }
   };
 

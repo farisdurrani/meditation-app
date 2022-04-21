@@ -48,7 +48,6 @@ const InhaleHold = ({ navigation, route }) => {
           ORIG_MINUTES: ORIG_MINUTES,
           meditationType: meditationType,
           withStretching: withStretching,
-          nextScreen: "Favorite",
         });
       } else if (secondsLeft < 0) {
         _updateTitle();

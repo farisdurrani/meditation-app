@@ -3,7 +3,10 @@ import React from "react";
 import { MText, MButton } from "../../components";
 import { COLORS } from "../../constants";
 
-const SquareInfo2 = ({ navigation }) => {
+const SquareInfo2 = ({ navigation, route }) => {
+  const {
+    prevScreen = null
+  } = route.params;
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
@@ -13,7 +16,13 @@ const SquareInfo2 = ({ navigation }) => {
         </Text>
         <MButton
           text="CLOSE"
-          onPress={() => navigation.goBack()}
+          onPress={() => {
+            if (prevScreen === null) {
+              navigation.goBack();
+              return;
+            }
+            navigation.replace(prevScreen, route.params)
+          }}
           containerStyle={{ marginTop: 100, width: 200 }}
         />
       </View>
