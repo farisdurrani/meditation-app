@@ -73,11 +73,11 @@ const Timer = ({ navigation }) => {
       <Text style={styles.label}>Type of Session</Text>
       <View style={styles.oneRow}>
         {_SessionTypeButton("Focused")}
-        <HelpButton />
+        <HelpButton onPressHelp={() => navigation.navigate("FocusedInfo")} />
       </View>
       <View style={styles.oneRow}>
         {_SessionTypeButton("Guided breathing")}
-        <HelpButton />
+        <HelpButton onPressHelp={() => navigation.navigate("SquareInfo")} />
       </View>
       <View style={styles.oneRow}>{_SessionTypeButton("Library")}</View>
       <MButton
