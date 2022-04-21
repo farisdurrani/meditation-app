@@ -12,15 +12,28 @@ import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 import { Button, Overlay } from "react-native-elements";
 
 const InhaleHold = ({ navigation, route }) => {
-  const { ORIG_MINUTES, minutes, meditationType, withStretching } =
-    route.params;
+  const {
+    ORIG_MINUTES,
+    minutes,
+    meditationType,
+    withStretching,
+    initIndex = 0,
+    initSequence = 0,
+    initSecondsLeft = null,
+  } = route.params;
 
-  const [title, setTitle] = useState("Inhale");
-  const [secondsLeft, setSecondsLeft] = useState(4);
   const [mainSecondsLeft, setMainSecondsLeft] = useState(minutes * 60);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(initIndex);
   const [paused, setPaused] = useState(false);
-  const [sequence, setSequence] = useState(0);
+  const [sequence, setSequence] = useState(initSequence);
+  const [title, setTitle] = useState(
+    sequences[meditationType].activities[index]
+  );
+  const [secondsLeft, setSecondsLeft] = useState(
+    initSecondsLeft === null
+      ? sequences[meditationType].timeLeft[index]
+      : initSecondsLeft
+  );
 
   const _toggleOverlay = () => setPaused(!paused);
   const _updateTitle = () => {
@@ -72,7 +85,20 @@ const InhaleHold = ({ navigation, route }) => {
           />
         </TouchableOpacity>
         <Text style={header_styles.timer}>{clock}</Text>
-        <HelpButton onPressHelp={() => navigation.navigate("SquareInfo")} />
+        <HelpButton
+          onPressHelp={() =>
+            navigation.navigate("SquareInfo", {
+              prevScreen: "InhaleHold",
+              ORIG_MINUTES: ORIG_MINUTES,
+              minutes: mainSecondsLeft / 60,
+              meditationType: meditationType,
+              withStretching: withStretching,
+              initIndex: index,
+              initSequence: sequence,
+              initSecondsLeft: secondsLeft,
+            })
+          }
+        />
       </View>
     );
   };
