@@ -5,7 +5,7 @@ import { HeaderButtons, DropDown, MButton } from "../../components";
 const FavoriteList = ({ navigation }) => {
   return (
     <View style={{ alignItems: "center" }}>
-      <HeaderButtons navigation={navigation} />
+      <HeaderButtons navigation={navigation} noRightButton />
       <Text style={{ fontSize: 40, marginVertical: 40 }}>Favorite List</Text>
       <DropDown listOfItems={["Favorite 1", "Favorite 2"]} />
       <View style={{ marginVertical: 30 }} />

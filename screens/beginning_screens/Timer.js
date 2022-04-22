@@ -1,9 +1,26 @@
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { HeaderButtons, HelpButton, MButton } from "../../components";
-import { COLORS, LAYOUT } from "../../constants";
+import {
+  COLORS,
+  LAYOUT,
+  defaultIconColor,
+  defaultIconSize,
+} from "../../constants";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
-const Timer = ({ navigation }) => {
+const Timer = ({ navigation, route }) => {
+  let prevScreenIsCurrentScore = false;
+  if (route.params) {
+    prevScreenIsCurrentScore = route.params.prevScreenIsCurrentScore;
+  }
+
   const [minutesSelected, setMinutesSelected] = React.useState(null);
   const [sessionSelected, setSessionSelected] = React.useState(null);
 
@@ -27,6 +44,22 @@ const Timer = ({ navigation }) => {
     );
   };
 
+  const _LeftButton = () => {
+    if (prevScreenIsCurrentScore) {
+      return (
+        <TouchableOpacity>
+          <Ionicons
+            name="arrow-back"
+            size={defaultIconSize}
+            color={defaultIconColor}
+            onPress={() => navigation.goBack()}
+          />
+        </TouchableOpacity>
+      );
+    }
+    return <View marginTop={defaultIconSize} />;
+  };
+
   const _nextPage = () => {
     if (!minutesSelected || !sessionSelected) {
       alert("Incomplete selections", "Select both a session length and type", [
@@ -48,9 +81,7 @@ const Timer = ({ navigation }) => {
         break;
       }
       case "Library": {
-        navigation.navigate("FavoriteList", {
-          minutes: minutesSelected,
-        });
+        navigation.navigate("FavoriteList");
         break;
       }
     }
@@ -58,7 +89,11 @@ const Timer = ({ navigation }) => {
 
   return (
     <View style={styles.mainContainer}>
-      <HeaderButtons noRightButton navigation={navigation} />
+      <HeaderButtons
+        noRightButton
+        navigation={navigation}
+        customLeftButton={_LeftButton}
+      />
       <Text style={styles.label}>Length of Session</Text>
       <View style={styles.oneRow}>
         {_SessionLengthButton(1)}

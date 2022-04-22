@@ -21,7 +21,7 @@ const CurrentScore = ({ navigation, route }) => {
           text="Continue"
           onPress={() => {
             if (ORIG_MINUTES === null) {
-              navigation.navigate("Timer");
+              navigation.navigate("Timer", { prevScreenIsCurrentScore: true });
               return;
             }
             navigation.replace("Favorite", {
