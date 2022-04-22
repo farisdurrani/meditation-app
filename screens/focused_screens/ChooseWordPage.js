@@ -4,36 +4,54 @@ import {
   View,
   TextInput,
   KeyboardAvoidingView,
+  ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { HeaderButtons, MButton } from "../../components";
 import { COLORS } from "../../constants";
 
 const ChooseWordPage = ({ navigation, route }) => {
-  const { minutes } = route.params;
-  const [newWord, setNewWord] = React.useState("");
+  const {
+    minutes,
+    initButton1Word = "Word",
+    initButton2Word = "Word",
+    initButton3Word = "Word",
+  } = route.params;
+  const [newWord, setNewWord] = useState("");
+
+  const [button1Word, setButton1Word] = useState(initButton1Word);
+  const [button2Word, setButton2Word] = useState(initButton2Word);
+  const [button3Word, setButton3Word] = useState(initButton3Word);
 
   const _WordButton = (params) => {
-    const { text, long } = params;
+    const { text, long = false } = params;
     return (
       <MButton
         containerStyle={{ width: long ? "49%" : "32%" }}
         text={text}
-        onPress={() => {
+        onPress={() =>
           navigation.navigate("BeginChooseWord", {
             minutes: minutes,
             chosenWord: text,
-          });
-        }}
+          })
+        }
       />
     );
   };
 
   return (
-    <View style={{ alignItems: "center" }}>
+    <ScrollView contentContainerStyle={{ alignItems: "center" }}>
       <HeaderButtons
         navigation={navigation}
-        onPressHelp={() => navigation.navigate("SquareInfo2")}
+        onPressHelp={() =>
+          navigation.replace("SquareInfo2", {
+            prevScreen: "ChooseWordPage",
+            minutes: minutes,
+            initButton1Word: button1Word,
+            initButton2Word: button2Word,
+            initButton3Word: button3Word,
+          })
+        }
       />
       <Text style={styles.label}>Preloaded</Text>
       <View style={styles.oneRow}>
@@ -47,29 +65,24 @@ const ChooseWordPage = ({ navigation, route }) => {
         <MButton
           containerStyle={{ width: "32%" }}
           text="seren-dipity"
-          onPress={() => {
-            navigation.navigate("BeginChooseWord", { word: "serendipity" });
-          }}
+          onPress={() =>
+            navigation.replace("BeginChooseWord", {
+              minutes: minutes,
+              chosenWord: "serendipity",
+            })
+          }
         />
       </View>
 
       <View style={styles.oneRow}>
-        <_WordButton
-          text="loving-
-        kindness"
-          long
-        />
-        <_WordButton
-          text="warm-
-          heartedness"
-          long
-        />
+        <_WordButton text={`loving-\nkindness`} long />
+        <_WordButton text={`warm-\nheartedness`} long />
       </View>
       <Text style={styles.label}>My Own Words</Text>
       <View style={styles.oneRow}>
-        <_WordButton text="Word" />
-        <_WordButton text="Word" />
-        <_WordButton text="Word" />
+        <_WordButton text={button1Word} />
+        <_WordButton text={button2Word} />
+        <_WordButton text={button3Word} />
       </View>
 
       <KeyboardAvoidingView style={styles.inputBox}>
@@ -77,10 +90,16 @@ const ChooseWordPage = ({ navigation, route }) => {
           placeholder="Type your word"
           value={newWord}
           onChangeText={setNewWord}
+          onSubmitEditing={() => {
+            setButton3Word(button2Word);
+            setButton2Word(button1Word);
+            setButton1Word(newWord ? newWord : initButton1Word);
+          }}
+          maxLength={16}
           style={styles.inputText}
         />
       </KeyboardAvoidingView>
-    </View>
+    </ScrollView>
   );
 };
 

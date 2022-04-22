@@ -46,6 +46,7 @@ const FocusedMeditation = ({ navigation, route }) => {
     } else if (mainSecondsLeft < 0) {
       currentMusic.stopAsync();
       currentMusic.unloadAsync();
+      navigation.navigate("CurrentScore");
     }
   }, [mainSecondsLeft, paused, progress, currentMusic]);
 

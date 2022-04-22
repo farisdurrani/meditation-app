@@ -26,14 +26,14 @@ const BeginChooseWord = ({ navigation, route }) => {
       <View style={{ marginVertical: 20 }} />
       <MButton
         text="Begin"
-        onPress={() => {
-          navigation.navigate("FocusedMeditation", {
+        onPress={() =>
+          navigation.replace("FocusedMeditation", {
             ORIG_MINUTES: minutes,
             minutes: minutes,
             chosenWord: chosenWord,
             chosenMusicIndex: null,
-          });
-        }}
+          })
+        }
       />
     </View>
   );
