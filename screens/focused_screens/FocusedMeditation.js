@@ -15,7 +15,12 @@ import { Overlay } from "react-native-elements";
 import { Audio } from "expo-av";
 
 const FocusedMeditation = ({ navigation, route }) => {
-  const { ORIG_MINUTES, minutes, chosenWord, chosenMusicIndex = 0 } = route.params;
+  const {
+    ORIG_MINUTES,
+    minutes,
+    chosenWord,
+    chosenMusicIndex = 0,
+  } = route.params;
 
   const finalChosenMusicIndex = chosenMusicIndex ? chosenMusicIndex : 0;
 
@@ -46,7 +51,11 @@ const FocusedMeditation = ({ navigation, route }) => {
     } else if (mainSecondsLeft < 0) {
       currentMusic.stopAsync();
       currentMusic.unloadAsync();
-      navigation.navigate("CurrentScore");
+      navigation.navigate("CurrentScore", {
+        ORIG_MINUTES: null,
+        meditationType: null,
+        withStretching: null,
+      });
     }
   }, [mainSecondsLeft, paused, progress, currentMusic]);
 
