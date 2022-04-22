@@ -96,7 +96,7 @@ const Timer = ({ navigation, route }) => {
       />
       <Text style={styles.label}>Length of Session</Text>
       <View style={styles.oneRow}>
-        {_SessionLengthButton(1)}
+        {_SessionLengthButton(2)}
         {_SessionLengthButton(5)}
       </View>
       <View style={styles.oneRow}>

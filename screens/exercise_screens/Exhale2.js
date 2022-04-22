@@ -83,7 +83,7 @@ const Exhale2 = ({ navigation, route }) => {
                 mainSecondsLeftCopy: mainSecondsLeft,
                 text: text,
                 meditationType: meditationType,
-                initSecondsLeft: initSecondsLeft,
+                initSecondsLeft: secondsLeft,
               })
             }
           />

@@ -1,7 +1,14 @@
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
-import { LAYOUT, COLORS } from "../../constants";
+import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
 import { MText, MButton, HeaderButtons } from "../../components";
+import { Ionicons } from "@expo/vector-icons";
 
 const CurrentScore = ({ navigation, route }) => {
   const {
@@ -10,17 +17,43 @@ const CurrentScore = ({ navigation, route }) => {
     withStretching = null,
   } = route.params;
 
+  const updatedScore = Boolean(ORIG_MINUTES);
+
+  const _LeftButton = () => {
+    if (!updatedScore) {
+      return (
+        <TouchableOpacity>
+          <Ionicons
+            name="arrow-back"
+            size={defaultIconSize}
+            color={defaultIconColor}
+            onPress={() => navigation.goBack()}
+          />
+        </TouchableOpacity>
+      );
+    }
+    return <View marginTop={defaultIconSize} />;
+  };
+
   return (
     <View style={{ alignItems: "center" }}>
-      <HeaderButtons navigation={navigation} noRightButton />
+      <HeaderButtons
+        navigation={navigation}
+        customLeftButton={_LeftButton}
+        noRightButton
+      />
       <View style={styles.mainContainer}>
-        <Text style={{ fontSize: 70, textAlign: "center" }}>Current Score</Text>
+        <Text style={{ fontSize: 65, textAlign: "center" }}>
+          {updatedScore ? "Updated Score" : "Current Score"}
+        </Text>
         <Text style={styles.scoreText}>00</Text>
-        <Text style={styles.whyText}>Why am I doing this?</Text>
+        <Text style={styles.whyText}>
+          {updatedScore ? "" : "Why am I doing this?"}
+        </Text>
         <MButton
           text="Continue"
           onPress={() => {
-            if (ORIG_MINUTES === null) {
+            if (!updatedScore) {
               navigation.navigate("Timer", { prevScreenIsCurrentScore: true });
               return;
             }

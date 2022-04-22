@@ -86,9 +86,9 @@ const Exercise2 = ({ navigation, route }) => {
             navigation.replace(breathingHelpScreens[meditationType], {
               prevScreen: "Exercise2",
               ORIG_MINUTES: ORIG_MINUTES,
-              mainSecondsLeftCopy: mainSecondsLeftCopy,
+              mainSecondsLeftCopy: mainSecondsLeft,
               meditationType: meditationType,
-              initSecondsLeft: initSecondsLeft,
+              initSecondsLeft: secondsLeft,
             })
           }
         />
