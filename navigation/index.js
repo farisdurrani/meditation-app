@@ -29,7 +29,6 @@ import {
   Timer,
   WelcomePage,
 } from "../screens";
-import { HelpButton } from "../components";
 
 const Stack = createNativeStackNavigator();
 
@@ -47,13 +46,11 @@ const Navigation = () => {
           name="Timer"
           component={Timer}
         />
-
         <Stack.Screen
           options={{ headerShown: false }}
           name="CurrentScore"
           component={CurrentScore}
         />
-
         <Stack.Screen
           options={{ headerShown: false }}
           name="Favorite"
@@ -104,7 +101,6 @@ const Navigation = () => {
           name="DeepInfo"
           component={DeepInfo}
         />
-
         <Stack.Screen
           options={{ headerShown: false }}
           name="SquareInfo2"
