@@ -8,17 +8,26 @@ import {
 import React, { useState, useRef, useEffect } from "react";
 import { HeaderButtons, MText, MButton } from "../../components";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { COLORS, defaultIconColor, defaultIconSize } from "../../constants";
+import {
+  COLORS,
+  defaultIconColor,
+  defaultIconSize,
+  breathingHelpScreens,
+} from "../../constants";
 import { Overlay } from "react-native-elements";
 
 const Exhale2 = ({ navigation, route }) => {
-  const { ORIG_MINUTES, mainSecondsLeftCopy, text, meditationType } =
-    route.params;
+  const {
+    ORIG_MINUTES,
+    mainSecondsLeftCopy,
+    text,
+    meditationType,
+    initSecondsLeft = 20,
+  } = route.params;
 
-  const [secondsLeft, setSecondsLeft] = useState(20);
+  const [secondsLeft, setSecondsLeft] = useState(initSecondsLeft);
   const [mainSecondsLeft, setMainSecondsLeft] = useState(mainSecondsLeftCopy);
   const [paused, setPaused] = useState(false);
-
   const _toggleOverlay = () => setPaused(!paused);
 
   useEffect(() => {
@@ -68,8 +77,13 @@ const Exhale2 = ({ navigation, route }) => {
             size={defaultIconSize}
             color={defaultIconColor}
             onPress={() =>
-              navigation.navigate("HelpScreen", {
-                mainSecondsLeft: mainSecondsLeft,
+              navigation.replace(breathingHelpScreens[meditationType], {
+                prevScreen: "Exhale2",
+                ORIG_MINUTES: ORIG_MINUTES,
+                mainSecondsLeftCopy: mainSecondsLeft,
+                text: text,
+                meditationType: meditationType,
+                initSecondsLeft: initSecondsLeft,
               })
             }
           />

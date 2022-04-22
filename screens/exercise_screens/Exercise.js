@@ -83,7 +83,7 @@ const Exercise = ({ navigation, route }) => {
         <Text style={header_styles.timer}>{clock}</Text>
         <HelpButton
           onPressHelp={() =>
-            navigation.navigate(breathingHelpScreens[meditationType], {
+            navigation.replace(breathingHelpScreens[meditationType], {
               prevScreen: "Exercise",
               ORIG_MINUTES: ORIG_MINUTES,
               mainSecondsLeftCopy: mainSecondsLeftCopy,
