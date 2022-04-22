@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "pa8803",
-    "slug": "pa8803",
+    "name": "Meditation App V1",
+    "slug": "meditation-app-v1",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -30,6 +30,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
-    }
+    },
+    "description": "https://github.gatech.edu/VIP-BTAP/meditation-app"
   }
 }
