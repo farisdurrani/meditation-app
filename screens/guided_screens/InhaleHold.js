@@ -62,7 +62,7 @@ const InhaleHold = ({ navigation, route }) => {
           setMainSecondsLeft(mainSecondsLeft - 1);
         }, 1000);
       } else if (mainSecondsLeft < 0) {
-        navigation.navigate("CurrentScore", {
+        navigation.replace("CurrentScore", {
           ORIG_MINUTES: ORIG_MINUTES,
           meditationType: meditationType,
           withStretching: withStretching,
