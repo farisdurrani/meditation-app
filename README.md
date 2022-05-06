@@ -2,7 +2,7 @@
 
 Meditation App for the Georgia Tech [VIP](https://www.vip.gatech.edu/) [BTAP](https://www.vip.gatech.edu/teams/vv2) team, initiated by the Android & Unity and the NeroSky subteams in Spring 2022.
 
-> **Implemented:** 04/01/2022 – present <br/> **GitHub source:** https://github.gatech.edu/VIP-BTAP/meditation-app
+> **Implemented:** 04/01/2022 – 04/22/2022 <br/> **GitHub source:** https://github.com/farisdurrani/meditation-app
 
 ## How to Run
 
